@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:soul_speed",
+    "minecraft:depth_strider",
+    "minecraft:feather_falling",
+    "selectivepowers:buoyant",
+    "selectivepowers:cloud_step",
+    "selectivepowers:shrink"
+  ]
+}

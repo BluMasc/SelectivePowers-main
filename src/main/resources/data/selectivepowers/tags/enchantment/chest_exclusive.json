@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:thorns",
+    "selectivepowers:squid_encounter",
+    "selectivepowers:run_away",
+    "selectivepowers:last_stand"
+  ]
+}

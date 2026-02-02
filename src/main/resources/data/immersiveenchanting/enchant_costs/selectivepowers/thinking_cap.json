@@ -1,0 +1,24 @@
+{
+  "levels": {
+    "1": {
+      "item": "minecraft:book",
+      "amount": 64
+    },
+    "2": {
+      "item": "minecraft:amethyst_shard",
+      "amount": 64
+    },
+    "3": {
+      "item": "minecraft:glowstone",
+      "amount": 64
+    },
+    "4": {
+      "item": "minecraft:sculk",
+      "amount": 64
+    },
+    "5": {
+      "item": "minecraft:experience_bottle",
+      "amount": 16
+    }
+  }
+}

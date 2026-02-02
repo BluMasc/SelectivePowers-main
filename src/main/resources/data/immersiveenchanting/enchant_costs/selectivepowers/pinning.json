@@ -1,0 +1,16 @@
+{
+  "levels": {
+    "1": {
+      "item": "minecraft:flint",
+      "amount": 64
+    },
+    "2": {
+      "item": "minecraft:pointed_dripstone",
+      "amount": 16
+    },
+    "3": {
+      "item": "minecraft:arrow",
+      "amount": 64
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "type": "selectivepowers:altar",
+  "ingredient": {
+    "item": "minecraft:obsidian"
+  },
+  "night": true,
+  "result": {
+    "id": "selectivepowers:obsidian_sand"
+  }
+}

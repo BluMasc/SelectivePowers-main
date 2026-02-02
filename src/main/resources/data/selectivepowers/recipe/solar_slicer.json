@@ -1,0 +1,10 @@
+{
+  "type": "selectivepowers:altar",
+  "ingredient": {
+    "item": "minecraft:netherite_sword"
+  },
+  "night": false,
+  "result": {
+    "id": "selectivepowers:sun_slicer"
+  }
+}

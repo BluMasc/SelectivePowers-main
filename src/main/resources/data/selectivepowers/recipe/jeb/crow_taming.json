@@ -1,0 +1,15 @@
+{
+  "type": "justenoughbreeding:taming",
+  "mod": "selectivepowers",
+  "mobs": [
+    {
+      "crow": {
+        "inputs": [
+          {
+            "tag": "selectivepowers:crow_taming_item"
+          }
+        ]
+      }
+    }
+  ]
+}

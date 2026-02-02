@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "hanging=false": {
+      "model": "selectivepowers:block/sun_lantern"
+    },
+    "hanging=true": {
+      "model": "selectivepowers:block/sun_lantern_hanging"
+    }
+  }
+}

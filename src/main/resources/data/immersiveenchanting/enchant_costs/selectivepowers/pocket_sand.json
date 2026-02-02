@@ -1,0 +1,16 @@
+{
+  "levels": {
+    "1": {
+      "item": "minecraft:sand",
+      "amount": 64
+    },
+    "2": {
+      "item": "minecraft:red_sand",
+      "amount": 64
+    },
+    "3": {
+      "item": "minecraft:sandstone",
+      "amount": 64
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "type": "selectivepowers:altar",
+  "ingredient": {
+    "tag": "minecraft:flowers"
+  },
+  "night": false,
+  "result": {
+    "id": "selectivepowers:rose_bush"
+  }
+}

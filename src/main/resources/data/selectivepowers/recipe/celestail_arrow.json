@@ -1,0 +1,10 @@
+{
+  "type": "selectivepowers:altar",
+  "ingredient": {
+    "item": "minecraft:arrow"
+  },
+  "night": false,
+  "result": {
+    "id": "selectivepowers:beam_arrow"
+  }
+}

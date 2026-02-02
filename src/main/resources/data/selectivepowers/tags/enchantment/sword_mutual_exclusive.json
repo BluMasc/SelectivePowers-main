@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:fire_aspect",
+    "minecraft:sweeping_edge",
+    "selectivepowers:soul_rend",
+    "selectivepowers:sneak_attack",
+    "selectivepowers:splatter"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "type": "justenoughbreeding:taming",
+  "mod": "selectivepowers",
+  "mobs": [
+    {
+      "packwing": {
+        "inputs": [
+          {
+            "tag": "selectivepowers:packwing_taming_item"
+          }
+        ]
+      }
+    }
+  ]
+}

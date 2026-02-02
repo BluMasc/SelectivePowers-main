@@ -1,0 +1,14 @@
+{
+  "type": "justenoughbreeding:transformation",
+  "mod": "selectivepowers",
+  "inputs": [
+    {
+      "item": "selectivepowers:chimera_core"
+    }
+  ],
+  "input_entity": "minecraft:chicken",
+  "input_spawn_eggs": [],
+  "output_entity": "selectivepowers:chimera",
+  "output_entity_nbt": [],
+  "output_spawn_eggs": []
+}

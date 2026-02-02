@@ -1,0 +1,10 @@
+{
+  "type": "selectivepowers:altar",
+  "ingredient": {
+    "tag": "c:stones"
+  },
+  "night": true,
+  "result": {
+    "id": "selectivepowers:moon_rock"
+  }
+}

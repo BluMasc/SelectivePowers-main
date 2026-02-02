@@ -1,0 +1,10 @@
+{
+  "type": "selectivepowers:altar",
+  "ingredient": {
+    "item": "minecraft:cake"
+  },
+  "night": true,
+  "result": {
+    "id": "selectivepowers:moonlight_jelly"
+  }
+}

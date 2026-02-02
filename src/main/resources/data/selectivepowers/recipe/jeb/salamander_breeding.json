@@ -1,0 +1,15 @@
+{
+  "type": "justenoughbreeding:breeding",
+  "mod": "selectivepowers",
+  "mobs": [
+    {
+      "salamander": {
+        "inputs": [
+          {
+            "tag": "selectivepowers:salamander_food"
+          }
+        ]
+      }
+    }
+  ]
+}

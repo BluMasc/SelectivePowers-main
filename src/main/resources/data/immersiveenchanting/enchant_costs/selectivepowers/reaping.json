@@ -1,0 +1,16 @@
+{
+  "levels": {
+    "1": {
+      "item": "minecraft:iron_hoe",
+      "amount": 1
+    },
+    "2": {
+      "item": "minecraft:diamond_hoe",
+      "amount": 1
+    },
+    "3": {
+      "item": "minecraft:netherite_hoe",
+      "amount": 1
+    }
+  }
+}

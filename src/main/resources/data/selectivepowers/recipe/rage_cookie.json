@@ -1,0 +1,10 @@
+{
+  "type": "selectivepowers:altar",
+  "ingredient": {
+    "item": "minecraft:cookie"
+  },
+  "night": false,
+  "result": {
+    "id": "selectivepowers:rage_cookie"
+  }
+}

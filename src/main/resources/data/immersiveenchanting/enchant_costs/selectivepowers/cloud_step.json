@@ -1,0 +1,12 @@
+{
+  "levels": {
+    "1": {
+      "item": "minecraft:glass_bottle",
+      "amount": 32
+    },
+    "2": {
+      "item": "minecraft:rabbit_foot",
+      "amount": 4
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "variants": {
+    "facing=north":   { "model": "selectivepowers:block/draconic_beacon" },
+
+    "facing=south":   { "model": "selectivepowers:block/draconic_beacon", "y": 180 },
+
+    "facing=east":    { "model": "selectivepowers:block/draconic_beacon", "y": 90 },
+
+    "facing=west":    { "model": "selectivepowers:block/draconic_beacon", "y": 270 }
+  }
+}

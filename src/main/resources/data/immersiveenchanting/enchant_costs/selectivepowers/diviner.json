@@ -1,0 +1,24 @@
+{
+  "levels": {
+    "1": {
+      "item": "minecraft:glow_berries",
+      "amount": 64
+    },
+    "2": {
+      "item": "minecraft:glow_ink_sac",
+      "amount": 32
+    },
+    "3": {
+      "item": "minecraft:sea_lantern",
+      "amount": 16
+    },
+    "4": {
+      "item": "minecraft:glowstone",
+      "amount": 8
+    },
+    "5": {
+      "item": "minecraft:ominous_bottle",
+      "amount": 1
+    }
+  }
+}

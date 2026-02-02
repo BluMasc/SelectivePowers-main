@@ -1,0 +1,10 @@
+{
+  "type": "selectivepowers:altar",
+  "ingredient": {
+    "item": "minecraft:magma_block"
+  },
+  "night": false,
+  "result": {
+    "id": "selectivepowers:solar_block"
+  }
+}

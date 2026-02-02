@@ -1,0 +1,10 @@
+{
+  "type": "selectivepowers:altar",
+  "ingredient": {
+    "tag": "c:mushrooms"
+  },
+  "night": true,
+  "result": {
+    "id": "selectivepowers:jump_mushroom"
+  }
+}

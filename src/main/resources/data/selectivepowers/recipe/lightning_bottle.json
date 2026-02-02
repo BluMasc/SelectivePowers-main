@@ -1,0 +1,10 @@
+{
+  "type": "selectivepowers:altar",
+  "ingredient": {
+    "item": "minecraft:glass_bottle"
+  },
+  "night": false,
+  "result": {
+    "id": "selectivepowers:lightning_bottle"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "type": "selectivepowers:altar",
+  "ingredient": {
+    "item": "minecraft:feather"
+  },
+  "night": true,
+  "result": {
+    "id": "selectivepowers:crow_spawn_egg"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "targets": ["final"],
+  "passes": [
+    {
+      "name": "selectivepowers:void_vision",
+      "intarget": "minecraft:main",
+      "outtarget": "final"
+    },
+    {
+      "name": "minecraft:blit",
+      "intarget": "final",
+      "outtarget": "minecraft:main"
+    }
+  ]
+}

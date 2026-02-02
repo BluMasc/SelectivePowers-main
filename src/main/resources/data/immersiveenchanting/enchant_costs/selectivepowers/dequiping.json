@@ -1,0 +1,16 @@
+{
+  "levels": {
+    "1": {
+      "item": "minecraft:heavy_core",
+      "amount": 1
+    },
+    "2": {
+      "item": "minecraft:breeze_rod",
+      "amount": 16
+    },
+    "3": {
+      "item": "minecraft:shulker_shell",
+      "amount": 8
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:swift_sneak",
+    "selectivepowers:evoking",
+    "selectivepowers:dash",
+    "selectivepowers:endurance",
+    "selectivepowers:charge"
+  ]
+}

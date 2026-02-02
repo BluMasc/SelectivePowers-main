@@ -1,0 +1,16 @@
+{
+  "levels": {
+    "1": {
+      "item": "minecraft:ghast_tear",
+      "amount": 4
+    },
+    "2": {
+      "item": "minecraft:glistering_melon_slice",
+      "amount": 16
+    },
+    "3": {
+      "item": "minecraft:golden_apple",
+      "amount": 8
+    }
+  }
+}

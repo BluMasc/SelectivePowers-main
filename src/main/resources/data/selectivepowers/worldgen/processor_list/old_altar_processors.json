@@ -1,0 +1,84 @@
+{
+  "processors": [
+    {
+      "processor_type": "minecraft:rule",
+      "rules": [
+        {
+          "location_predicate": { "predicate_type": "minecraft:always_true" },
+          "input_predicate": { "predicate_type": "minecraft:random_block_match", "block": "minecraft:vine", "probability": 0.7 },
+          "output_state": { "Name": "minecraft:air" }
+        },
+        {
+          "location_predicate": { "predicate_type": "minecraft:always_true" },
+          "input_predicate": { "predicate_type": "minecraft:random_block_match", "block": "minecraft:moss_carpet", "probability": 0.4 },
+          "output_state": { "Name": "minecraft:air" }
+        },
+        {
+          "location_predicate": { "predicate_type": "minecraft:always_true" },
+          "input_predicate": { "predicate_type": "minecraft:random_block_match", "block": "minecraft:polished_andesite", "probability": 0.4 },
+          "output_state": { "Name": "minecraft:andesite" }
+        },
+        {
+          "location_predicate": { "predicate_type": "minecraft:always_true" },
+          "input_predicate": { "predicate_type": "minecraft:random_block_match", "block": "minecraft:polished_andesite", "probability": 0.1 },
+          "output_state": { "Name": "minecraft:air" }
+        },
+        {
+          "location_predicate": { "predicate_type": "minecraft:always_true" },
+          "input_predicate": { "predicate_type": "minecraft:random_blockstate_match", "block_state": { "Name": "minecraft:polished_andesite_slab", "Properties": { "type": "bottom" } }, "probability": 0.4 },
+          "output_state": { "Name": "minecraft:andesite_slab", "Properties": { "type": "bottom" } }
+        },
+        {
+          "location_predicate": { "predicate_type": "minecraft:always_true" },
+          "input_predicate": { "predicate_type": "minecraft:random_blockstate_match", "block_state": { "Name": "minecraft:polished_andesite_slab", "Properties": { "type": "bottom" } }, "probability": 0.1 },
+          "output_state": { "Name": "minecraft:air" }
+        },
+
+        {
+          "location_predicate": { "predicate_type": "minecraft:always_true" },
+          "input_predicate": { "predicate_type": "minecraft:random_blockstate_match", "block_state": { "Name": "minecraft:polished_andesite_stairs", "Properties": { "facing": "north" } }, "probability": 0.4 },
+          "output_state": { "Name": "minecraft:andesite_stairs", "Properties": { "facing": "north" } }
+        },
+        {
+          "location_predicate": { "predicate_type": "minecraft:always_true" },
+          "input_predicate": { "predicate_type": "minecraft:random_blockstate_match", "block_state": { "Name": "minecraft:polished_andesite_stairs", "Properties": { "facing": "north" } }, "probability": 0.1 },
+          "output_state": { "Name": "minecraft:air" }
+        },
+
+        {
+          "location_predicate": { "predicate_type": "minecraft:always_true" },
+          "input_predicate": { "predicate_type": "minecraft:random_blockstate_match", "block_state": { "Name": "minecraft:polished_andesite_stairs", "Properties": { "facing": "south" } }, "probability": 0.4 },
+          "output_state": { "Name": "minecraft:andesite_stairs", "Properties": { "facing": "south" } }
+        },
+        {
+          "location_predicate": { "predicate_type": "minecraft:always_true" },
+          "input_predicate": { "predicate_type": "minecraft:random_blockstate_match", "block_state": { "Name": "minecraft:polished_andesite_stairs", "Properties": { "facing": "south" } }, "probability": 0.1 },
+          "output_state": { "Name": "minecraft:air" }
+        },
+
+        {
+          "location_predicate": { "predicate_type": "minecraft:always_true" },
+          "input_predicate": { "predicate_type": "minecraft:random_blockstate_match", "block_state": { "Name": "minecraft:polished_andesite_stairs", "Properties": { "facing": "east" } }, "probability": 0.4 },
+          "output_state": { "Name": "minecraft:andesite_stairs", "Properties": { "facing": "east" } }
+        },
+        {
+          "location_predicate": { "predicate_type": "minecraft:always_true" },
+          "input_predicate": { "predicate_type": "minecraft:random_blockstate_match", "block_state": { "Name": "minecraft:polished_andesite_stairs", "Properties": { "facing": "east" } }, "probability": 0.1 },
+          "output_state": { "Name": "minecraft:air" }
+        },
+
+        {
+          "location_predicate": { "predicate_type": "minecraft:always_true" },
+          "input_predicate": { "predicate_type": "minecraft:random_blockstate_match", "block_state": { "Name": "minecraft:polished_andesite_stairs", "Properties": { "facing": "west" } }, "probability": 0.4 },
+          "output_state": { "Name": "minecraft:andesite_stairs", "Properties": { "facing": "west" } }
+        },
+        {
+          "location_predicate": { "predicate_type": "minecraft:always_true" },
+          "input_predicate": { "predicate_type": "minecraft:random_blockstate_match", "block_state": { "Name": "minecraft:polished_andesite_stairs", "Properties": { "facing": "west" } }, "probability": 0.1 },
+          "output_state": { "Name": "minecraft:air" }
+        }
+
+      ]
+    }
+  ]
+}

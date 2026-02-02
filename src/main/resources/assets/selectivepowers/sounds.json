@@ -1,0 +1,257 @@
+{
+  "squish_plushy":{
+  "subtitle": "sound.selectivepowers.squish_plushy",
+    "sounds": [
+      "selectivepowers:squish_plushy"
+    ]
+},
+  "bounce":{
+    "subtitle": "sound.selectivepowers.bounce",
+    "sounds": [
+      "selectivepowers:bounce"
+    ]
+  },
+  "grape_shot":{
+    "subtitle": "sound.selectivepowers.grape_shot",
+    "sounds": [
+      "selectivepowers:grape_shot"
+    ]
+  },
+  "rope":{
+    "subtitle": "sound.selectivepowers.rope",
+    "sounds": [
+      "selectivepowers:rope"
+    ]
+  },
+  "pickerang":{
+    "subtitle": "sound.selectivepowers.pickerang",
+    "sounds": [
+      "selectivepowers:pickerang"
+    ]
+  },
+  "shoot":{
+    "subtitle": "sound.selectivepowers.shoot",
+    "sounds": [
+      "selectivepowers:shoot"
+    ]
+  },
+  "blast":{
+    "subtitle": "sound.selectivepowers.blast",
+    "sounds": [
+      "selectivepowers:blast"
+    ]
+  },
+  "ability":{
+    "subtitle": "sound.selectivepowers.ability",
+    "sounds": [
+      "selectivepowers:ability"
+    ]
+  },
+  "ult":{
+    "subtitle": "sound.selectivepowers.ult",
+    "sounds": [
+      "selectivepowers:ult"
+    ]
+  },
+  "lunar_lady":{
+    "subtitle": "sound.selectivepowers.lunar_lady",
+    "sounds": [
+      "selectivepowers:lunar_lady"
+    ]
+  },
+  "battle_for_eternity":{
+    "subtitle": "sound.selectivepowers.battle_for_eternity",
+    "sounds": [
+      "selectivepowers:battle_for_eternity"
+    ]
+  },
+  "electric":{
+    "subtitle": "sound.selectivepowers.electric",
+    "sounds": [
+      "selectivepowers:electric"
+    ]
+  },
+  "sparkle":{
+    "subtitle": "sound.selectivepowers.sparkle",
+    "sounds": [
+      "selectivepowers:sparkle"
+    ]
+  },
+  "magical_success":{
+    "subtitle": "sound.selectivepowers.magical_success",
+    "sounds": [
+      "selectivepowers:magical_success"
+    ]
+  },
+  "wind":{
+    "subtitle": "sound.selectivepowers.wind",
+    "sounds": [
+      "selectivepowers:wind"
+    ]
+  },
+  "meteor":{
+    "subtitle": "sound.selectivepowers.meteor",
+    "sounds": [
+      "selectivepowers:meteor"
+    ]
+  },
+  "crow":{
+    "subtitle": "sound.selectivepowers.crow",
+    "sounds": [
+      "selectivepowers:crow/crow"
+    ]
+  },
+  "crow_death":{
+    "subtitle": "sound.selectivepowers.crow_death",
+    "sounds": [
+      "selectivepowers:crow/crow_death"
+    ]
+  },
+  "crow_hurt":{
+    "subtitle": "sound.selectivepowers.crow_hurt",
+    "sounds": [
+      "selectivepowers:crow/crow_hurt"
+    ]
+  },
+  "packwing":{
+    "subtitle": "sound.selectivepowers.packwing",
+    "sounds": [
+      "selectivepowers:packwing/packwing"
+    ]
+  },
+  "packwing_death":{
+    "subtitle": "sound.selectivepowers.packwing_death",
+    "sounds": [
+      "selectivepowers:packwing/packwing_death"
+    ]
+  },
+  "packwing_hurt":{
+    "subtitle": "sound.selectivepowers.packwing_hurt",
+    "sounds": [
+      "selectivepowers:packwing/packwing_hurt"
+    ]
+  },
+  "solar_bug":{
+    "subtitle": "sound.selectivepowers.solar_bug",
+    "sounds": [
+      "selectivepowers:solar_beetle/fire_bug"
+    ]
+  },
+  "solar_bug_death":{
+    "subtitle": "sound.selectivepowers.solar_bug_death",
+    "sounds": [
+      "selectivepowers:solar_beetle/cicada_death"
+    ]
+  },
+  "solar_bug_hurt":{
+    "subtitle": "sound.selectivepowers.solar_bug_hurt",
+    "sounds": [
+      "selectivepowers:solar_beetle/cicada_hurt"
+    ]
+  },
+  "solar_bug_scuttle":{
+    "subtitle": "sound.selectivepowers.solar_bug_scuttle",
+    "sounds": [
+      "selectivepowers:solar_beetle/sunbeatle_scuttling"
+    ]
+  },
+  "salamander":{
+    "subtitle": "sound.selectivepowers.salamander",
+    "sounds": [
+      "selectivepowers:salamander/salamander_grunt"
+    ]
+  },
+  "salamander_death":{
+    "subtitle": "sound.selectivepowers.salamander_death",
+    "sounds": [
+      "selectivepowers:salamander/salamander_death"
+    ]
+  },
+  "salamander_hurt":{
+    "subtitle": "sound.selectivepowers.salamander_hurt",
+    "sounds": [
+      "selectivepowers:salamander/salamander_hurt"
+    ]
+  },
+  "salamander_burn":{
+    "subtitle": "sound.selectivepowers.salamander_burn",
+    "sounds": [
+      "selectivepowers:salamander/burn/salamander_burn1",
+      "selectivepowers:salamander/burn/salamander_burn2",
+      "selectivepowers:salamander/burn/salamander_burn3",
+      "selectivepowers:salamander/burn/salamander_burn4",
+      "selectivepowers:salamander/burn/salamander_burn5",
+      "selectivepowers:salamander/burn/salamander_burn6",
+      "selectivepowers:salamander/burn/salamander_burn7",
+      "selectivepowers:salamander/burn/salamander_burn8"
+    ]
+  },
+  "salamander_burn_start":{
+    "subtitle": "sound.selectivepowers.salamander_burn_start",
+    "sounds": [
+      "selectivepowers:salamander/burn/salamander_burn_start"
+    ]
+  },
+  "salamander_burn_end":{
+    "subtitle": "sound.selectivepowers.salamander_burn_end",
+    "sounds": [
+      "selectivepowers:salamander/burn/salamander_burn_end"
+    ]
+  },
+  "moon_squid":{
+    "subtitle": "sound.selectivepowers.moon_squid",
+    "sounds": [
+      "selectivepowers:moon_squid/squid"
+    ]
+  },
+  "moon_squid_death":{
+    "subtitle": "sound.selectivepowers.moon_squid_death",
+    "sounds": [
+      "selectivepowers:moon_squid/squid_death"
+    ]
+  },
+  "moon_squid_hurt":{
+    "subtitle": "sound.selectivepowers.moon_squid_hurt",
+    "sounds": [
+      "selectivepowers:moon_squid/squid_hurt"
+    ]
+  },
+  "quetzal_hiss":{
+    "subtitle": "sound.selectivepowers.quetzal_hiss",
+    "sounds": [
+      "selectivepowers:quetzal/quetzal_hiss"
+    ]
+  },
+  "quetzal_hit":{
+    "subtitle": "sound.selectivepowers.quetzal_hit",
+    "sounds": [
+      "selectivepowers:quetzal/quetzal_hit"
+    ]
+  },
+  "the_axolotl_song":{
+    "subtitle": "sound.selectivepowers.the_axolotl_song",
+    "sounds": [
+      "selectivepowers:salamander/the_axolotl_song"
+    ]
+  },
+  "fanatic_praying":{
+    "subtitle": "sound.selectivepowers.fanatic_praying",
+    "sounds": [
+      "selectivepowers:fanatic_praying"
+    ]
+  },
+  "yellow_whispers":{
+    "subtitle": "sound.selectivepowers.yellow_whispers",
+    "sounds": [
+      "selectivepowers:whispers/become_mine",
+      "selectivepowers:whispers/become_yellow",
+      "selectivepowers:whispers/submit",
+      "selectivepowers:whispers/see_truth",
+      "selectivepowers:whispers/bow",
+      "selectivepowers:whispers/embrace",
+      "selectivepowers:whispers/mask_awaits",
+      "selectivepowers:whispers/surrender_sanity",
+      "selectivepowers:whispers/kneel_king"
+    ]
+  }
+}

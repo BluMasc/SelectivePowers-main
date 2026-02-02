@@ -1,0 +1,26 @@
+{
+  "required": true,
+  "package": "net.blumasc.selectivepowers.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "mixins": [
+    "ItemInHandRendererMixin",
+    "PlayerLayerMixin",
+    "MobEffectAccessor",
+    "LeafWalkerLeavesMixin",
+    "PlayerModelMixin",
+    "ElytraLayerMixin",
+    "MobTargetingMixin",
+    "PlayerMixin",
+    "CrossbowMixin",
+    "ProjectileWeaponMixin",
+    "AbstractArrowMixin",
+    "TridentItemMixin",
+    "FishingHookMixin"
+  ],
+  "client": [
+  ],
+  "server": []
+}

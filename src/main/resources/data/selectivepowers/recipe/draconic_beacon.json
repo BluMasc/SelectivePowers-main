@@ -1,0 +1,10 @@
+{
+  "type": "selectivepowers:altar",
+  "ingredient": {
+    "item": "minecraft:beacon"
+  },
+  "night": false,
+  "result": {
+    "id": "selectivepowers:draconic_beacon"
+  }
+}

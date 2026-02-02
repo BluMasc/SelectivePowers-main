@@ -1,0 +1,9 @@
+{
+  "type": "jeed:effect_provider",
+  "effect":  "selectivepowers:hallucination",
+  "providers": [
+    {
+      "item": "selectivepowers:spore_mushroom"
+    }
+  ]
+}

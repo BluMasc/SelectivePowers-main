@@ -1,0 +1,16 @@
+{
+  "levels": {
+    "1": {
+      "item": "selectivepowers:cobblestone",
+      "amount": 64
+    },
+    "2": {
+      "item": "minecraft:cobbled_deepslate",
+      "amount": 64
+    },
+    "3": {
+      "item": "minecraft:blackstone",
+      "amount": 64
+    }
+  }
+}

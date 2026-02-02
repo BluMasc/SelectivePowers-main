@@ -1,0 +1,6 @@
+{
+  "parent": "selectivepowers:item/frosted_shield",
+  "textures": {
+    "0": "selectivepowers:item/ice_shield"
+  }
+}

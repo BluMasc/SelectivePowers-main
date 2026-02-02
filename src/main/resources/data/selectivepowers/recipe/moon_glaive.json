@@ -1,0 +1,10 @@
+{
+  "type": "selectivepowers:altar",
+  "ingredient": {
+    "item": "minecraft:netherite_sword"
+  },
+  "night": true,
+  "result": {
+    "id": "selectivepowers:moonlight_glaive"
+  }
+}

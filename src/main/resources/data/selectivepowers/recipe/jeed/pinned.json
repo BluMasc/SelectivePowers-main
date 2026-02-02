@@ -1,0 +1,9 @@
+{
+  "type": "jeed:effect_provider",
+  "effect":  "selectivepowers:pinned",
+  "providers": [
+    {
+      "item": "selectivepowers:pitfall_trap"
+    }
+  ]
+}

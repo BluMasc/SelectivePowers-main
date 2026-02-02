@@ -1,0 +1,10 @@
+{
+  "type": "selectivepowers:altar",
+  "ingredient": {
+    "item": "minecraft:paper"
+  },
+  "night": false,
+  "result": {
+    "id": "selectivepowers:lore_scroll"
+  }
+}

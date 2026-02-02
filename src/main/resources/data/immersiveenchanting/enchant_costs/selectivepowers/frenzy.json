@@ -1,0 +1,16 @@
+{
+  "levels": {
+    "1": {
+      "item": "minecraft:iron_axe",
+      "amount": 1
+    },
+    "2": {
+      "item": "minecraft:diamond_axe",
+      "amount": 1
+    },
+    "3": {
+      "item": "minecraft:netherite_axe",
+      "amount": 1
+    }
+  }
+}

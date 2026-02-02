@@ -1,0 +1,10 @@
+{
+  "type": "selectivepowers:altar",
+  "ingredient": {
+    "tag": "selectivepowers:denial_contract"
+  },
+  "night": true,
+  "result": {
+    "id": "selectivepowers:soulgem"
+  }
+}

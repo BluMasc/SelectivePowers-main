@@ -1,0 +1,8 @@
+{
+  "comparator_output": 15,
+  "description": {
+    "translate": "item.selectivepowers.battle_for_eternity_music_disc.desc"
+  },
+  "length_in_seconds": 254.0,
+  "sound_event": "selectivepowers:battle_for_eternity"
+}

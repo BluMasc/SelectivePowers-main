@@ -1,0 +1,10 @@
+{
+  "type": "selectivepowers:altar",
+  "ingredient": {
+    "item": "selectivepowers:golden_idol"
+  },
+  "night": false,
+  "result": {
+    "id": "selectivepowers:yellow_king_spawn_egg"
+  }
+}

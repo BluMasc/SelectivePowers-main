@@ -1,0 +1,9 @@
+{
+  "type": "jeed:effect_provider",
+  "effect":  "selectivepowers:yellow_fever",
+  "providers": [
+    {
+      "item": "selectivepowers:corrupting_arrow"
+    }
+  ]
+}

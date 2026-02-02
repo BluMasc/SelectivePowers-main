@@ -1,0 +1,16 @@
+{
+  "levels": {
+    "1": {
+      "item": "minecraft:sponge",
+      "amount": 6
+    },
+    "2": {
+      "item": "minecraft:dragon_breath",
+      "amount": 16
+    },
+    "3": {
+      "item": "minecraft:nether_star",
+      "amount": 1
+    }
+  }
+}

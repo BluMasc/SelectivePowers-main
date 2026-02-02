@@ -1,0 +1,15 @@
+{
+  "type": "justenoughbreeding:breeding",
+  "mod": "selectivepowers",
+  "mobs": [
+    {
+      "crow": {
+        "inputs": [
+          {
+            "tag": "selectivepowers:crow_breeding_item"
+          }
+        ]
+      }
+    }
+  ]
+}

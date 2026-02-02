@@ -1,0 +1,24 @@
+{
+  "levels": {
+    "1": {
+      "item": "selectivepowers:lightning_bottle",
+      "amount": 1
+    },
+    "2": {
+      "item": "minecraft:copper_block",
+      "amount": 32
+    },
+    "3": {
+      "item": "minecraft:exposed_copper",
+      "amount": 32
+    },
+    "4": {
+      "item": "minecraft:weathered_copper",
+      "amount": 32
+    },
+    "5": {
+      "item": "minecraft:oxidized_copper",
+      "amount": 32
+    }
+  }
+}

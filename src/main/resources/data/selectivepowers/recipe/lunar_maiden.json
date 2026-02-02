@@ -1,0 +1,10 @@
+{
+  "type": "selectivepowers:altar",
+  "ingredient": {
+    "item": "selectivepowers:golden_idol"
+  },
+  "night": true,
+  "result": {
+    "id": "selectivepowers:lunar_maiden_spawn_egg"
+  }
+}

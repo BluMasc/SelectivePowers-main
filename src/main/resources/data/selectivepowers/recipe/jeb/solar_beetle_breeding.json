@@ -1,0 +1,15 @@
+{
+  "type": "justenoughbreeding:breeding",
+  "mod": "selectivepowers",
+  "mobs": [
+    {
+      "solar_beetle": {
+        "inputs": [
+          {
+            "tag": "selectivepowers:solar_beetle_food"
+          }
+        ]
+      }
+    }
+  ]
+}

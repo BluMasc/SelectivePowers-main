@@ -1,0 +1,16 @@
+{
+  "levels": {
+    "1": {
+      "item": "minecraft:ender_chest",
+      "amount": 16
+    },
+    "2": {
+      "item": "minecraft:ender_chest",
+      "amount": 32
+    },
+    "3": {
+      "item": "minecraft:ender_chest",
+      "amount": 48
+    }
+  }
+}

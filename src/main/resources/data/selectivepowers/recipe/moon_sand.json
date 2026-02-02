@@ -1,0 +1,10 @@
+{
+  "type": "selectivepowers:altar",
+  "ingredient": {
+    "tag": "minecraft:sand"
+  },
+  "night": true,
+  "result": {
+    "id": "selectivepowers:moon_dust"
+  }
+}

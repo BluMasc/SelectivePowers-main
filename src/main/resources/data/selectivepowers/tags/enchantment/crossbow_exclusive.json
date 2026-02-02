@@ -1,0 +1,12 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:multishot",
+    "minecraft:piercing",
+    "selectivepowers:echoing",
+    "selectivepowers:sharing",
+    "selectivepowers:galvanizing",
+    "selectivepowers:infested",
+    "selectivepowers:grape_shot"
+  ]
+}

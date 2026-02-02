@@ -1,0 +1,10 @@
+{
+  "type": "selectivepowers:altar",
+  "ingredient": {
+    "item": "selectivepowers:crown"
+  },
+  "night": false,
+  "result": {
+    "id": "selectivepowers:true_crown"
+  }
+}
