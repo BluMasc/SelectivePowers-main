@@ -1,0 +1,24 @@
+{
+  "levels": {
+    "1": {
+      "item": "minecraft:stone",
+      "amount": 1
+    },
+    "2": {
+      "item": "minecraft:deepslate",
+      "amount": 1
+    },
+    "3": {
+      "item": "minecraft:blackstone",
+      "amount": 1
+    },
+    "4": {
+      "item": "minecraft:basalt",
+      "amount": 1
+    },
+    "5": {
+      "item": "minecraft:obsidian",
+      "amount": 1
+    }
+  }
+}

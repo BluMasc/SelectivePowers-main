@@ -1,0 +1,16 @@
+{
+  "levels": {
+    "1": {
+      "item": "minecraft:sugar",
+      "amount": 1
+    },
+    "2": {
+      "item": "minecraft:golden_carrot",
+      "amount": 1
+    },
+    "3": {
+      "item": "minecraft:cookie",
+      "amount": 1
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "levels": {
+    "1": {
+      "item": "selectivepowers:beetle_horn",
+      "amount": 1
+    },
+    "2": {
+      "item": "minecraft:spider_eye",
+      "amount": 1
+    },
+    "3": {
+      "item": "selectivepowers:sun_horn",
+      "amount": 1
+    }
+  }
+}

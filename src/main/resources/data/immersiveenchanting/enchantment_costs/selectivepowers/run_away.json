@@ -1,0 +1,16 @@
+{
+  "levels": {
+    "1": {
+      "item": "minecraft:rabbit",
+      "amount": 1
+    },
+    "2": {
+      "item": "minecraft:rabbit_hide",
+      "amount": 1
+    },
+    "3": {
+      "item": "minecraft:rabbit_foot",
+      "amount": 1
+    }
+  }
+}

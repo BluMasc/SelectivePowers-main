@@ -1,0 +1,16 @@
+{
+  "levels": {
+    "1": {
+      "item": "minecraft:sculk",
+      "amount": 1
+    },
+    "2": {
+      "item": "minecraft:sculk_sensor",
+      "amount": 1
+    },
+    "3": {
+      "item": "minecraft:sculk_shrieker",
+      "amount": 1
+    }
+  }
+}
