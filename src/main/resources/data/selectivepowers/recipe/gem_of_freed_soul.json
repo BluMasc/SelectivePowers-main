@@ -1,7 +1,7 @@
 {
   "type": "selectivepowers:altar",
   "ingredient": {
-    "tag": "selectivepowers:denial_contract"
+    "item": "selectivepowers:denial_contract"
   },
   "night": true,
   "result": {
