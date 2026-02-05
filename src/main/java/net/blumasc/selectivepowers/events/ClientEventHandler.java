@@ -66,42 +66,6 @@ public class ClientEventHandler {
         }
     }
 
-    private static final Map<Integer, Boolean> ORIGINAL_GLOW = new HashMap<>();
-
-    @SubscribeEvent
-    public static void onRenderLivingPre(RenderLivingEvent.Pre<?, ?> event) {
-        LivingEntity entity = event.getEntity();
-        Minecraft mc = Minecraft.getInstance();
-
-        if (mc.player == null) return;
-
-        if (!entity.isInvisible()) return;
-        if(ClientPowerData.truthOwner == null) return;
-        if (!ClientPowerData.truthOwner.equals(mc.player.getUUID())) return;
-
-        int id = entity.getId();
-
-        ORIGINAL_GLOW.putIfAbsent(id, entity.isCurrentlyGlowing());
-
-        entity.setGlowingTag(true);
-    }
-
-    @SubscribeEvent
-    public static void onRenderLivingPost(RenderLivingEvent.Post<?, ?> event) {
-        LivingEntity entity = event.getEntity();
-        Minecraft mc = Minecraft.getInstance();
-
-        if (mc.player == null) return;
-        if(ClientPowerData.truthOwner == null) return;
-        if (!ClientPowerData.truthOwner.equals(mc.player.getUUID())) return;
-
-        int id = entity.getId();
-        Boolean original = ORIGINAL_GLOW.remove(id);
-        if (original != null) {
-            entity.setGlowingTag(original);
-        }
-    }
-
     @SubscribeEvent
     public static void onClientTick(ClientTickEvent.Post event) {
         Minecraft mc = Minecraft.getInstance();
