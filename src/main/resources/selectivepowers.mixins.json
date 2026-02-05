@@ -21,6 +21,7 @@
     "FishingHookMixin"
   ],
   "client": [
+    "MinecraftMixin"
   ],
   "server": []
 }

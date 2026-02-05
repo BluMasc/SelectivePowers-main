@@ -1,7 +1,7 @@
 {
   "levels": {
     "1": {
-      "item": "selectivepowers:cobblestone",
+      "item": "minecraft:cobblestone",
       "amount": 64
     },
     "2": {
