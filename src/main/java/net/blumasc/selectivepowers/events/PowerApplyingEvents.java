@@ -366,6 +366,7 @@ public class PowerApplyingEvents {
     public static void useBonemeal(BonemealEvent e)
     {
         Player p = e.getPlayer();
+        if(p == null)return;
         if(p.level() instanceof ServerLevel sl)
         {
             PowerManager pm = PowerManager.get(sl);
