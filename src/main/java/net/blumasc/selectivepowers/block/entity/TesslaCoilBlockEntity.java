@@ -1,7 +1,7 @@
 package net.blumasc.selectivepowers.block.entity;
 
+import net.blumasc.blubasics.entity.custom.projectile.LightningArcEntity;
 import net.blumasc.selectivepowers.PowerManager;
-import net.blumasc.selectivepowers.entity.custom.projectile.LightningArcEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.Registries;

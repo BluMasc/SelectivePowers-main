@@ -1,6 +1,8 @@
 package net.blumasc.selectivepowers.block.entity;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.ParticleOptions;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.monster.Monster;
@@ -9,12 +11,6 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import net.neoforged.neoforge.common.Tags;
-import team.lodestar.lodestone.registry.common.particle.LodestoneParticleTypes;
-import team.lodestar.lodestone.systems.easing.Easing;
-import team.lodestar.lodestone.systems.particle.builder.WorldParticleBuilder;
-import team.lodestar.lodestone.systems.particle.data.GenericParticleData;
-import team.lodestar.lodestone.systems.particle.data.color.ColorParticleData;
-import team.lodestar.lodestone.systems.particle.data.spin.SpinParticleData;
 
 import java.awt.*;
 import java.util.List;
@@ -98,14 +94,6 @@ public class ProtectionEffigyBlockEntity  extends BlockEntity{
 
     public static void spawnParticle(Level level, double x, double y, double z, Color startingColor, Color endingColor, double moveX, double moveY, double moveZ) {
         if (level instanceof ServerLevel) return;
-        WorldParticleBuilder.create(LodestoneParticleTypes.STAR_PARTICLE)
-                .setScaleData(GenericParticleData.create(0.2f, 0).build())
-                .setTransparencyData(GenericParticleData.create(0.75f, 0.25f).build())
-                .setColorData(ColorParticleData.create(startingColor, endingColor).setCoefficient(1.4f).setEasing(Easing.BOUNCE_IN_OUT).build())
-                .setSpinData(SpinParticleData.create(0.2f, 0.4f).setSpinOffset((level.getGameTime() * 0.2f) % 6.28f).setEasing(Easing.QUARTIC_IN).build())
-                .setLifetime(40)
-                .addMotion(moveX, moveY, moveZ)
-                .enableNoClip()
-                .spawn(level, x, y, z);
+        level.addParticle(ParticleTypes.END_ROD, x,y,z,moveX, moveY, moveZ);
     }
 }

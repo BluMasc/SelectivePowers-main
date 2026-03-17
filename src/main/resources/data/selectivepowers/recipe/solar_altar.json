@@ -1,0 +1,10 @@
+{
+  "type": "selectivepowers:altar",
+  "ingredient": {
+    "item": "selectivepowers:decrepit_sacrifical_altar"
+  },
+  "night": false,
+  "result": {
+    "id": "selectivepowers:altar"
+  }
+}

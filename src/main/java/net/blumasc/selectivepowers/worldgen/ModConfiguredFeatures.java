@@ -32,7 +32,6 @@ import java.util.List;
 public class ModConfiguredFeatures {
 
     public static final ResourceKey<ConfiguredFeature<?,?>> MOONCAP_MUSHROOM_KEY = registerKey("mooncap_mushroom");
-    public static final ResourceKey<ConfiguredFeature<?,?>> DORMANT_CRAB_KEY = registerKey("dormant_crab");
     public static final ResourceKey<ConfiguredFeature<?,?>> CROWS_NEST_KEY = registerKey("crows_nest");
 
     public static void bootstrap(BootstrapContext<ConfiguredFeature<?, ?>> context) {
@@ -41,33 +40,6 @@ public class ModConfiguredFeatures {
                         new SimpleBlockConfiguration(BlockStateProvider.simple(SelectivepowersBlocks.MOONCAP_CROP.get()
                                 .defaultBlockState().setValue(MooncapCropBlock.AGE, 5))
                         ), List.of(Blocks.GRASS_BLOCK, Blocks.MYCELIUM, Blocks.WARPED_NYLIUM, Blocks.PODZOL, Blocks.GRAVEL, Blocks.STONE)));
-
-        register(context, DORMANT_CRAB_KEY, Feature.RANDOM_PATCH,
-                new RandomPatchConfiguration(
-                        32,
-                        10,
-                        5,
-                        PlacementUtils.inlinePlaced(
-                                Feature.SIMPLE_BLOCK,
-                                new SimpleBlockConfiguration(
-                                        BlockStateProvider.simple(
-                                                SelectivepowersBlocks.DORMANT_ECHO_CRAB
-                                                        .get()
-                                                        .defaultBlockState()
-                                        )
-                                ),
-                                BlockPredicateFilter.forPredicate(
-                                        BlockPredicate.allOf(
-                                                BlockPredicate.matchesBlocks(Blocks.AIR),
-                                                BlockPredicate.matchesTag(
-                                                        BlockPos.ZERO.below(),
-                                                        ModTags.Blocks.ECHO_CRAB_SPAWNABLE
-                                                )
-                                        )
-                                )
-                        )
-                )
-        );
 
         register(context, CROWS_NEST_KEY, ModFeatures.CROW_NEST.get(),
                 NoneFeatureConfiguration.INSTANCE);

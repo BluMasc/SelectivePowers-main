@@ -36,7 +36,6 @@ public class ModBlockStateProvider extends BlockStateProvider {
         blockWithItem(SelectivepowersBlocks.MOON_ROCK_TILES);
         blockWithItem(SelectivepowersBlocks.SOLAR_BLOCK);
         blockWithItem(SelectivepowersBlocks.M_SOLAR_BLOCK);
-        blockWithItem(SelectivepowersBlocks.VOID_BLOCK);
         stairsBlock(SelectivepowersBlocks.SMOOTH_MOON_ROCK_STAIRS.get(), blockTexture(SelectivepowersBlocks.SMOOTH_MOON_ROCK.get()));
         blockItem(SelectivepowersBlocks.SMOOTH_MOON_ROCK_STAIRS);
         stairsBlock(SelectivepowersBlocks.MOON_ROCK_BRICKS_STAIRS.get(), blockTexture(SelectivepowersBlocks.MOON_ROCK_BRICKS.get()));

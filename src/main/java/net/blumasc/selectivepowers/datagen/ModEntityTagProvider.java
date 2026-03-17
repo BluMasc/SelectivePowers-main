@@ -31,26 +31,23 @@ public class ModEntityTagProvider extends EntityTypeTagsProvider {
                 .add(SelectivepowersEntities.YELLOW_KING_BOSS.get())
                 .add(SelectivepowersEntities.YELLOW_KING.get())
                 .add(SelectivepowersEntities.LUNAR_MAIDEN.get());
-        tag(ModTags.EntityTypes.CHIMERA_LIKE)
-                .add(EntityType.FOX)
-                .add(EntityType.GOAT)
-                .add(EntityType.CHICKEN)
-                .add(EntityType.GUARDIAN)
-                .add(EntityType.PHANTOM)
-                .add(EntityType.RABBIT)
-                .add(EntityType.HOGLIN);
-        tag(ModTags.EntityTypes.SENSITIVE_TO_DEVILS_IMPALING)
-                .add(EntityType.HOGLIN)
-                .add(EntityType.ZOGLIN)
-                .add(EntityType.PIGLIN)
+        tag(ModTags.EntityTypes.DRAGON_LIKE)
+                .add(EntityType.ENDER_DRAGON);
+        tag(ModTags.EntityTypes.VILLAGER_LIKE)
+                .add(EntityType.VILLAGER)
+                .add(EntityType.VINDICATOR)
                 .add(EntityType.PIGLIN_BRUTE)
-                .add(EntityType.ZOMBIFIED_PIGLIN)
-                .add(EntityType.WITHER_SKELETON)
-                .add(EntityType.BLAZE)
-                .add(EntityType.GHAST)
-                .add(SelectivepowersEntities.QUETZAL.get())
-                .add(EntityType.MAGMA_CUBE)
-                .add(EntityType.STRIDER)
-                .add(EntityType.WITHER);
+                .add(EntityType.PIGLIN)
+                .add(EntityType.WITCH)
+                .add(EntityType.PILLAGER)
+                .add(EntityType.ILLUSIONER)
+                .add(EntityType.EVOKER)
+                .add(EntityType.WANDERING_TRADER);
+        tag(ModTags.EntityTypes.ELEMENTAL_PROJECTILES)
+                .add(EntityType.FIREBALL)
+                .add(EntityType.SMALL_FIREBALL)
+                .add(EntityType.SNOWBALL)
+                .add(EntityType.WIND_CHARGE)
+                .add(EntityType.BREEZE_WIND_CHARGE);
     }
 }

@@ -91,32 +91,9 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         tag(ModTags.Blocks.CROW_PERCHABLE)
                 .add(SelectivepowersBlocks.CROWS_NEST.get())
                 .addTag(BlockTags.FENCES);
-        tag(ModTags.Blocks.PACKWING_SPAWNABLE)
-                .addTag(BlockTags.ANIMALS_SPAWNABLE_ON)
-                .addTag(BlockTags.AZALEA_GROWS_ON)
-                .addTag(BlockTags.CONVERTABLE_TO_MUD)
-                .addTag(BlockTags.DIRT)
-                .addTag(BlockTags.GOATS_SPAWNABLE_ON)
-                .addTag(BlockTags.LEAVES)
-                .add(Blocks.STONE)
-                .add(Blocks.END_STONE)
-                .add(Blocks.WARPED_WART_BLOCK)
-                .add(Blocks.NETHER_WART_BLOCK)
-                .add(Blocks.AZALEA)
-                .add(Blocks.FLOWERING_AZALEA)
-                .add(Blocks.DEEPSLATE)
-                .add(Blocks.CLAY)
-                .add(Blocks.WARPED_NYLIUM)
-                .add(Blocks.CRIMSON_NYLIUM);
-        tag(ModTags.Blocks.ECHO_CRAB_SPAWNABLE)
-                .add(Blocks.SCULK)
-                .add(Blocks.DEEPSLATE)
-                .add(Blocks.DEEPSLATE_BRICKS)
-                .add(Blocks.DEEPSLATE_TILES)
-                .add(Blocks.CRACKED_DEEPSLATE_BRICKS)
-                .add(Blocks.CRACKED_DEEPSLATE_TILES)
-                .add(Blocks.POLISHED_DEEPSLATE)
-                .add(Blocks.GRAVEL)
-                .addTag(BlockTags.WOOL);
+        tag(ModTags.Blocks.LAVA_CORE)
+                .add(Blocks.LAVA);
+        tag(ModTags.Blocks.ICE_CORE)
+                .add(Blocks.POWDER_SNOW);
     }
 }

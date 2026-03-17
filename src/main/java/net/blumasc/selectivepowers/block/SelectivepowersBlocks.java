@@ -18,15 +18,6 @@ import java.util.function.Supplier;
 public class SelectivepowersBlocks {
     public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(SelectivePowers.MODID);
 
-    public static  final DeferredBlock<Block> BLUMASC_PLUSH = registerBlock("blumasc_plush",
-            () -> new PlushBlock(BlockBehaviour.Properties.of().noOcclusion().strength(0f).sound(SoundType.WOOL)));
-
-    public static  final DeferredBlock<Block> RIKARASHI_PLUSH = registerBlock("rikarashi_plush",
-            () -> new PlushBlock(BlockBehaviour.Properties.of().noOcclusion().strength(0f).sound(SoundType.WOOL)));
-
-    public static  final DeferredBlock<Block> BLUBOTT_PLUSH = registerBlock("blubott_plush",
-            () -> new PlushBlock(BlockBehaviour.Properties.of().noOcclusion().strength(0f).sound(SoundType.WOOL)));
-
     public static final DeferredBlock<Block> ALTAR = registerBlock("altar",
             () -> new AltarBlock(BlockBehaviour.Properties.of().noOcclusion()));
 
@@ -52,9 +43,6 @@ public class SelectivepowersBlocks {
             () -> new LanternBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LANTERN)));
     public static final DeferredBlock<Block> MOON_LANTERN = registerBlock("moon_lantern",
             () -> new LanternBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LANTERN)));
-    public static final DeferredBlock<Block> DORMANT_ECHO_CRAB = registerBlock("dormant_echo_crab",
-            () -> new DormantEchoCrabBlock(BlockBehaviour.Properties.of().sound(SoundType.SCULK).noOcclusion().randomTicks()));
-
     public static final DeferredBlock<Block> MOON_ROCK = registerBlock("moon_rock",
             () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.DEEPSLATE).mapColor(MapColor.STONE)));
 
@@ -103,9 +91,6 @@ public class SelectivepowersBlocks {
     public static final DeferredBlock<WallBlock> MOON_ROCK_TILES_WALL = registerBlock("moon_tiles_wall",
             () -> new WallBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.DEEPSLATE_BRICK_WALL).mapColor(MapColor.STONE)));
 
-    public static final DeferredBlock<Block> JUMP_MUSHROOM = registerBlock("jump_mushroom",
-            () -> new JumpingMushroom(BlockBehaviour.Properties.ofFullCopy(Blocks.MUSHROOM_STEM).noCollission().noOcclusion().mapColor(MapColor.COLOR_LIGHT_GREEN)));
-
     public static final DeferredBlock<MagmaticBlock> SOLAR_BLOCK = registerBlock("solar_block",
             () -> new MagmaticBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.MAGMA_BLOCK)));
 
@@ -142,12 +127,6 @@ public class SelectivepowersBlocks {
     public static final DeferredBlock<DraconicBeaconBlock> DRACONIC_BEACON = registerBlock("draconic_beacon",
             () -> new DraconicBeaconBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.ENCHANTING_TABLE).noOcclusion().mapColor(MapColor.STONE)));
 
-    public static final DeferredBlock<VoidBlock> VOID_BLOCK = registerBlock("void_block",
-            () -> new VoidBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.BLACK_WOOL)));
-
-    public static final DeferredBlock<SporeMushroomBlock> SPORE_MUSHROOM_BLOCK = registerBlock("spore_mushroom",
-            () -> new SporeMushroomBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.MUSHROOM_STEM).noOcclusion().mapColor(MapColor.COLOR_BLACK)));
-
     public static final DeferredBlock<ProtectionEffigyBlock> PROTECTION_EFFIGY_BLOCK = registerBlock("protection_effigy",
             () -> new ProtectionEffigyBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.AMETHYST_BLOCK).noOcclusion().lightLevel((bs) -> 15).mapColor(MapColor.QUARTZ)));
 
@@ -159,8 +138,6 @@ public class SelectivepowersBlocks {
 
     public static final DeferredBlock<SacrificialAltarBlock> SACRIFICIAL_ALTAR_BLOCK = registerBlock("decrepit_sacrifical_altar",
             () -> new SacrificialAltarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.ANDESITE).noOcclusion().lightLevel((b) -> 3)));
-    public static final DeferredBlock<TrapBlock> PITFALL_TRAP = registerBlock("pitfall_trap",
-            () -> new TrapBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.DIRT).noOcclusion()));
 
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block){
         DeferredBlock<T> toReturn = BLOCKS.register(name, block);

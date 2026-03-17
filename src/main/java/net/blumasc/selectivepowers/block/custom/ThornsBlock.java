@@ -1,5 +1,6 @@
 package net.blumasc.selectivepowers.block.custom;
 
+import net.blumasc.blubasics.item.BaseModItems;
 import net.blumasc.selectivepowers.PowerManager;
 import net.blumasc.selectivepowers.item.SelectivepowersItems;
 import net.minecraft.core.BlockPos;
@@ -20,6 +21,11 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 import top.theillusivec4.curios.api.CuriosApi;
+import top.theillusivec4.curios.api.type.capability.ICuriosItemHandler;
+import top.theillusivec4.curios.api.type.inventory.ICurioStacksHandler;
+
+import java.util.Map;
+import java.util.Optional;
 
 public class ThornsBlock extends Block {
     public ThornsBlock(Properties properties) {
@@ -52,17 +58,18 @@ public class ThornsBlock extends Block {
     }
 
     public static boolean isWearingLeafwalkerItem(Player player) {
-        return CuriosApi.getCuriosInventory(player)
-                .flatMap(curiosInventory -> curiosInventory.getStacksHandler("body"))
-                .map(handler -> {
-                    for (int slot = 0; slot < handler.getSlots(); slot++) {
-                        ItemStack stack = handler.getStacks().getStackInSlot(slot);
-                        if (!stack.isEmpty() && stack.is(SelectivepowersItems.LEAFWALKER_CURIO.get())) {
-                            return true;
-                        }
+        Optional<ICuriosItemHandler> curiosInventoryOpt = CuriosApi.getCuriosInventory(player);
+        if (curiosInventoryOpt.isPresent()) {
+            Map<String, ICurioStacksHandler> curios = curiosInventoryOpt.get().getCurios();
+            for (ICurioStacksHandler slotInventory : curios.values()) {
+                for (int slot = 0; slot < slotInventory.getSlots(); slot++) {
+                    ItemStack stack = slotInventory.getStacks().getStackInSlot(slot);
+                    if (!stack.isEmpty() && stack.is(BaseModItems.SPINE_TREE)) {
+                        return true;
                     }
-                    return false;
-                })
-                .orElse(false);
+                }
+            }
+        }
+        return false;
     }
 }

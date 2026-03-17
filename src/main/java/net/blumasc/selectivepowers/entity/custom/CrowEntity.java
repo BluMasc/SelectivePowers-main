@@ -45,6 +45,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.EnumSet;
 import java.util.List;
+import java.util.UUID;
 
 public class CrowEntity extends TamableAnimal implements FlyingAnimal {
 
@@ -83,6 +84,22 @@ public class CrowEntity extends TamableAnimal implements FlyingAnimal {
 
     public boolean isHoldingItem() {
         return !this.getMainHandItem().isEmpty();
+    }
+
+    @Override
+    public void handleDamageEvent(DamageSource damageSource) {
+        if (this.isTame()) {
+            UUID ownerUUID = this.getOwnerUUID();
+            if (ownerUUID != null) {
+                Entity attacker = damageSource.getEntity();
+                Entity directAttacker = damageSource.getDirectEntity();
+                if ((attacker != null && ownerUUID.equals(attacker.getUUID())) ||
+                        (directAttacker != null && ownerUUID.equals(directAttacker.getUUID()))) {
+                    return;
+                }
+            }
+        }
+        super.handleDamageEvent(damageSource);
     }
 
     @Override

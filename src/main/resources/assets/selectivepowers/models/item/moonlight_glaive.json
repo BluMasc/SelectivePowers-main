@@ -1,7 +1,7 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "selectivepowers:item/moonglaive_large"
+    "layer0": "selectivepowers:item/moonglaive_small"
   },
   "display": {
     "firstperson_righthand": {

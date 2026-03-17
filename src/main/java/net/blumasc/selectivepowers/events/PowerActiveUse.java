@@ -1,19 +1,20 @@
 package net.blumasc.selectivepowers.events;
 
+import net.blumasc.blubasics.block.BaseModBlocks;
+import net.blumasc.blubasics.block.custom.JumpingMushroomBlock;
+import net.blumasc.blubasics.block.entity.VoidBlockEntity;
+import net.blumasc.blubasics.entity.custom.projectile.MeteoriteEntity;
 import net.blumasc.selectivepowers.Config;
 import net.blumasc.selectivepowers.PowerManager;
 import net.blumasc.selectivepowers.block.SelectivepowersBlocks;
-import net.blumasc.selectivepowers.block.custom.JumpingMushroom;
-import net.blumasc.selectivepowers.block.entity.VoidBlockEntity;
 import net.blumasc.selectivepowers.effect.SelectivepowersEffects;
 import net.blumasc.selectivepowers.entity.CircleVariant;
 import net.blumasc.selectivepowers.entity.SelectivepowersEntities;
-import net.blumasc.selectivepowers.entity.custom.projectile.ElementalBallEntity;
 import net.blumasc.selectivepowers.entity.custom.projectile.MagicCircleEntity;
-import net.blumasc.selectivepowers.entity.custom.projectile.MeteoriteEntity;
 import net.blumasc.selectivepowers.item.SelectivepowersItems;
 import net.blumasc.selectivepowers.managers.SunBattleManager;
 import net.blumasc.selectivepowers.sound.SelectivepowersSounds;
+import net.blumasc.selectivepowers.util.ModTags;
 import net.blumasc.selectivepowers.worldgen.ModDimensions;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
@@ -37,6 +38,7 @@ import net.minecraft.world.item.ShieldItem;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.*;
@@ -45,7 +47,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-import static net.blumasc.selectivepowers.item.custom.LightningInABottleItem.castChainLightning;
+import static net.blumasc.blubasics.item.custom.LightningInABottleItem.castChainLightning;
 
 public class PowerActiveUse {
     public static void activateAbility(Player p, boolean ult)
@@ -242,9 +244,9 @@ public class PowerActiveUse {
         {
             BlockPos target = getLookTarget(p,64);
             if(target==null) {
-                return sl.setBlock(p.getOnPos().above(), SelectivepowersBlocks.JUMP_MUSHROOM.get().defaultBlockState().setValue(JumpingMushroom.SPAWNED, true), 3);
+                return sl.setBlock(p.getOnPos().above(), BaseModBlocks.JUMP_MUSHROOM.get().defaultBlockState().setValue(JumpingMushroomBlock.SPAWNED, true), 3);
             }else{
-                return sl.setBlock(target, SelectivepowersBlocks.JUMP_MUSHROOM.get().defaultBlockState().setValue(JumpingMushroom.SPAWNED, true), 3);
+                return sl.setBlock(target, BaseModBlocks.JUMP_MUSHROOM.get().defaultBlockState().setValue(JumpingMushroomBlock.SPAWNED, true), 3);
             }
         }
     }
@@ -325,6 +327,9 @@ public class PowerActiveUse {
             BlockPos lookTarget = getLookTarget(p,128);
             if(lookTarget!=null) {
                 MeteoriteEntity me = new MeteoriteEntity(sl);
+                me.setReplaces(true);
+                me.setExplodes(true);
+                me.setShellBlock(SelectivepowersBlocks.OBSIDIAN_DUST.get().defaultBlockState());
                 me.setPos(lookTarget.getX(), lookTarget.getY()+128, lookTarget.getZ());
                 return sl.addFreshEntity(me);
             }
@@ -359,7 +364,7 @@ public class PowerActiveUse {
                     if (tile != null) continue;
 
                     if (state.getLightEmission() > 0) {
-                        world.setBlock(pos, SelectivepowersBlocks.VOID_BLOCK.get().defaultBlockState(), 3);
+                        world.setBlock(pos, BaseModBlocks.VOID_BLOCK.get().defaultBlockState(), 3);
                         BlockEntity vtile = world.getBlockEntity(pos);
                         if (vtile instanceof VoidBlockEntity timedTile) {
                             timedTile.setOriginalBlock(state, timer);
@@ -389,7 +394,15 @@ public class PowerActiveUse {
 
     private static void spawnIceBall(ServerLevel level, Player player, Vec3 pos, Vec3 direction, boolean version) {
 
-        ElementalBallEntity ice = new ElementalBallEntity(level, player, version);
+
+        MeteoriteEntity ice = new MeteoriteEntity(level);
+        ice.setRadius(2);
+        ice.setReplaces(false);
+        ice.setExplodes(false);
+        ice.setEvacuates(false);
+        ice.setRenderBlock(version? Blocks.MAGMA_BLOCK.defaultBlockState() : Blocks.BLUE_ICE.defaultBlockState());
+        ice.setShellBlock(version? Blocks.LAVA.defaultBlockState() : Blocks.POWDER_SNOW.defaultBlockState());
+        ice.setCoreBlockTag(version? ModTags.Blocks.LAVA_CORE : ModTags.Blocks.ICE_CORE);
         ice.setPos(pos.x, pos.y, pos.z);
 
         ice.shoot(direction.x, direction.y, direction.z, 1.5f, 0.05f);

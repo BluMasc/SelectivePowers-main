@@ -12,12 +12,6 @@ public class ModNetworking {
                         PowerInfoSyncPacket::handle
                 );
 
-        event.registrar(SelectivePowers.MODID).playToClient(
-                DiviningDataSyncPacket.TYPE,
-                DiviningDataSyncPacket.CODEC,
-                DiviningDataSyncPacket::handle
-        );
-
         event.registrar(SelectivePowers.MODID).playToServer(
                 ActivateAbilityPacket.TYPE,
                 ActivateAbilityPacket.CODEC,

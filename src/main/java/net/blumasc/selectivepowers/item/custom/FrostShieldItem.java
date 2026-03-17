@@ -1,7 +1,7 @@
 package net.blumasc.selectivepowers.item.custom;
 
+import net.blumasc.blubasics.entity.custom.projectile.ShardProjectileEntity;
 import net.blumasc.selectivepowers.PowerManager;
-import net.blumasc.selectivepowers.entity.custom.projectile.ShardProjectileEntity;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;

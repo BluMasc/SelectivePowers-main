@@ -9,16 +9,9 @@
     "ItemInHandRendererMixin",
     "PlayerLayerMixin",
     "MobEffectAccessor",
-    "LeafWalkerLeavesMixin",
     "PlayerModelMixin",
     "ElytraLayerMixin",
-    "MobTargetingMixin",
-    "PlayerMixin",
-    "CrossbowMixin",
-    "ProjectileWeaponMixin",
-    "AbstractArrowMixin",
-    "TridentItemMixin",
-    "FishingHookMixin"
+    "MobTargetingMixin"
   ],
   "client": [
     "MinecraftMixin"

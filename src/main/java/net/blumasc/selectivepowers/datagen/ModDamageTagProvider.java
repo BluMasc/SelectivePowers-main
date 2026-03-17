@@ -21,17 +21,12 @@ public class ModDamageTagProvider extends DamageTypeTagsProvider {
         tag(DamageTypeTags.NO_KNOCKBACK)
                 .add(SelectivePowersDamageTypes.RAGE_DAMAGE)
                 .add(SelectivePowersDamageTypes.LUNAR_DAMAGE)
-                .add(SelectivePowersDamageTypes.SOLAR_DAMAGE)
-                .add(SelectivePowersDamageTypes.SPIKE_DAMAGE);
+                .add(SelectivePowersDamageTypes.SOLAR_DAMAGE);
         tag(DamageTypeTags.BYPASSES_COOLDOWN)
                 .add(SelectivePowersDamageTypes.RAGE_DAMAGE);
         tag(DamageTypeTags.BYPASSES_INVULNERABILITY)
                 .add(SelectivePowersDamageTypes.RAGE_DAMAGE);
         tag(DamageTypeTags.BYPASSES_SHIELD)
-                .add(SelectivePowersDamageTypes.RAGE_DAMAGE)
-                .add(SelectivePowersDamageTypes.SPIKE_DAMAGE)
-                .add(SelectivePowersDamageTypes.SOUL_DAMAGE);
-        tag(DamageTypeTags.BYPASSES_ARMOR)
-                .add(SelectivePowersDamageTypes.SOUL_DAMAGE);
+                .add(SelectivePowersDamageTypes.RAGE_DAMAGE);
     }
 }

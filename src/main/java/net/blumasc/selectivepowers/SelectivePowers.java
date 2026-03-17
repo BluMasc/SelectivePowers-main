@@ -7,14 +7,13 @@ import net.blumasc.selectivepowers.block.SelectivepowersBlocks;
 import net.blumasc.selectivepowers.block.entity.SelectivepowersBlockEntities;
 import net.blumasc.selectivepowers.component.ModDataComponentTypes;
 import net.blumasc.selectivepowers.effect.SelectivepowersEffects;
-import net.blumasc.selectivepowers.enchantment.ModEnchantmentEffects;
 import net.blumasc.selectivepowers.entity.SelectivepowersEntities;
 import net.blumasc.selectivepowers.item.SelectivepowersCreativeModeTabs;
 import net.blumasc.selectivepowers.item.SelectivepowersItems;
 import net.blumasc.selectivepowers.item.client.gui.ModMenuTypes;
-import net.blumasc.selectivepowers.item.dispenserbehaviour.LightningBottleDispenserBehavior;
 import net.blumasc.selectivepowers.managers.SunBattleManager;
 import net.blumasc.selectivepowers.network.ModNetworking;
+import net.blumasc.selectivepowers.particles.SelectivePowersParticles;
 import net.blumasc.selectivepowers.potion.SelectivePowerPotions;
 import net.blumasc.selectivepowers.recipe.SelectivePowersRecipes;
 import net.blumasc.selectivepowers.sound.SelectivepowersSounds;
@@ -77,8 +76,8 @@ public class SelectivePowers {
         ModDataComponentTypes.register(modEventBus);
         SelectivePowerPotions.register(modEventBus);
         ModMenuTypes.register(modEventBus);
-        ModEnchantmentEffects.register(modEventBus);
         modEventBus.addListener(ModNetworking::register);
+        SelectivePowersParticles.register(modEventBus);
 
         // Register our mod's ModConfigSpec so that FML can create and load the config file for us
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
@@ -98,11 +97,6 @@ public class SelectivePowers {
         net.minecraft.world.level.block.DispenserBlock.registerBehavior(
                 SelectivepowersItems.FLAMING_EGG.get(),
                 new ProjectileDispenseBehavior(SelectivepowersItems.FLAMING_EGG.asItem())
-        );
-
-        net.minecraft.world.level.block.DispenserBlock.registerBehavior(
-                SelectivepowersItems.LIGHTNING_IN_A_BOTTLE.get(),
-                new LightningBottleDispenserBehavior()
         );
 
         net.minecraft.world.level.block.DispenserBlock.registerBehavior(

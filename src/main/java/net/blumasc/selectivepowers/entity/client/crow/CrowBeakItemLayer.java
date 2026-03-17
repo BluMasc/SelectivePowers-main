@@ -44,7 +44,7 @@ public class CrowBeakItemLayer extends RenderLayer<CrowEntity, CrowModel<CrowEnt
         model.root().translateAndRotate(poseStack);
         model.getHead().translateAndRotate(poseStack);
 
-        poseStack.translate(0.0F, -0.12F, -0.45F);
+        poseStack.translate(0.0F, -0.0F, -0.25F);
         poseStack.scale(0.5F, 0.5F, 0.5F);
 
         poseStack.mulPose(Axis.XP.rotationDegrees(90f));

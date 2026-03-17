@@ -2,12 +2,10 @@ package net.blumasc.selectivepowers.events;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
+import net.blumasc.blubasics.effect.BaseModEffects;
+import net.blumasc.blubasics.shader.VoidVisionRenderer;
 import net.blumasc.selectivepowers.SelectivePowers;
-import net.blumasc.selectivepowers.client.ClientDiviningData;
 import net.blumasc.selectivepowers.effect.SelectivepowersEffects;
-import net.blumasc.selectivepowers.effect.custom.helper.ClientHallucinationHandler;
-import net.blumasc.selectivepowers.entity.client.fakeMob.FakeMob;
-import net.blumasc.selectivepowers.shader.ShadowPostProcessor;
 import net.blumasc.selectivepowers.shader.YellowPostProcessor;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
@@ -17,6 +15,7 @@ import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.packs.resources.ResourceManagerReloadListener;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.LightLayer;
@@ -24,6 +23,7 @@ import net.minecraft.world.phys.Vec3;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.client.event.RegisterClientReloadListenersEvent;
 import net.neoforged.neoforge.client.event.RenderGuiEvent;
 import net.neoforged.neoforge.client.event.RenderGuiLayerEvent;
 import net.neoforged.neoforge.client.event.RenderLevelStageEvent;
@@ -107,111 +107,15 @@ public class PotionEffectRenderers {
         }
     }
     @SubscribeEvent
-    public static void renderYellowFilter(RenderGuiEvent.Pre event) {
-
+    public static void onRenderLevel(RenderGuiEvent.Pre event) {
         Minecraft mc = Minecraft.getInstance();
-
-        if (mc.player == null || mc.level == null) return;
-
-        YellowPostProcessor.INSTANCE.setActive(mc.player.hasEffect(SelectivepowersEffects.TRUTH_VISION_EFFECT));
-
-        ShadowPostProcessor.INSTANCE.setActive(mc.player.hasEffect(SelectivepowersEffects.DRAKNESS_EFFECT));
-
+            if (mc.player.hasEffect(SelectivepowersEffects.TRUTH_VISION_EFFECT)) {
+                YellowPostProcessor.apply(event.getPartialTick().getGameTimeDeltaTicks());
+                mc.getMainRenderTarget().bindWrite(true);
+            }
     }
     @SubscribeEvent
-    public static void onRenderLevel(RenderLevelStageEvent event) {
-        if (event.getStage() != RenderLevelStageEvent.Stage.AFTER_ENTITIES) return;
-
-        Minecraft mc = Minecraft.getInstance();
-        EntityRenderDispatcher dispatcher = mc.getEntityRenderDispatcher();
-        MultiBufferSource.BufferSource buffer =
-                mc.renderBuffers().bufferSource();
-
-        Vec3 camPos = event.getCamera().getPosition();
-        PoseStack poseStack = event.getPoseStack();
-
-        for (FakeMob fake : ClientHallucinationHandler.getActiveMobs()) {
-
-            Entity mob = fake.getEntity();
-
-            double x = mob.getX() - camPos.x;
-            double y = mob.getY() - camPos.y;
-            double z = mob.getZ() - camPos.z;
-
-            BlockPos mobPos = new BlockPos((int) mob.getX(), (int) mob.getY(), (int) mob.getZ());
-            int blockLight = mob.level().getBrightness(LightLayer.BLOCK, mobPos);
-            int skyLight   = mob.level().getBrightness(LightLayer.SKY, mobPos);
-            int packedLight = LightTexture.pack(blockLight, skyLight);
-            dispatcher.render(
-                    mob,
-                    x, y, z,
-                    fake.getEntity().getYRot(),
-                    event.getPartialTick().getGameTimeDeltaPartialTick(true),
-                    poseStack,
-                    buffer,
-                    packedLight
-            );
-        }
-    }
-    @SubscribeEvent
-    public static void onClientPlayerTick(PlayerTickEvent.Pre event) {
-        if (!(event.getEntity() instanceof LocalPlayer player)) return;
-        if (!player.level().isClientSide) return;
-
-        ClientHallucinationHandler.tickPlayer(player);
-    }
-
-    private static final Minecraft mc = Minecraft.getInstance();
-    private static final ResourceLocation ARROW_TEXTURE = ResourceLocation.fromNamespaceAndPath("selectivepowers", "textures/gui/arrow.png");
-    private static final int ARROW_SIZE = 5;
-    private static final float DISTANCE_FROM_CROSSHAIR = 10f;
-
-    @SubscribeEvent
-    public static void onRenderDiviningGui(RenderGuiLayerEvent.Post event) {
-        LocalPlayer player = mc.player;
-        if (player == null) return;
-
-        GuiGraphics gui = event.getGuiGraphics();
-
-        int centerX = mc.getWindow().getGuiScaledWidth() / 2;
-        int centerY = mc.getWindow().getGuiScaledHeight() / 2;
-
-        Vec3 playerPos = player.position();
-
-        for (Vec3 mobPos : ClientDiviningData.EnemyPositions) {
-            renderArrow(gui, centerX, centerY, playerPos, mobPos, 0xFFFF0000);
-        }
-
-        for (Vec3 otherPlayerPos : ClientDiviningData.PlayerPositions) {
-            renderArrow(gui, centerX, centerY, playerPos, otherPlayerPos, 0xFF0000FF);
-        }
-    }
-
-    private static void renderArrow(GuiGraphics gui, int centerX, int centerY, Vec3 playerPos, Vec3 targetPos, int color) {
-        double dx = targetPos.x - playerPos.x;
-        double dz = targetPos.z - playerPos.z;
-
-        double angle = Math.toDegrees(Math.atan2(dz, dx)) - mc.player.getYRot();
-
-        double rad = Math.toRadians(angle);
-
-        int x = (int) (centerX - Math.cos(rad) * DISTANCE_FROM_CROSSHAIR);
-        int y = (int) (centerY - Math.sin(rad) * DISTANCE_FROM_CROSSHAIR);
-
-        gui.pose().pushPose();
-        gui.pose().translate(x, y, 200);
-        gui.pose().mulPose(com.mojang.math.Axis.ZP.rotationDegrees((float) angle-90));
-
-        float r = ((color >> 16) & 0xFF) / 255f;
-        float g = ((color >> 8) & 0xFF) / 255f;
-        float b = (color & 0xFF) / 255f;
-        float a = ((color >> 24) & 0xFF) / 255f;
-
-        RenderSystem.setShaderColor(r, g, b, a);
-
-        gui.blit(ARROW_TEXTURE, -ARROW_SIZE / 2, -ARROW_SIZE / 2, ARROW_SIZE, ARROW_SIZE,
-                0, 0, ARROW_SIZE, ARROW_SIZE, ARROW_SIZE, ARROW_SIZE);
-        RenderSystem.setShaderColor(1f, 1f, 1f, 1f);
-        gui.pose().popPose();
+    public static void onRegisterReloadListeners(RegisterClientReloadListenersEvent event) {
+        event.registerReloadListener((ResourceManagerReloadListener) rm -> YellowPostProcessor.load());
     }
 }

@@ -1,5 +1,6 @@
 package net.blumasc.selectivepowers.datagen;
 
+import net.blumasc.blubasics.item.BaseModItems;
 import net.blumasc.selectivepowers.SelectivePowers;
 import net.blumasc.selectivepowers.block.SelectivepowersBlocks;
 import net.blumasc.selectivepowers.item.SelectivepowersItems;
@@ -70,12 +71,6 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .define('M', Items.IRON_NUGGET)
                 .unlockedBy("has_moon_sacrifice", has(SelectivepowersItems.MOON_SACRIFICE)).save(recipeOutput);
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, SelectivepowersItems.HORNED_HELMET.get())
-                .pattern("MSM")
-                .define('S', Items.LEATHER_HELMET)
-                .define('M', SelectivepowersItems.BEETLE_HORN)
-                .unlockedBy("has_beetle_horn", has(SelectivepowersItems.BEETLE_HORN)).save(recipeOutput);
-
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, SelectivepowersItems.CORRUPTED_MASK.get())
                 .pattern("MM")
                 .pattern("MM")
@@ -125,31 +120,6 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .define('F', SelectivepowersItems.BURNING_FEATHER)
                 .unlockedBy("has_burning_feather", has(SelectivepowersItems.BURNING_FEATHER)).save(recipeOutput);
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, Items.ARROW,4)
-                .pattern("C")
-                .pattern("S")
-                .pattern("F")
-                .define('C', Items.FLINT)
-                .define('S', ItemTags.create(ResourceLocation.fromNamespaceAndPath("c","rods/wooden")))
-                .define('F', ItemTags.create(ResourceLocation.fromNamespaceAndPath("c","feathers")))
-                .unlockedBy("has_feather", has(ItemTags.create(ResourceLocation.fromNamespaceAndPath("c","feathers")))).save(recipeOutput, "selectivepowers:arrow_any_feather");
-
-        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, Items.BRUSH)
-                .pattern("C")
-                .pattern("S")
-                .pattern("F")
-                .define('C', ItemTags.create(ResourceLocation.fromNamespaceAndPath("c","feathers")))
-                .define('S', ItemTags.create(ResourceLocation.fromNamespaceAndPath("c","ingots/copper")))
-                .define('F', ItemTags.create(ResourceLocation.fromNamespaceAndPath("c","rods/wooden")))
-                .unlockedBy("has_feather", has(ItemTags.create(ResourceLocation.fromNamespaceAndPath("c","feathers")))).save(recipeOutput, "selectivepowers:brush_any_feather");
-
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, Items.WRITABLE_BOOK)
-                .requires(Items.BOOK)
-                .requires(Items.INK_SAC)
-                .requires(ItemTags.create(ResourceLocation.fromNamespaceAndPath("c","feathers")))
-                .unlockedBy("has_ink_sac", has(Items.INK_SAC))
-                .save(recipeOutput, "selectivepowers:written_book_any_feather");
-
         ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, SelectivepowersItems.MOON_SACRIFICE, 9)
                 .requires(SelectivepowersBlocks.MOON_SACRIFICE_BLOCK)
                 .unlockedBy("has_moon_sacrifice_block", has(SelectivepowersBlocks.MOON_SACRIFICE_BLOCK))
@@ -157,21 +127,6 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, SelectivepowersItems.SUN_SACRIFICE, 9)
                 .requires(SelectivepowersBlocks.SUN_SACRIFICE_BLOCK)
                 .unlockedBy("has_sun_sacrifice_block", has(SelectivepowersBlocks.SUN_SACRIFICE_BLOCK))
-                .save(recipeOutput);
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.DECORATIONS, SelectivepowersBlocks.BLUBOTT_PLUSH)
-                .requires(Items.ARMOR_STAND)
-                .requires(Items.CYAN_WOOL)
-                .unlockedBy("has_armor_stand", has(Items.ARMOR_STAND))
-                .save(recipeOutput);
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.DECORATIONS, SelectivepowersBlocks.BLUMASC_PLUSH)
-                .requires(Items.ARMOR_STAND)
-                .requires(Items.BLUE_WOOL)
-                .unlockedBy("has_armor_stand", has(Items.ARMOR_STAND))
-                .save(recipeOutput);
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.DECORATIONS, SelectivepowersBlocks.RIKARASHI_PLUSH)
-                .requires(Items.ARMOR_STAND)
-                .requires(Items.ORANGE_WOOL)
-                .unlockedBy("has_armor_stand", has(Items.ARMOR_STAND))
                 .save(recipeOutput);
         ShapelessRecipeBuilder.shapeless(RecipeCategory.TOOLS, SelectivepowersItems.BOUND_CONTRACT)
                 .requires(Items.PAPER)
@@ -192,22 +147,6 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .requires(SelectivepowersItems.MOONCAP_SEEDS)
                 .unlockedBy("has_mooncap_seeds", has(SelectivepowersItems.MOONCAP_SEEDS))
                 .save(recipeOutput, "selectivepowers:blue_from_mooncap_seeds");
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, Items.BONE_MEAL, 5)
-                .requires(SelectivepowersItems.BEETLE_HORN)
-                .unlockedBy("has_beetle_horn", has(SelectivepowersItems.BEETLE_HORN))
-                .save(recipeOutput, "selectivepowers:bone_meal_from_beetle_horn");
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, Items.NETHERITE_SCRAP, 5)
-                .requires(SelectivepowersItems.SALAMANDER_SCALES)
-                .requires(Items.NETHERITE_INGOT)
-                .unlockedBy("has_salamander_scales", has(SelectivepowersItems.SALAMANDER_SCALES))
-                .save(recipeOutput, "selectivepowers:netherite_scrap_from_scales");
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, SelectivepowersItems.MUSHROOM_SKEWER)
-                .requires(SelectivepowersBlocks.JUMP_MUSHROOM.get())
-                .requires(ItemTags.create(ResourceLocation.fromNamespaceAndPath("c","mushrooms")))
-                .requires(SelectivepowersBlocks.JUMP_MUSHROOM.get())
-                .requires(Items.STICK)
-                .unlockedBy("has_jump_mushroom", has(SelectivepowersBlocks.JUMP_MUSHROOM.get()))
-                .save(recipeOutput);
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, Items.PAPER)
                 .requires(SelectivepowersItems.YELLOW_RAMBLINGS)
                 .unlockedBy("has_yellow_ramblings", has(SelectivepowersItems.YELLOW_RAMBLINGS))
@@ -217,8 +156,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("has_crows_nest", has(SelectivepowersBlocks.CROWS_NEST))
                 .save(recipeOutput, "selectivepowers:sticks_from_nest");
         oreSmelting(recipeOutput, Collections.singletonList(SelectivepowersItems.MOONCAP_MUSHROOM), RecipeCategory.MISC, SelectivepowersItems.MOON_SACRIFICE.get(), 0.25f, 200, "moon_sacrifice");
-        oreSmelting(recipeOutput, Collections.singletonList(SelectivepowersItems.SUN_HORN), RecipeCategory.MISC, SelectivepowersItems.SUN_SACRIFICE.get(), 0.25f, 200, "sun_sacrifice");
-        oreSmelting(recipeOutput, Collections.singletonList(SelectivepowersItems.SALAMANDER_SCALES), RecipeCategory.MISC, Items.NETHERRACK, 0.25f, 200, "scales_to_netherrack");
+        oreSmelting(recipeOutput, Collections.singletonList(BaseModItems.SUN_HORN), RecipeCategory.MISC, SelectivepowersItems.SUN_SACRIFICE.get(), 0.25f, 200, "sun_sacrifice");
         oreSmelting(recipeOutput, Collections.singletonList(SelectivepowersItems.CORRUPTION_SHARD), RecipeCategory.MISC, SelectivepowersItems.SOLAR_BRICK.get(), 0.25f, 200, "solar_brick");
         oreSmelting(recipeOutput, Collections.singletonList(SelectivepowersBlocks.SOLAR_BLOCK), RecipeCategory.MISC, SelectivepowersItems.SOLAR_BRICK.get(), 0.25f, 200, "solar_brick_from_block");
         oreSmelting(recipeOutput, Collections.singletonList(SelectivepowersBlocks.MOON_DUST), RecipeCategory.MISC, SelectivepowersBlocks.MOON_GLASS.get(), 0.25f, 200, "moon_glass");
@@ -297,8 +235,6 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         ));
         stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, SelectivepowersBlocks.SOLAR_BRICK_SLAB, SelectivepowersBlocks.SOLAR_BRICKS, 2);
         stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, SelectivepowersBlocks.EARTH_GLASS, SelectivepowersBlocks.MOON_GLASS);
-        foodSmelting(recipeOutput, Collections.singletonList(SelectivepowersItems.MUSHROOM_SKEWER), RecipeCategory.FOOD, SelectivepowersItems.COOKED_MUSHROOM_SKEWER.get(), 0.25f, 200, "cooked_mushrrom_skewer");
-
     }
     protected static void stonecutterList(RecipeOutput recipeOutput, RecipeCategory recipeCategory, ItemLike input, List<ItemLike> outputs)
     {

@@ -4,27 +4,19 @@ import com.mojang.blaze3d.platform.InputConstants;
 import net.blumasc.selectivepowers.block.SelectivepowersBlocks;
 import net.blumasc.selectivepowers.block.entity.SelectivepowersBlockEntities;
 import net.blumasc.selectivepowers.block.entity.renderer.*;
-import net.blumasc.selectivepowers.enchantment.ModEnchantments;
 import net.blumasc.selectivepowers.entity.SelectivepowersEntities;
 import net.blumasc.selectivepowers.entity.client.*;
-import net.blumasc.selectivepowers.entity.client.chimera.ChimeraRenderer;
 import net.blumasc.selectivepowers.entity.client.corruptingmask.CorruptingMaskRenderer;
 import net.blumasc.selectivepowers.entity.client.crow.CrowRenderer;
-import net.blumasc.selectivepowers.entity.client.echocrab.EchoCrabRenderer;
 import net.blumasc.selectivepowers.entity.client.lunarmaiden.LunarMaidenRenderer;
 import net.blumasc.selectivepowers.entity.client.moonsquid.MoonsquidRenderer;
-import net.blumasc.selectivepowers.entity.client.packwing.PackwingRenderer;
 import net.blumasc.selectivepowers.entity.client.quetzal.QuetzalRenderer;
-import net.blumasc.selectivepowers.entity.client.salamander.SalamanderRenderer;
-import net.blumasc.selectivepowers.entity.client.solarbeetle.SolarBeetleRenderer;
 import net.blumasc.selectivepowers.entity.client.yellowfanatic.YellowFanaticRenderer;
 import net.blumasc.selectivepowers.entity.client.yellowking.YellowKingRenderer;
 import net.blumasc.selectivepowers.item.SelectivepowersItems;
 import net.blumasc.selectivepowers.item.client.*;
 import net.blumasc.selectivepowers.item.client.gui.LoreScrollScreen;
 import net.blumasc.selectivepowers.item.client.gui.ModMenuTypes;
-import net.blumasc.selectivepowers.shader.ShadowPostProcessor;
-import net.blumasc.selectivepowers.shader.YellowPostProcessor;
 import net.blumasc.selectivepowers.worldgen.features.LunarSkyEffects;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
@@ -61,7 +53,6 @@ import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
 import net.neoforged.neoforge.common.util.Lazy;
 import org.jetbrains.annotations.Nullable;
 import org.lwjgl.glfw.GLFW;
-import team.lodestar.lodestone.systems.postprocess.PostProcessHandler;
 import top.theillusivec4.curios.api.client.CuriosRendererRegistry;
 
 // This class will not load on dedicated servers. Accessing client side code from here is safe.
@@ -81,15 +72,11 @@ public class SelectivePowersClient {
     static void onClientSetup(FMLClientSetupEvent event) {
         // Some client setup code
         EntityRenderers.register(SelectivepowersEntities.CROW.get(), CrowRenderer::new);
-        EntityRenderers.register(SelectivepowersEntities.PACKWING.get(), PackwingRenderer::new);
         EntityRenderers.register(SelectivepowersEntities.YELLOW_KING.get(), YellowKingRenderer::new);
         EntityRenderers.register(SelectivepowersEntities.YELLOW_KING_BOSS.get(), YellowKingRenderer::new);
         EntityRenderers.register(SelectivepowersEntities.YELLOW_FANATIC.get(), YellowFanaticRenderer::new);
         EntityRenderers.register(SelectivepowersEntities.CORRUPTING_MASK.get(), CorruptingMaskRenderer::new);
         EntityRenderers.register(SelectivepowersEntities.LUNAR_MAIDEN.get(), LunarMaidenRenderer::new);
-        EntityRenderers.register(SelectivepowersEntities.SALAMANDER.get(), SalamanderRenderer::new);
-        EntityRenderers.register(SelectivepowersEntities.SOLAR_BEETLE.get(), SolarBeetleRenderer::new);
-        EntityRenderers.register(SelectivepowersEntities.ECHO_CRAB.get(), EchoCrabRenderer::new);
         EntityRenderers.register(SelectivepowersEntities.QUETZAL.get(), QuetzalRenderer::new);
         EntityRenderers.register(SelectivepowersEntities.QUETZAL_YELLOW.get(), QuetzalRenderer::new);
         EntityRenderers.register(SelectivepowersEntities.MOON_SQUID.get(), MoonsquidRenderer::new);
@@ -99,25 +86,13 @@ public class SelectivePowersClient {
         EntityRenderers.register(SelectivepowersEntities.FLAMING_FEATHER.get(), FlamingFeatherRenderer::new);
         EntityRenderers.register(SelectivepowersEntities.CORRUPTING_ARROW.get(), CorruptingArrowRenderer::new);
         EntityRenderers.register(SelectivepowersEntities.LIGHT_BEAM_ARROW.get(), BeamArrowRenderer::new);
-        EntityRenderers.register(SelectivepowersEntities.WOOD_ARROW.get(), WoodArrowRenderer::new);
-        EntityRenderers.register(SelectivepowersEntities.LIGHTNING_ROD_ARROW.get(), LightningRodArrowRenderer::new);
-        EntityRenderers.register(SelectivepowersEntities.SHARD_PROJECTILE.get(), ShardProjectileRenderer::new);
-        EntityRenderers.register(SelectivepowersEntities.LIGHTNING_ARC.get(), LightningArcRenderer::new);
-        EntityRenderers.register(SelectivepowersEntities.METEOR.get(), MeteoriteRenderer::new);
-        EntityRenderers.register(SelectivepowersEntities.ELEMENTAL_BALL.get(), ElementalBallRenderer::new);
-        EntityRenderers.register(SelectivepowersEntities.CHIMERA.get(), ChimeraRenderer::new);
         EntityRenderers.register(SelectivepowersEntities.SOLID_VOID_PEARL.get(), SolidVoidPearlRenderer::new);
-        EntityRenderers.register(SelectivepowersEntities.PICKAXE_BOOMERANG.get(), PickaxeBoomerangRenderer::new);
-        EntityRenderers.register(SelectivepowersEntities.DRIPSTONE_SPIKE.get(), SpikeEntityRenderer::new);
-        EntityRenderers.register(SelectivepowersEntities.WARDEN_BEAM.get(), ProjectileEmptyRenderer::new);
-        EntityRenderers.register(SelectivepowersEntities.GRAPE_SHOT.get(), ProjectileEmptyRenderer::new);
 
 
         CuriosRendererRegistry.register(SelectivepowersItems.TRUE_CROWN.get(), CrownCurioRenderer::new);
         CuriosRendererRegistry.register(SelectivepowersItems.FAKE_CROWN.get(), CrownCurioRenderer::new);
         CuriosRendererRegistry.register(SelectivepowersItems.MOON_PENDANT.get(), MoonPendantCurioRenderer::new);
         CuriosRendererRegistry.register(SelectivepowersItems.CORRUPTED_MASK.get(), MaskCurioRenderer::new);
-        CuriosRendererRegistry.register(SelectivepowersItems.LEAFWALKER_CURIO.get(), LeafwalkerCurioRenderer::new);
         CuriosRendererRegistry.register(SelectivepowersItems.DRAGON_SLEEVES.get(), DragonCurioRenderer::new);
         CuriosRendererRegistry.register(SelectivepowersItems.SHELF_MUSHROOM.get(), ShelfMushroomRenderer::new);
         CuriosRendererRegistry.register(SelectivepowersItems.OCTOPUS_MUSHROOM.get(), OctopusMushroomRenderer::new);
@@ -133,8 +108,6 @@ public class SelectivePowersClient {
         CuriosRendererRegistry.register(SelectivepowersItems.SCULK_MOSS.get(), SkinRenderer::new);
         CuriosRendererRegistry.register(SelectivepowersItems.MOSS_LAYER.get(), SkinRenderer::new);
         CuriosRendererRegistry.register(SelectivepowersItems.LIGHTNING_BALL.get(), SkinRenderer::new);
-        CuriosRendererRegistry.register(SelectivepowersItems.EMBEDDED_CRYSTALS.get(), ArmCrystalsRenderer::new);
-        CuriosRendererRegistry.register(SelectivepowersItems.SPINE_TREE.get(), BackTreeRenderer::new);
         CuriosRendererRegistry.register(SelectivepowersItems.POLARBEAR_PELT.get(), BearPeltRenderer::new);
         CuriosRendererRegistry.register(SelectivepowersItems.ELEMENTAL_CIRCLET.get(), CircletRenderer::new);
         CuriosRendererRegistry.register(SelectivepowersItems.FLOWER_CROWN.get(), CircletRenderer::new);
@@ -152,6 +125,8 @@ public class SelectivePowersClient {
         CuriosRendererRegistry.register(SelectivepowersItems.WARDEN_HORNS.get(), WardenHornsRenderer::new);
         CuriosRendererRegistry.register(SelectivepowersItems.WOLF_EARS.get(), WolfEarsRenderer::new);
         CuriosRendererRegistry.register(SelectivepowersItems.WOLF_TAIL.get(), WolfTailRenderer::new);
+        CuriosRendererRegistry.register(SelectivepowersItems.ARM_DRILL.get(), DrillArmRenderer::new);
+        CuriosRendererRegistry.register(SelectivepowersItems.SHOULDER_LEAF.get(), LeafPauldronsRenderer::new);
 
 
         event.enqueueWork(() -> {
@@ -172,42 +147,6 @@ public class SelectivePowersClient {
                     $entity != null && $entity.isUsingItem() && $entity.getUseItem() == $itemStack ? 1.0F : 0.0F);
         });
 
-        PostProcessHandler.addInstance(ShadowPostProcessor.INSTANCE);
-        PostProcessHandler.addInstance(YellowPostProcessor.INSTANCE);
-
-        ItemColors itemColors = Minecraft.getInstance().getItemColors();
-
-        itemColors.register((stack, tintIndex) -> {
-            if (tintIndex != 0) {
-                return -1;
-            }
-
-            Holder<Enchantment> devilsTool = getDevilsToolHolder();
-            if (devilsTool == null) {
-                return -1;
-            }
-
-            ItemEnchantments enchants = stack.get(DataComponents.ENCHANTMENTS);
-            if (enchants != null && enchants.getLevel(devilsTool) > 0) {
-                return 0xFFF04040;
-            }
-
-            return -1;
-        }, Items.TRIDENT);
-
-    }
-
-    @Nullable
-    private static Holder<Enchantment> getDevilsToolHolder() {
-        var mc = Minecraft.getInstance();
-
-        if (mc.getConnection() == null) return null;
-
-        return mc.getConnection()
-                .registryAccess()
-                .lookupOrThrow(Registries.ENCHANTMENT)
-                .get(ModEnchantments.DEVILS_TOOL)
-                .orElse(null);
     }
 
     public static final Lazy<KeyMapping> NORMAL_ABILITY = Lazy.of(() -> new KeyMapping(
@@ -235,7 +174,6 @@ public class SelectivePowersClient {
         event.registerBlockEntityRenderer(SelectivepowersBlockEntities.NEST_BE.get(), NestBlockEntityRenderer::new);
         event.registerBlockEntityRenderer(SelectivepowersBlockEntities.PROTECTION_EFFIGY_BE.get(), ProtectionEffigyEntityRenderer::new);
         event.registerBlockEntityRenderer(SelectivepowersBlockEntities.SAC_ALTAR_BE.get(), SacrificeAltarBlockEntityRenderer::new);
-        event.registerBlockEntityRenderer(SelectivepowersBlockEntities.PITFALL_TRAP_BE.get(), TrapBlockEntityRenderer::new);
     }
 
     @SubscribeEvent

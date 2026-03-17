@@ -23,16 +23,6 @@ public class SelectivepowersBlockEntities {
                     NestBlockEntity::new, SelectivepowersBlocks.CROWS_NEST.get()
             ).build(null));
 
-    public static final Supplier<BlockEntityType<VoidBlockEntity>> VOID_BLOCK_BE=
-            BLOCK_ENTITIES.register("void_block_be", () -> BlockEntityType.Builder.of(
-                    VoidBlockEntity::new, SelectivepowersBlocks.VOID_BLOCK.get()
-            ).build(null));
-
-    public static final Supplier<BlockEntityType<SporeMushroomEntity>> SPORE_MUSHROOM_BE=
-            BLOCK_ENTITIES.register("spore_mushroom_be", () -> BlockEntityType.Builder.of(
-                    SporeMushroomEntity::new, SelectivepowersBlocks.SPORE_MUSHROOM_BLOCK.get()
-            ).build(null));
-
     public static final Supplier<BlockEntityType<ProtectionEffigyBlockEntity>> PROTECTION_EFFIGY_BE=
             BLOCK_ENTITIES.register("protection_effigy_be", () -> BlockEntityType.Builder.of(
                     ProtectionEffigyBlockEntity::new, SelectivepowersBlocks.PROTECTION_EFFIGY_BLOCK.get()
@@ -46,11 +36,6 @@ public class SelectivepowersBlockEntities {
     public static final Supplier<BlockEntityType<SacrificeAltarBlockEntity>> SAC_ALTAR_BE=
             BLOCK_ENTITIES.register("sac_altar_be", () -> BlockEntityType.Builder.of(
                     SacrificeAltarBlockEntity::new, SelectivepowersBlocks.SACRIFICIAL_ALTAR_BLOCK.get()
-            ).build(null));
-
-    public static final Supplier<BlockEntityType<TrapBlockEntity>> PITFALL_TRAP_BE=
-            BLOCK_ENTITIES.register("pitfall_trap_be", () -> BlockEntityType.Builder.of(
-                    TrapBlockEntity::new, SelectivepowersBlocks.PITFALL_TRAP.get()
             ).build(null));
 
 

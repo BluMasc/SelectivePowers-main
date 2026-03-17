@@ -3,6 +3,8 @@ package net.blumasc.selectivepowers.entity.custom.projectile;
 import net.blumasc.selectivepowers.effect.SelectivepowersEffects;
 import net.blumasc.selectivepowers.entity.SelectivepowersEntities;
 import net.blumasc.selectivepowers.item.SelectivepowersItems;
+import net.blumasc.selectivepowers.particles.custom.WispParticleOption;
+import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -17,12 +19,6 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
-import team.lodestar.lodestone.registry.common.particle.LodestoneParticleTypes;
-import team.lodestar.lodestone.systems.easing.Easing;
-import team.lodestar.lodestone.systems.particle.builder.WorldParticleBuilder;
-import team.lodestar.lodestone.systems.particle.data.GenericParticleData;
-import team.lodestar.lodestone.systems.particle.data.color.ColorParticleData;
-import team.lodestar.lodestone.systems.particle.data.spin.SpinParticleData;
 
 import java.awt.*;
 
@@ -75,17 +71,17 @@ public class RuneProjectileEntity extends AbstractHurtingProjectile {
         spawnParticle(this.level(), this.getX(), this.getY()+0.1f, this.getZ(), new Color(0xd3af37), new Color(0xd3af37), 0, 0, 0);
     }
 
-    public static void spawnParticle(Level level, double x, double y, double z, Color startingColor, Color endingColor, double moveX, double moveY, double moveZ) {
-        if (level instanceof ServerLevel) return;
-        WorldParticleBuilder.create(LodestoneParticleTypes.WISP_PARTICLE)
-                .setScaleData(GenericParticleData.create(0.2f, 0).build())
-                .setTransparencyData(GenericParticleData.create(0.75f, 0.25f).build())
-                .setColorData(ColorParticleData.create(startingColor, endingColor).setCoefficient(1.4f).setEasing(Easing.BOUNCE_IN_OUT).build())
-                .setSpinData(SpinParticleData.create(0.2f, 0.4f).setSpinOffset((level.getGameTime() * 0.2f) % 6.28f).setEasing(Easing.QUARTIC_IN).build())
-                .setLifetime(20)
-                .addMotion(moveX, moveY, moveZ)
-                .enableNoClip()
-                .spawn(level, x, y, z);
+    public static void spawnParticle(Level level, double x, double y, double z,
+                                     Color startingColor, Color endingColor,
+                                     double moveX, double moveY, double moveZ) {
+        if (!(level instanceof ClientLevel)) return; // client-only
+
+        WispParticleOption options = new WispParticleOption(
+                startingColor.getRed()   / 255f, startingColor.getGreen() / 255f, startingColor.getBlue() / 255f,
+                endingColor.getRed()     / 255f, endingColor.getGreen()   / 255f, endingColor.getBlue()   / 255f
+        );
+
+        level.addParticle(options, x, y, z, moveX, moveY, moveZ);
     }
 
     protected void onHitBlock(BlockHitResult result) {

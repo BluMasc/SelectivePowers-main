@@ -3,8 +3,6 @@ package net.blumasc.selectivepowers.entity.client.quetzal;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.blumasc.selectivepowers.SelectivePowers;
-import net.blumasc.selectivepowers.entity.client.echocrab.EchoCrabAnimation;
-import net.blumasc.selectivepowers.entity.custom.MoonsquidEntity;
 import net.blumasc.selectivepowers.entity.custom.QuetzalEntity;
 import net.minecraft.client.model.HierarchicalModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;

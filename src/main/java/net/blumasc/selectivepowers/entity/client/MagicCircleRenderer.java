@@ -6,7 +6,6 @@ import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
 import net.blumasc.selectivepowers.SelectivePowers;
 import net.blumasc.selectivepowers.entity.CircleVariant;
-import net.blumasc.selectivepowers.entity.PackwingVariant;
 import net.blumasc.selectivepowers.entity.custom.projectile.MagicCircleEntity;
 import net.minecraft.Util;
 import net.minecraft.client.renderer.MultiBufferSource;

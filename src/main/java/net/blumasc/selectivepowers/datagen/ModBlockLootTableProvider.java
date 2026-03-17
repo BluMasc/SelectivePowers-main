@@ -35,9 +35,6 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
 
     @Override
     protected void generate() {
-        dropSelf(SelectivepowersBlocks.BLUBOTT_PLUSH.get());
-        dropSelf(SelectivepowersBlocks.BLUMASC_PLUSH.get());
-        dropSelf(SelectivepowersBlocks.RIKARASHI_PLUSH.get());
         dropSelf(SelectivepowersBlocks.ALTAR.get());
         dropSelf(SelectivepowersBlocks.MOON_SACRIFICE_BLOCK.get());
         dropSelf(SelectivepowersBlocks.SUN_SACRIFICE_BLOCK.get());
@@ -46,7 +43,6 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         dropSelf(SelectivepowersBlocks.CROWS_NEST.get());
         dropSelf(SelectivepowersBlocks.SUN_LANTERN.get());
         dropSelf(SelectivepowersBlocks.MOON_LANTERN.get());
-        dropSelf(SelectivepowersBlocks.DORMANT_ECHO_CRAB.get());
         dropSelf(SelectivepowersBlocks.MOON_CAP_BLOCK.get());
         dropSelf(SelectivepowersBlocks.MOON_DUST.get());
         dropSelf(SelectivepowersBlocks.MOON_ROCK.get());
@@ -72,19 +68,12 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         dropSelf(SelectivepowersBlocks.GOLDEN_GOAT.get());
         dropSelf(SelectivepowersBlocks.TESSLA_COIL.get());
         dropSelf(SelectivepowersBlocks.SACRIFICIAL_ALTAR_BLOCK.get());
-        dropOther(SelectivepowersBlocks.VOID_BLOCK.get(), ItemStack.EMPTY.getItem());
-        dropOther(SelectivepowersBlocks.PITFALL_TRAP.get(), ItemStack.EMPTY.getItem());
         add(SelectivepowersBlocks.ROSE_VINES.get(),
          block -> createSilkTouchOnlyTable(SelectivepowersBlocks.ROSE_VINES.get()));
         dropOther(SelectivepowersBlocks.M_SOLAR_BLOCK.get(), SelectivepowersBlocks.SOLAR_BLOCK);
 
         add(SelectivepowersBlocks.MOON_GLASS.get(),
                 block -> createSilkTouchOnlyTable(SelectivepowersBlocks.MOON_GLASS.get()));
-
-
-        add(SelectivepowersBlocks.SPORE_MUSHROOM_BLOCK.get(),
-                block -> createSilkTouchOnlyTable(SelectivepowersBlocks.SPORE_MUSHROOM_BLOCK.get()));
-
 
         add(SelectivepowersBlocks.EARTH_GLASS.get(),
                 block -> createSilkTouchOnlyTable(SelectivepowersBlocks.EARTH_GLASS.get()));
@@ -97,7 +86,6 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
                 block -> createSlabItemTable(SelectivepowersBlocks.SMOOTH_MOON_ROCK_SLAB.get()));
         add(SelectivepowersBlocks.SOLAR_BRICK_SLAB.get(),
                 block -> createSlabItemTable(SelectivepowersBlocks.SOLAR_BRICK_SLAB.get()));
-        dropSelf(SelectivepowersBlocks.JUMP_MUSHROOM.get());
 
 
         LootItemCondition.Builder lootItemConditionBuilder = LootItemBlockStatePropertyCondition.hasBlockStateProperties(SelectivepowersBlocks.MOONCAP_CROP.get())

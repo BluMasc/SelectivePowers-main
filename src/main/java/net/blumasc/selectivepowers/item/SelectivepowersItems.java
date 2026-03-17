@@ -1,5 +1,6 @@
 package net.blumasc.selectivepowers.item;
 
+import net.blumasc.blubasics.item.custom.CurioItem;
 import net.blumasc.selectivepowers.SelectivePowers;
 import net.blumasc.selectivepowers.block.SelectivepowersBlocks;
 import net.blumasc.selectivepowers.entity.SelectivepowersEntities;
@@ -26,9 +27,6 @@ public class SelectivepowersItems {
     public static final DeferredItem<Item> CROW_SPAWN_EGG = ITEMS.register("crow_spawn_egg",
             () -> new DeferredSpawnEggItem(SelectivepowersEntities.CROW, 0x030303, 0xfafafa, new Item.Properties()));
 
-    public static final DeferredItem<Item> PACKWING_SPAWN_EGG = ITEMS.register("packwing_spawn_egg",
-            () -> new DeferredSpawnEggItem(SelectivepowersEntities.PACKWING, 0xffffff, 0xfafafa, new Item.Properties()));
-
     public static final DeferredItem<Item> YELLOW_KING_SPAWN_EGG = ITEMS.register("yellow_king_spawn_egg",
             () -> new DeferredSpawnEggItem(SelectivepowersEntities.YELLOW_KING_BOSS, 0xffd700, 0xddd618, new Item.Properties()));
 
@@ -43,12 +41,6 @@ public class SelectivepowersItems {
 
     public static final DeferredItem<Item> BLESSED_IDOL = ITEMS.register("blessed_idol",
             () -> new GlintItem(new Item.Properties().stacksTo(1)));
-
-    public static final DeferredItem<Item> BEETLE_HORN = ITEMS.register("beetle_horn",
-            () -> new Item(new Item.Properties()));
-
-    public static final DeferredItem<Item> SUN_HORN= ITEMS.register("sun_horn",
-            () -> new Item(new Item.Properties()));
 
     public static final DeferredItem<Item> MOON_SACRIFICE= ITEMS.register("moon_sacrifice",
             () -> new Item(new Item.Properties()));
@@ -71,14 +63,8 @@ public class SelectivepowersItems {
     public static final DeferredItem<SwordItem> MOONLIGHT_GLAIVE = ITEMS.register("moonlight_glaive",
             () -> new MoonGlaiveItem(new Item.Properties().attributes(SwordItem.createAttributes(Tiers.NETHERITE, 3, -2.4F))));
 
-    public static final DeferredItem<Item> SOLAR_BEETLE_SPAWN_EGG = ITEMS.register("solar_beetle_spawn_egg",
-            () -> new DeferredSpawnEggItem(SelectivepowersEntities.SOLAR_BEETLE, 0x721011, 0xfff123, new Item.Properties()));
-
-    public static final DeferredItem<Item> SALAMANDER_SPAWN_EGG = ITEMS.register("salamander_spawn_egg",
-            () -> new DeferredSpawnEggItem(SelectivepowersEntities.SALAMANDER, 0xb67c3b, 0xff6c2c, new Item.Properties()));
-
-    public static final DeferredItem<Item> ECHO_CRAB_SPAWN_EGG = ITEMS.register("echo_crab_spawn_egg",
-            () -> new DeferredSpawnEggItem(SelectivepowersEntities.ECHO_CRAB, 0x101b21, 0x33d8de, new Item.Properties()));
+    public static final DeferredItem<Item> MOON_GLAIVE_3D = ITEMS.register("moon_glaive_3d",
+            () -> new Item(new Item.Properties()));
 
     public static final DeferredItem<Item> MOON_SQUID_SPAWN_EGG = ITEMS.register("moon_squid_spawn_egg",
             () -> new DeferredSpawnEggItem(SelectivepowersEntities.MOON_SQUID, 0x334697, 0x9caefa, new Item.Properties()));
@@ -94,19 +80,13 @@ public class SelectivepowersItems {
 
 
     public static final DeferredItem<Item> FAKE_CROWN = ITEMS.register("crown",
-            () -> new CurioItem());
+            () -> new CurioItem(new Item.Properties().stacksTo(1)));
     public static final DeferredItem<Item> TRUE_CROWN = ITEMS.register("true_crown",
-            () -> new CurioItem());
+            () -> new CurioItem(new Item.Properties().stacksTo(1)));
     public static final DeferredItem<Item> MOON_PENDANT = ITEMS.register("moon_pendant",
-            () -> new CurioItem());
+            () -> new CurioItem(new Item.Properties().stacksTo(1)));
     public static final DeferredItem<Item> CORRUPTED_MASK = ITEMS.register("mask",
-            () -> new CurioItem());
-    public static final DeferredItem<Item> SALAMANDER_GOO = ITEMS.register("salamander_goo",
-            () -> new SalamanderGooItem(new Item.Properties()));
-    public static final DeferredItem<Item> SALAMANDER_SCALES = ITEMS.register("salamander_scales",
-            () -> new Item(new Item.Properties()));
-    public static final DeferredItem<Item> HORNED_HELMET = ITEMS.register("horned_helmet",
-    () -> new HornHelmetArmorItem());
+            () -> new CurioItem(new Item.Properties().stacksTo(1)));
     public static final DeferredItem<Item> CORRUPTION_SHARD = ITEMS.register("corruption_shards",
             () -> new Item(new Item.Properties()));
     public static final DeferredItem<Item> YELLOW_RAMBLINGS = ITEMS.register("yellow_ramblings",
@@ -144,15 +124,6 @@ public class SelectivepowersItems {
     public static final DeferredItem<Item> RAGE_COOKIE= ITEMS.register("rage_cookie",
             () -> new Item(new Item.Properties().food(SelectiveFoodProperties.RAGE_COOKIE)));
 
-    public static final DeferredItem<Item> LIGHTNING_IN_A_BOTTLE= ITEMS.register("lightning_bottle",
-            () -> new LightningInABottleItem(new Item.Properties().stacksTo(1)));
-
-    public static final DeferredItem<Item> MUSHROOM_SKEWER= ITEMS.register("mushroom_skewer",
-            () -> new SkewerItem(new Item.Properties().food(SelectiveFoodProperties.MUSHROOM_SKEWER)));
-
-    public static final DeferredItem<Item> COOKED_MUSHROOM_SKEWER= ITEMS.register("cooked_mushroom_skewer",
-            () -> new SkewerItem(new Item.Properties().food(SelectiveFoodProperties.COOKED_MUSHROOM_SKEWER)));
-
     public static final DeferredItem<Item> BATTLE_FOR_ETERNITY_MUSIC_DISC = ITEMS.register("battle_for_eternity_music_disc",
             () -> new Item(new Item.Properties().jukeboxPlayable(SelectivepowersSounds.BATTLE_FOR_ETERNITY_KEY).stacksTo(1)));
 
@@ -167,9 +138,6 @@ public class SelectivepowersItems {
 
     public static final DeferredItem<Item> CHIMERA_CORE = ITEMS.register("chimera_core",
             () -> new ChimeraSummoningItem(new Item.Properties().stacksTo(16)));
-
-    public static final DeferredItem<Item> LEAFWALKER_CURIO = ITEMS.register("leafwalker_curio",
-            () -> new LeafwalkerCurioItem(new Item.Properties().stacksTo(1)));
 
     public static final DeferredItem<Item> SOLID_VOID = ITEMS.register("solid_void",
             () -> new SolidVoidItem(new Item.Properties().durability(32).stacksTo(1)));
@@ -193,103 +161,103 @@ public class SelectivepowersItems {
             () -> new LoreScrollItem(new Item.Properties().stacksTo(1)));
 
     public static final DeferredItem<CurioItem> SHELF_MUSHROOM = ITEMS.register("shelf_mushroom",
-            () -> new CurioItem());
+            () -> new CurioItem(new Item.Properties().stacksTo(1)));
 
     public static final DeferredItem<CurioItem> OCTOPUS_MUSHROOM = ITEMS.register("octopus_mushroom",
-            () -> new CurioItem());
+            () -> new CurioItem(new Item.Properties().stacksTo(1)));
 
     public static final DeferredItem<CurioItem> MUSHROOM_SPORES = ITEMS.register("mushroom_spores",
-            () -> new CurioItem());
+            () -> new CurioItem(new Item.Properties().stacksTo(1)));
 
     public static final DeferredItem<CurioItem> ENCHANTING_RUNE = ITEMS.register("enchanting_rune",
-            () -> new CurioItem());
+            () -> new CurioItem(new Item.Properties().stacksTo(1)));
 
     public static final DeferredItem<CurioItem> POCKET_TESSLA_COIL = ITEMS.register("pocket_tessla_coil",
-            () -> new CurioItem());
+            () -> new CurioItem(new Item.Properties().stacksTo(1)));
 
     public static final DeferredItem<CurioItem> CELESTIAL_RUNE = ITEMS.register("celestial_rune",
-            () -> new CurioItem());
+            () -> new CurioItem(new Item.Properties().stacksTo(1)));
 
     public static final DeferredItem<CurioItem> DUALITY_PEARL = ITEMS.register("duality_pearl",
-            () -> new CurioItem());
+            () -> new CurioItem(new Item.Properties().stacksTo(1)));
 
     public static final DeferredItem<CurioItem> BREATH_BAUBLE = ITEMS.register("breath_bauble",
-            () -> new CurioItem());
+            () -> new CurioItem(new Item.Properties().stacksTo(1)));
 
     public static final DeferredItem<CurioItem> SCULK_TENDRIL = ITEMS.register("sculk_tendril",
-            () -> new CurioItem());
+            () -> new CurioItem(new Item.Properties().stacksTo(1)));
 
     public static final DeferredItem<CurioItem> HIP_BOOK = ITEMS.register("hip_book",
-            () -> new CurioItem());
+            () -> new CurioItem(new Item.Properties().stacksTo(1)));
 
     public static final DeferredItem<CurioItem> STORM_CLOUD = ITEMS.register("storm_cloud",
-            () -> new CurioItem());
+            () -> new CurioItem(new Item.Properties().stacksTo(1)));
 
     public static final DeferredItem<CurioItem> SCULK_MOSS = ITEMS.register("sculk_moss",
-            () -> new CurioItem());
+            () -> new CurioItem(new Item.Properties().stacksTo(1)));
 
     public static final DeferredItem<CurioItem> MOSS_LAYER = ITEMS.register("moss_layer",
-            () -> new CurioItem());
+            () -> new CurioItem(new Item.Properties().stacksTo(1)));
 
     public static final DeferredItem<CurioItem> LIGHTNING_BALL = ITEMS.register("lightning_ball",
-            () -> new CurioItem());
-
-    public static final DeferredItem<CurioItem> EMBEDDED_CRYSTALS = ITEMS.register("embedded_crystals",
-            () -> new CurioItem());
-
-    public static final DeferredItem<CurioItem> SPINE_TREE = ITEMS.register("spine_tree",
-            () -> new CurioItem());
+            () -> new CurioItem(new Item.Properties().stacksTo(1)));
 
     public static final DeferredItem<CurioItem> POLARBEAR_PELT = ITEMS.register("polarbear_pelt",
-            () -> new CurioItem());
+            () -> new CurioItem(new Item.Properties().stacksTo(1)));
 
     public static final DeferredItem<CurioItem> FLOWER_CROWN = ITEMS.register("flower_crown",
-            () -> new CurioItem());
+            () -> new CurioItem(new Item.Properties().stacksTo(1)));
 
     public static final DeferredItem<CurioItem> ELEMENTAL_CIRCLET = ITEMS.register("elemental_circlet",
-            () -> new CurioItem());
+            () -> new CurioItem(new Item.Properties().stacksTo(1)));
 
     public static final DeferredItem<CurioItem> DRAGON_CLAWS = ITEMS.register("dragon_claws",
-            () -> new CurioItem());
+            () -> new CurioItem(new Item.Properties().stacksTo(1)));
 
     public static final DeferredItem<CurioItem> DRAGON_HORNS = ITEMS.register("dragon_horns",
-            () -> new CurioItem());
+            () -> new CurioItem(new Item.Properties().stacksTo(1)));
 
     public static final DeferredItem<CurioItem> HIP_HORN = ITEMS.register("hip_horn",
-            () -> new CurioItem());
+            () -> new CurioItem(new Item.Properties().stacksTo(1)));
 
     public static final DeferredItem<CurioItem> DUST_MASK = ITEMS.register("dust_mask",
-            () -> new CurioItem());
+            () -> new CurioItem(new Item.Properties().stacksTo(1)));
 
     public static final DeferredItem<CurioItem> SHOULDER_CROW = ITEMS.register("shoulder_crow",
-            () -> new CurioItem());
+            () -> new CurioItem(new Item.Properties().stacksTo(1)));
 
     public static final DeferredItem<CurioItem> ELEMENTAL_GLOVES = ITEMS.register("elemental_gloves",
-            () -> new CurioItem());
+            () -> new CurioItem(new Item.Properties().stacksTo(1)));
 
     public static final DeferredItem<CurioItem> GLOWING_EYES = ITEMS.register("glowing_eyes",
-            () -> new CurioItem());
+            () -> new CurioItem(new Item.Properties().stacksTo(1)));
 
     public static final DeferredItem<CurioItem> FACE_PAINT = ITEMS.register("face_paint",
-            () -> new CurioItem());
+            () -> new CurioItem(new Item.Properties().stacksTo(1)));
 
     public static final DeferredItem<CurioItem> HALO = ITEMS.register("halo",
-            () -> new CurioItem());
+            () -> new CurioItem(new Item.Properties().stacksTo(1)));
 
     public static final DeferredItem<CurioItem> MINERS_HAT = ITEMS.register("miners_hat",
-            () -> new CurioItem());
+            () -> new CurioItem(new Item.Properties().stacksTo(1)));
 
     public static final DeferredItem<CurioItem> RUNE = ITEMS.register("rune",
-            () -> new CurioItem());
+            () -> new CurioItem(new Item.Properties().stacksTo(1)));
 
     public static final DeferredItem<CurioItem> WARDEN_HORNS = ITEMS.register("warden_horns",
-            () -> new CurioItem());
+            () -> new CurioItem(new Item.Properties().stacksTo(1)));
 
     public static final DeferredItem<CurioItem> WOLF_EARS = ITEMS.register("wolf_ears",
-            () -> new CurioItem());
+            () -> new CurioItem(new Item.Properties().stacksTo(1)));
 
     public static final DeferredItem<CurioItem> WOLF_TAIL = ITEMS.register("wolf_tail",
-            () -> new CurioItem());
+            () -> new CurioItem(new Item.Properties().stacksTo(1)));
+
+    public static final DeferredItem<CurioItem> ARM_DRILL = ITEMS.register("arm_drill",
+            () -> new CurioItem(new Item.Properties().stacksTo(1)));
+
+    public static final DeferredItem<CurioItem> SHOULDER_LEAF = ITEMS.register("shoulder_leaf",
+            () -> new CurioItem(new Item.Properties().stacksTo(1)));
 
     public static void register(IEventBus eventBus){
         ITEMS.register(eventBus);

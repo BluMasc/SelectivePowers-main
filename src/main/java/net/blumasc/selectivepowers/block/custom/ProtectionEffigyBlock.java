@@ -3,7 +3,6 @@ package net.blumasc.selectivepowers.block.custom;
 import com.mojang.serialization.MapCodec;
 import net.blumasc.selectivepowers.block.entity.ProtectionEffigyBlockEntity;
 import net.blumasc.selectivepowers.block.entity.SelectivepowersBlockEntities;
-import net.blumasc.selectivepowers.block.entity.SporeMushroomEntity;
 import net.blumasc.selectivepowers.managers.DraconicFlightManager;
 import net.blumasc.selectivepowers.managers.ProtectionEffigyManager;
 import net.minecraft.core.BlockPos;

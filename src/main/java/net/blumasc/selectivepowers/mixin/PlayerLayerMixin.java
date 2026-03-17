@@ -2,6 +2,7 @@ package net.blumasc.selectivepowers.mixin;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
+import net.blumasc.blubasics.effect.BaseModEffects;
 import net.blumasc.selectivepowers.client.ClientPowerData;
 import net.blumasc.selectivepowers.effect.SelectivepowersEffects;
 import net.blumasc.selectivepowers.entity.client.lunarmaiden.LunarMaidenLayer;
@@ -114,7 +115,7 @@ public class PlayerLayerMixin {
             {
                 AbstractClientPlayer viewingPlayer = mc.player;
                 if(viewingPlayer!=null){
-                    if(viewingPlayer.hasEffect(SelectivepowersEffects.DRAKNESS_EFFECT))
+                    if(viewingPlayer.hasEffect(BaseModEffects.VOID_EFFECT))
                     {
                         ci.cancel();
                         return;

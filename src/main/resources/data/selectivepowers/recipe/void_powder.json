@@ -1,0 +1,10 @@
+{
+  "type": "selectivepowers:altar",
+  "ingredient": {
+    "item": "minecraft:sculk"
+  },
+  "night": true,
+  "result": {
+    "id": "blubasics:void_powder"
+  }
+}

@@ -1,7 +1,6 @@
 package net.blumasc.selectivepowers.datagen;
 
 import net.blumasc.selectivepowers.SelectivePowers;
-import net.blumasc.selectivepowers.enchantment.ModEnchantments;
 import net.blumasc.selectivepowers.worldgen.*;
 import net.blumasc.selectivepowers.worldgen.biomes.SelectivePowerBiomes;
 import net.minecraft.core.HolderLookup;
@@ -16,7 +15,6 @@ import java.util.concurrent.CompletableFuture;
 
 public class ModDatapackProvider extends DatapackBuiltinEntriesProvider {
     public static final RegistrySetBuilder BUILDER = new RegistrySetBuilder()
-            .add(Registries.ENCHANTMENT, ModEnchantments::bootstrap)
             .add(Registries.CONFIGURED_FEATURE, ModConfiguredFeatures::bootstrap)
             .add(Registries.PLACED_FEATURE, ModPlacedFeatures::bootstrap)
             .add(NeoForgeRegistries.Keys.BIOME_MODIFIERS, ModBiomeModifiers::bootstrap)

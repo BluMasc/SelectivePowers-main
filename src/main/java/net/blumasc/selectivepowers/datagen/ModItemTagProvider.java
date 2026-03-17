@@ -30,9 +30,7 @@ public class ModItemTagProvider extends ItemTagsProvider {
         tag(ItemTags.create(ResourceLocation.fromNamespaceAndPath("c","feathers")))
                 .add(SelectivepowersItems.BURNING_FEATHER.get());
         tag(ItemTags.create(ResourceLocation.fromNamespaceAndPath("c","mushrooms")))
-                .add(SelectivepowersItems.MOONCAP_MUSHROOM.get())
-                .add(SelectivepowersBlocks.JUMP_MUSHROOM.get().asItem())
-                .add(SelectivepowersBlocks.SPORE_MUSHROOM_BLOCK.get().asItem());
+                .add(SelectivepowersItems.MOONCAP_MUSHROOM.get());
         tag(ItemTags.create(ResourceLocation.fromNamespaceAndPath("c","eggs")))
                 .add(SelectivepowersItems.FLAMING_EGG.get());
         tag(ItemTags.create(ResourceLocation.fromNamespaceAndPath("minecraft","spears")))
@@ -46,30 +44,10 @@ public class ModItemTagProvider extends ItemTagsProvider {
                 .add(SelectivepowersItems.CORRUPTING_ARROW.get())
                 .add(SelectivepowersItems.BEAM_ARROW.get());
 
-        tag(ItemTags.ARMOR_ENCHANTABLE)
-                .add(SelectivepowersItems.HORNED_HELMET.get());
-
-        tag(ItemTags.HEAD_ARMOR_ENCHANTABLE)
-                .add(SelectivepowersItems.HORNED_HELMET.get());
-
-        tag(ItemTags.EQUIPPABLE_ENCHANTABLE)
-                .add(SelectivepowersItems.HORNED_HELMET.get());
-
-        tag(ItemTags.HEAD_ARMOR)
-                .add(SelectivepowersItems.HORNED_HELMET.get());
-
-        tag(ItemTags.VANISHING_ENCHANTABLE)
-                .add(SelectivepowersItems.HORNED_HELMET.get());
-
-        tag(ItemTags.FREEZE_IMMUNE_WEARABLES)
-                .add(SelectivepowersItems.HORNED_HELMET.get());
-
         tag(ItemTags.DURABILITY_ENCHANTABLE)
                 .add(SelectivepowersItems.SUN_SLICER.get())
                 .add(SelectivepowersItems.MOONLIGHT_GLAIVE.get())
                 .add(SelectivepowersItems.FLAMING_HAMMER.get())
-                .add(SelectivepowersItems.HORNED_HELMET.get())
-                .add(SelectivepowersItems.LEAFWALKER_CURIO.get())
                 .add(SelectivepowersItems.DRAGON_SLEEVES.get());
 
         tag(ItemTags.WEAPON_ENCHANTABLE)
@@ -92,7 +70,6 @@ public class ModItemTagProvider extends ItemTagsProvider {
         tag(CuriosTags.NECKLACE)
                 .add(SelectivepowersItems.MOON_PENDANT.get());
         tag(CuriosTags.BODY)
-                .add(SelectivepowersItems.LEAFWALKER_CURIO.get())
                 .add(SelectivepowersItems.DRAGON_SLEEVES.get());
 
         tag(CuriosTags.CURIO)
@@ -111,8 +88,8 @@ public class ModItemTagProvider extends ItemTagsProvider {
                 .add(SelectivepowersItems.SCULK_MOSS.get())
                 .add(SelectivepowersItems.MOSS_LAYER.get())
                 .add(SelectivepowersItems.LIGHTNING_BALL.get())
-                .add(SelectivepowersItems.EMBEDDED_CRYSTALS.get())
-                .add(SelectivepowersItems.SPINE_TREE.get())
+                .add(SelectivepowersItems.ARM_DRILL.get())
+                .add(SelectivepowersItems.SHOULDER_LEAF.get())
                 .add(SelectivepowersItems.POLARBEAR_PELT.get())
                 .add(SelectivepowersItems.FLOWER_CROWN.get())
                 .add(SelectivepowersItems.ELEMENTAL_CIRCLET.get())
@@ -145,30 +122,11 @@ public class ModItemTagProvider extends ItemTagsProvider {
                 .add(Items.PUMPKIN_SEEDS)
                 .add(Items.PUMPKIN);
 
-        tag(ModTags.Items.PACKWING_TAMING_ITEM)
-                .add(Items.GLOW_BERRIES)
-                .add(Items.GLOW_INK_SAC);
+        tag(ModTags.Items.MUSHROOM_ITEMS)
+                .addTag(ItemTags.create(ResourceLocation.parse("c:mushrooms")));
 
-        tag(ModTags.Items.PACKWING_BREEDING_ITEM)
-                .add(Items.SWEET_BERRIES)
-                .add(Items.MELON_SLICE)
-                .add(Items.APPLE);
-
-        tag(ModTags.Items.SALAMANDER_FOOD)
-                .add(Items.FIRE_CHARGE)
-                .add(Items.MAGMA_BLOCK)
-                .add(Items.BLAZE_POWDER)
-                .add(Items.BLAZE_ROD)
-                .add(Items.MAGMA_CREAM);
-
-        tag(ModTags.Items.SOLAR_BEETLE_FOOD)
-                .add(Items.QUARTZ)
-                .add(SelectivepowersItems.SUN_SACRIFICE.get())
-                .add(SelectivepowersItems.SUN_HORN.get());
-
-        tag(ModTags.Items.ENCHANTABLE_DROP_EDITOR)
-                .addTag(ItemTags.MINING_ENCHANTABLE)
-                .addTag(ItemTags.FIRE_ASPECT_ENCHANTABLE);
+        tag(ModTags.Items.PLANT_ITEMS)
+                .addTag(ItemTags.FLOWERS);
 
 
     }

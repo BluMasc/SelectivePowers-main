@@ -1,5 +1,6 @@
 package net.blumasc.selectivepowers.events;
 
+import net.blumasc.blubasics.effect.BaseModEffects;
 import net.blumasc.selectivepowers.Config;
 import net.blumasc.selectivepowers.PowerManager;
 import net.blumasc.selectivepowers.SelectivePowers;
@@ -16,6 +17,7 @@ import net.blumasc.selectivepowers.item.custom.FrostShieldItem;
 import net.blumasc.selectivepowers.item.custom.ProspectorsShovelItem;
 import net.blumasc.selectivepowers.managers.*;
 import net.blumasc.selectivepowers.mixin.MobEffectAccessor;
+import net.blumasc.selectivepowers.util.ModTags;
 import net.blumasc.selectivepowers.worldgen.ModDimensions;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
@@ -33,6 +35,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.TagKey;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
@@ -51,7 +54,9 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.GameType;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.ChestBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -148,20 +153,26 @@ public class PowerUseEvents {
         double chance = Math.min(0.5, 0.05 + player.getLuck() * 0.02);
         if (player.getRandom().nextDouble() > chance) return;
 
-        List<? extends String> configIds = Config.BLOCK_STRINGS_ORE.get();
-        if (configIds.isEmpty()) return;
+        BlockState randomOre = getRandomOreBlock(event.getLevel());
+        if (randomOre.is(Blocks.AIR)) return;
 
-        String targetId = configIds.get(player.getRandom().nextInt(configIds.size()));
-        ResourceLocation rl = ResourceLocation.tryParse(targetId);
-        if (rl == null) return;
-
-        Block sourceBlock = BuiltInRegistries.BLOCK.getOptional(rl).orElse(null);
-        if (sourceBlock == null) return;
-
-        ItemStack extraDrop = getRandomItemDropFromBlock(sourceBlock, player);
+        ItemStack extraDrop = getRandomItemDropFromBlock(randomOre.getBlock(), player);
         if (extraDrop.isEmpty()) return;
 
         Block.popResource(player.level(), event.getPos(), extraDrop);
+    }
+
+    private static BlockState getRandomOreBlock(LevelAccessor l) {
+        List<Block> blocks = BuiltInRegistries.BLOCK
+                .getTag(BlockTags.create(ResourceLocation.parse("c:ores")))
+                .map(holderSet -> holderSet.stream().map(holder -> holder.value()).toList())
+                .orElse(List.of());
+
+        if (blocks.isEmpty())
+            return Blocks.AIR.defaultBlockState();
+
+        Block randomBlock = blocks.get(l.getRandom().nextInt(blocks.size()));
+        return randomBlock.defaultBlockState();
     }
 
 
@@ -202,10 +213,6 @@ public class PowerUseEvents {
         }
 
         if (!event.getSource().is(DamageTypes.FALL)) return;
-
-        if (event.getEntity().hasEffect(SelectivepowersEffects.FALL_IMMUNITY_EFFECT)) {
-            event.setCanceled(true);
-        }
 
         if(event.getEntity() instanceof Player p){
             if(p.level() instanceof ServerLevel sl)
@@ -898,7 +905,7 @@ public class PowerUseEvents {
             List<Player> nearbyPlayers = sl.getEntitiesOfClass(Player.class, box, p -> p != centerPlayer);
 
             for (Player p : nearbyPlayers) {
-                p.addEffect(new MobEffectInstance(SelectivepowersEffects.DRAKNESS_EFFECT, 2, 0, true, false));
+                p.addEffect(new MobEffectInstance(BaseModEffects.VOID_EFFECT, 2, 0, true, false));
             }
             progress.ultTimer--;
             pm.setDirty();

@@ -1,5 +1,7 @@
 package net.blumasc.selectivepowers.item;
 
+import net.blumasc.blubasics.block.BaseModBlocks;
+import net.blumasc.blubasics.item.BaseModItems;
 import net.blumasc.selectivepowers.SelectivePowers;
 import net.blumasc.selectivepowers.block.SelectivepowersBlocks;
 import net.minecraft.core.registries.Registries;
@@ -34,13 +36,11 @@ public class SelectivepowersCreativeModeTabs {
                         output.accept(SelectivepowersItems.TRUE_CROWN);
                         output.accept(SelectivepowersItems.FAKE_CROWN);
                         output.accept(SelectivepowersItems.MOON_PENDANT);
-                        output.accept(SelectivepowersItems.HORNED_HELMET);
-                        output.accept(SelectivepowersItems.BEETLE_HORN);
-                        output.accept(SelectivepowersItems.SUN_HORN);
+                        output.accept(BaseModItems.BEETLE_HORN);
+                        output.accept(BaseModItems.SUN_HORN);
                         output.accept(SelectivepowersItems.MOONCAP_SEEDS);
                         output.accept(SelectivepowersItems.MOONCAP_MUSHROOM);
                         output.accept(SelectivepowersItems.MOONLIGHT_JELLY);
-                        output.accept(SelectivepowersItems.SALAMANDER_SCALES);
                         output.accept(SelectivepowersItems.CORRUPTION_SHARD);
                         output.accept(SelectivepowersItems.YELLOW_RAMBLINGS);
                         output.accept(SelectivepowersItems.FLAMING_EGG);
@@ -50,12 +50,10 @@ public class SelectivepowersCreativeModeTabs {
                         output.accept(SelectivepowersItems.BEAM_ARROW);
                         output.accept(SelectivepowersItems.SOLAR_BRICK);
                         output.accept(SelectivepowersItems.RAGE_COOKIE);
-                        output.accept(SelectivepowersItems.LIGHTNING_IN_A_BOTTLE);
-                        output.accept(SelectivepowersItems.MUSHROOM_SKEWER);
-                        output.accept(SelectivepowersItems.COOKED_MUSHROOM_SKEWER);
+                        output.accept(BaseModItems.LIGHTNING_IN_A_BOTTLE);
                         output.accept(SelectivepowersItems.BATTLE_FOR_ETERNITY_MUSIC_DISC);
                         output.accept(SelectivepowersItems.CHIMERA_CORE);
-                        output.accept(SelectivepowersItems.LEAFWALKER_CURIO);
+                        output.accept(BaseModItems.SPINE_TREE);
                         output.accept(SelectivepowersItems.SOLID_VOID);
                         output.accept(SelectivepowersItems.DRAGON_SLEEVES);
                         output.accept(SelectivepowersItems.PROSPECTORS_SHOVEL);
@@ -83,9 +81,9 @@ public class SelectivepowersCreativeModeTabs {
                         output.accept(SelectivepowersItems.RUNE);
                       output.accept(SelectivepowersItems.CELESTIAL_RUNE);
                       output.accept(SelectivepowersItems.MOSS_LAYER);
-                        output.accept(SelectivepowersItems.SPINE_TREE);
                         output.accept(SelectivepowersItems.FLOWER_CROWN);
-                      output.accept(SelectivepowersItems.EMBEDDED_CRYSTALS);
+                        output.accept(SelectivepowersItems.SHOULDER_LEAF);
+                        output.accept(SelectivepowersItems.ARM_DRILL);
                         output.accept(SelectivepowersItems.MINERS_HAT);
                         output.accept(SelectivepowersItems.DUST_MASK);
                       output.accept(SelectivepowersItems.DUALITY_PEARL);
@@ -99,10 +97,7 @@ public class SelectivepowersCreativeModeTabs {
                       output.accept(SelectivepowersItems.SCULK_TENDRIL);
                       //Spawn Eggs
                         output.accept(SelectivepowersItems.CROW_SPAWN_EGG);
-                        output.accept(SelectivepowersItems.PACKWING_SPAWN_EGG);
-                        output.accept(SelectivepowersItems.SOLAR_BEETLE_SPAWN_EGG);
-                        output.accept(SelectivepowersItems.SALAMANDER_SPAWN_EGG);
-                        output.accept(SelectivepowersItems.ECHO_CRAB_SPAWN_EGG);
+                        output.accept(BaseModItems.SOLAR_BEETLE_SPAWN_EGG);
                         output.accept(SelectivepowersItems.MOON_SQUID_SPAWN_EGG);
                         output.accept(SelectivepowersItems.QUETZAL_SPAWN_EGG);
                         output.accept(SelectivepowersItems.YELLOW_QUETZAL_SPAWN_EGG);
@@ -119,8 +114,7 @@ public class SelectivepowersCreativeModeTabs {
                         output.accept(SelectivepowersBlocks.SUN_LANTERN);
                         output.accept(SelectivepowersBlocks.CROWS_NEST);
                         output.accept(SelectivepowersBlocks.MOON_CAP_BLOCK);
-                        output.accept(SelectivepowersBlocks.DORMANT_ECHO_CRAB);
-                        output.accept(SelectivepowersBlocks.JUMP_MUSHROOM);
+                        output.accept(BaseModBlocks.JUMP_MUSHROOM);
                         output.accept(SelectivepowersBlocks.MOON_DUST);
                         output.accept(SelectivepowersBlocks.MOON_GLASS);
                         output.accept(SelectivepowersBlocks.MOON_ROCK);
@@ -147,16 +141,11 @@ public class SelectivepowersCreativeModeTabs {
                         output.accept(SelectivepowersBlocks.OBSIDIAN_DUST);
                         output.accept(SelectivepowersBlocks.ROSE_VINES);
                         output.accept(SelectivepowersBlocks.DRACONIC_BEACON);
-                        output.accept(SelectivepowersBlocks.SPORE_MUSHROOM_BLOCK);
+                        output.accept(BaseModBlocks.SPORE_MUSHROOM_BLOCK);
                         output.accept(SelectivepowersBlocks.PROTECTION_EFFIGY_BLOCK);
                         output.accept(SelectivepowersBlocks.GOLDEN_GOAT);
                         output.accept(SelectivepowersBlocks.TESSLA_COIL);
                         output.accept(SelectivepowersBlocks.SACRIFICIAL_ALTAR_BLOCK);
-                        output.accept(SelectivepowersBlocks.PITFALL_TRAP);
-                        //Funny Stuff
-                        output.accept(SelectivepowersBlocks.BLUMASC_PLUSH);
-                        output.accept(SelectivepowersBlocks.RIKARASHI_PLUSH);
-                        output.accept(SelectivepowersBlocks.BLUBOTT_PLUSH);
                     }).build());
 
     public static void register(IEventBus eventBus)

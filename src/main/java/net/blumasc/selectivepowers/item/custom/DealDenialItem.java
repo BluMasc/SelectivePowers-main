@@ -1,7 +1,10 @@
 package net.blumasc.selectivepowers.item.custom;
 
 import net.blumasc.selectivepowers.PowerManager;
+import net.blumasc.selectivepowers.particles.custom.WispParticleOption;
 import net.blumasc.selectivepowers.sound.SelectivepowersSounds;
+import net.minecraft.client.multiplayer.ClientLevel;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;
@@ -15,13 +18,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
-import team.lodestar.lodestone.registry.common.particle.LodestoneParticleTypes;
-import team.lodestar.lodestone.systems.easing.Easing;
-import team.lodestar.lodestone.systems.particle.builder.WorldParticleBuilder;
-import team.lodestar.lodestone.systems.particle.data.GenericParticleData;
-import team.lodestar.lodestone.systems.particle.data.color.ColorParticleData;
-import team.lodestar.lodestone.systems.particle.data.spin.SpinParticleData;
-import team.lodestar.lodestone.systems.particle.world.type.LodestoneWorldParticleType;
 
 import java.awt.*;
 import java.util.function.Supplier;
@@ -44,10 +40,10 @@ public class DealDenialItem extends Item {
                 if (i % 10 == 0) {
                     Vec3 pos = entityLiving.position();
                     if(i >= 40){
-                        spawnParticles(level, pos.x, pos.y, pos.z, 10, LodestoneParticleTypes.SMOKE_PARTICLE, new Color(100, 0, 100), new Color(0, 100, 200));
+                        spawnSmokeParticles(level, pos.x, pos.y, pos.z, 10, new Color(100, 0, 100), new Color(0, 100, 200));
                     }
                     else {
-                        spawnParticles(level, pos.x, pos.y, pos.z, 10, LodestoneParticleTypes.SMOKE_PARTICLE, new Color(255, 255, 255), new Color(100, 100, 100));
+                        spawnWispParticles(level, pos.x, pos.y, pos.z, 10, new Color(255, 255, 255), new Color(100, 100, 100));
                     }
                     level.playSound(player, player.getOnPos(), SelectivepowersSounds.WIND.get(), SoundSource.PLAYERS);
                 }
@@ -64,7 +60,7 @@ public class DealDenialItem extends Item {
 
             level.playSound(player, player.getOnPos(), SelectivepowersSounds.SPARKLE.get(), SoundSource.PLAYERS);
 
-            spawnParticles(level, pos.x, pos.y, pos.z, 30, LodestoneParticleTypes.TWINKLE_PARTICLE,
+            spawnWispParticles(level, pos.x, pos.y, pos.z, 30,
                     new Color(100, 0, 100), new Color(0, 100, 200));
 
         }
@@ -75,7 +71,7 @@ public class DealDenialItem extends Item {
             Vec3 pos = player.position();
             level.playSound(player, player.getOnPos(), SelectivepowersSounds.SPARKLE.get(), SoundSource.PLAYERS);
 
-            spawnParticles(level, pos.x, pos.y, pos.z, 30, LodestoneParticleTypes.TWINKLE_PARTICLE,
+            spawnWispParticles(level, pos.x, pos.y, pos.z, 30,
                     new Color(100, 0, 100), new Color(0, 100, 200));
 
             stack.shrink(1);
@@ -89,23 +85,37 @@ public class DealDenialItem extends Item {
             manager.syncToAll((ServerLevel) player.level());
         }
     }
-    public static void spawnParticles(Level level, double x, double y, double z, int count,Supplier<LodestoneWorldParticleType> particle, Color startingColor, Color endingColor) {
+    public static void spawnSmokeParticles(Level level, double x, double y, double z, int count, Color startingColor, Color endingColor) {
         if (level instanceof ServerLevel) return;
         RandomSource rand = level.getRandom();
         for (int j = 0; j < count; j++) {
             double ox = (rand.nextDouble() - 0.5) * 1.5;
             double oy = rand.nextDouble() * 2.0;
             double oz = (rand.nextDouble() - 0.5) * 1.5;
-            WorldParticleBuilder.create(particle)
-                    .setScaleData(GenericParticleData.create(0.5f, 0).build())
-                    .setTransparencyData(GenericParticleData.create(0.75f, 0.25f).build())
-                    .setColorData(ColorParticleData.create(startingColor, endingColor).setCoefficient(1.4f).setEasing(Easing.BOUNCE_IN_OUT).build())
-                    .setSpinData(SpinParticleData.create(0.2f, 0.4f).setSpinOffset((level.getGameTime() * 0.2f) % 6.28f).setEasing(Easing.QUARTIC_IN).build())
-                    .setLifetime(40)
-                    .addMotion(0, 0.01f, 0)
-                    .enableNoClip()
-                    .spawn(level, x+ox, y+oy, z+oz);
+            level.addParticle(ParticleTypes.SMOKE, x, y, z, 0, 0.01f, 0);
         }
+    }
+    public static void spawnWispParticles(Level level, double x, double y, double z, int count, Color startingColor, Color endingColor) {
+        if (level instanceof ServerLevel) return;
+        RandomSource rand = level.getRandom();
+        for (int j = 0; j < count; j++) {
+            double ox = (rand.nextDouble() - 0.5) * 1.5;
+            double oy = rand.nextDouble() * 2.0;
+            double oz = (rand.nextDouble() - 0.5) * 1.5;
+            spawnParticle(level, x+ox, y+oy, z+oz, startingColor, endingColor,0, 0.01f, 0);
+        }
+    }
+    public static void spawnParticle(Level level, double x, double y, double z,
+                                     Color startingColor, Color endingColor,
+                                     double moveX, double moveY, double moveZ) {
+        if (!(level instanceof ClientLevel)) return; // client-only
+
+        WispParticleOption options = new WispParticleOption(
+                startingColor.getRed()   / 255f, startingColor.getGreen() / 255f, startingColor.getBlue() / 255f,
+                endingColor.getRed()     / 255f, endingColor.getGreen()   / 255f, endingColor.getBlue()   / 255f
+        );
+
+        level.addParticle(options, x, y, z, moveX, moveY, moveZ);
     }
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
         if (level.isClientSide()) {

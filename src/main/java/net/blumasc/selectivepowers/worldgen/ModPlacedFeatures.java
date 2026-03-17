@@ -16,7 +16,6 @@ import java.util.List;
 public class ModPlacedFeatures {
 
     public static final ResourceKey<PlacedFeature> MOONCAP_MUSHROOM_PLACE_KEY = registerKey("mooncap_mushroom_placed");
-    public static final ResourceKey<PlacedFeature> DORMANT_CRAB_PLACE_KEY = registerKey("dormant_crab_placed");
     public static final ResourceKey<PlacedFeature> CROW_NEST_PLACE_KEY = registerKey("crow_nest_placed");
 
     public static void bootstrap(BootstrapContext<PlacedFeature> context) {
@@ -24,14 +23,6 @@ public class ModPlacedFeatures {
         register(context, MOONCAP_MUSHROOM_PLACE_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.MOONCAP_MUSHROOM_KEY),
                 List.of(RarityFilter.onAverageOnceEvery(4), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome()));
 
-        register(context, DORMANT_CRAB_PLACE_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.DORMANT_CRAB_KEY),
-                List.of(RarityFilter.onAverageOnceEvery(3),
-                        InSquarePlacement.spread(),
-                        HeightRangePlacement.uniform(
-                                VerticalAnchor.absolute(-64),
-                                VerticalAnchor.absolute(-20)
-                        ),
-                        BiomeFilter.biome()));
 
         register(context, CROW_NEST_PLACE_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.CROWS_NEST_KEY),
                 List.of(RarityFilter.onAverageOnceEvery(6),

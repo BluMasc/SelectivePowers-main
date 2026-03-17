@@ -273,6 +273,10 @@
   "item.selectivepowers.wolf_ears.lore": "This is just a cosmetic item.",
   "item.selectivepowers.wolf_tail": "Wolf Tail",
   "item.selectivepowers.wolf_tail.lore": "This is just a cosmetic item.",
+  "item.selectivepowers.shoulder_leaf": "Leaf Pauldrons",
+  "item.selectivepowers.shoulder_leaf.lore": "This is just a cosmetic item.",
+  "item.selectivepowers.arm_drill": "Arm Drill",
+  "item.selectivepowers.arm_drill.lore": "This is just a cosmetic item.",
 
   "item.minecraft.potion.effect.sp_truth_vision_potion": "Truth Potion",
   "item.minecraft.splash_potion.effect.sp_truth_vision_potion": "Truth Splash Potion",
@@ -634,6 +638,8 @@
 
   "painting.selectivepowers.flip.title": "Detective Flip",
   "painting.selectivepowers.flip.author": "BluMasc",
+
+  "cusrios.identifier.decoration": "Decoration",
 
   "selectivepowers.configuration.title": "Selective Powers Configs",
   "selectivepowers.configuration.section.selectivepowers.common.toml": "Selective Powers Configs",

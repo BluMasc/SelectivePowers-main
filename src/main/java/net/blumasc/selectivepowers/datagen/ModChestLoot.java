@@ -1,5 +1,7 @@
 package net.blumasc.selectivepowers.datagen;
 
+import net.blumasc.blubasics.block.BaseModBlocks;
+import net.blumasc.blubasics.item.BaseModItems;
 import net.blumasc.selectivepowers.SelectivePowers;
 import net.blumasc.selectivepowers.block.SelectivepowersBlocks;
 import net.blumasc.selectivepowers.item.SelectivepowersItems;
@@ -116,7 +118,7 @@ public class ModChestLoot implements LootTableSubProvider {
                                 .add(LootItem.lootTableItem(SelectivepowersItems.SCULK_MOSS).setWeight(5))
                                 .add(LootItem.lootTableItem(SelectivepowersItems.SCULK_TENDRIL).setWeight(5))
                                 .add(LootItem.lootTableItem(SelectivepowersItems.SOLID_VOID).setWeight(7))
-                                .add(LootItem.lootTableItem(SelectivepowersBlocks.DORMANT_ECHO_CRAB).setWeight(6))
+                                .add(LootItem.lootTableItem(BaseModItems.VOID_POWDER).setWeight(6))
                         )
         );
 
@@ -126,12 +128,28 @@ public class ModChestLoot implements LootTableSubProvider {
                         .withPool(LootPool.lootPool()
                                 .setRolls(UniformGenerator.between(1.0F, 1.0F))
                                 .add(LootItem.lootTableItem(Items.GILDED_BLACKSTONE).setWeight(4))
+                                .add(LootItem.lootTableItem(Items.END_ROD).setWeight(2))
+                                .add(LootItem.lootTableItem(Items.GLOWSTONE).setWeight(2))
+                                .add(LootItem.lootTableItem(SelectivepowersItems.CELESTIAL_RUNE).setWeight(5))
+                                .add(LootItem.lootTableItem(SelectivepowersItems.RUNE).setWeight(5))
+                                .add(LootItem.lootTableItem(SelectivepowersItems.HALO).setWeight(5))
+                                .add(LootItem.lootTableItem(SelectivepowersBlocks.PROTECTION_EFFIGY_BLOCK).setWeight(7))
+                                .add(LootItem.lootTableItem(SelectivepowersItems.BEAM_ARROW).setWeight(6))
+                        )
+        );
+
+        consumer.accept(
+                PLANT_POWER_LOOT_TABLE,
+                LootTable.lootTable()
+                        .withPool(LootPool.lootPool()
+                                .setRolls(UniformGenerator.between(1.0F, 1.0F))
+                                .add(LootItem.lootTableItem(Items.GILDED_BLACKSTONE).setWeight(4))
                                 .add(LootItem.lootTableItem(Items.CARROT).setWeight(2))
                                 .add(LootItem.lootTableItem(Items.MOSS_BLOCK).setWeight(2))
                                 .add(LootItem.lootTableItem(SelectivepowersItems.FLOWER_CROWN).setWeight(5))
                                 .add(LootItem.lootTableItem(SelectivepowersItems.MOSS_LAYER).setWeight(5))
-                                .add(LootItem.lootTableItem(SelectivepowersItems.SPINE_TREE).setWeight(5))
-                                .add(LootItem.lootTableItem(SelectivepowersItems.LEAFWALKER_CURIO).setWeight(7))
+                                .add(LootItem.lootTableItem(SelectivepowersItems.SHOULDER_LEAF).setWeight(5))
+                                .add(LootItem.lootTableItem(BaseModItems.SPINE_TREE).setWeight(7))
                                 .add(LootItem.lootTableItem(SelectivepowersBlocks.ROSE_VINES).setWeight(6))
                         )
         );
@@ -148,23 +166,6 @@ public class ModChestLoot implements LootTableSubProvider {
                                 .add(LootItem.lootTableItem(SelectivepowersItems.WOLF_TAIL).setWeight(5))
                                 .add(LootItem.lootTableItem(SelectivepowersItems.SHOULDER_CROW).setWeight(5))
                                 .add(LootItem.lootTableItem(SelectivepowersItems.CHIMERA_CORE).setWeight(7))
-                                .add(LootItem.lootTableItem(SelectivepowersItems.HORNED_HELMET).setWeight(6))
-                        )
-        );
-
-        consumer.accept(
-                PLANT_POWER_LOOT_TABLE,
-                LootTable.lootTable()
-                        .withPool(LootPool.lootPool()
-                                .setRolls(UniformGenerator.between(1.0F, 1.0F))
-                                .add(LootItem.lootTableItem(Items.SPORE_BLOSSOM).setWeight(4))
-                                .add(LootItem.lootTableItem(Items.SADDLE).setWeight(2))
-                                .add(LootItem.lootTableItem(Items.FEATHER).setWeight(2))
-                                .add(LootItem.lootTableItem(SelectivepowersItems.WOLF_EARS).setWeight(5))
-                                .add(LootItem.lootTableItem(SelectivepowersItems.WOLF_TAIL).setWeight(5))
-                                .add(LootItem.lootTableItem(SelectivepowersItems.SHOULDER_CROW).setWeight(5))
-                                .add(LootItem.lootTableItem(SelectivepowersItems.CHIMERA_CORE).setWeight(7))
-                                .add(LootItem.lootTableItem(SelectivepowersItems.HORNED_HELMET).setWeight(6))
                         )
         );
 
@@ -179,8 +180,8 @@ public class ModChestLoot implements LootTableSubProvider {
                                 .add(LootItem.lootTableItem(SelectivepowersItems.MUSHROOM_SPORES).setWeight(5))
                                 .add(LootItem.lootTableItem(SelectivepowersItems.OCTOPUS_MUSHROOM).setWeight(5))
                                 .add(LootItem.lootTableItem(SelectivepowersItems.SHELF_MUSHROOM).setWeight(5))
-                                .add(LootItem.lootTableItem(SelectivepowersBlocks.SPORE_MUSHROOM_BLOCK).setWeight(7))
-                                .add(LootItem.lootTableItem(SelectivepowersBlocks.JUMP_MUSHROOM).setWeight(6))
+                                .add(LootItem.lootTableItem(BaseModBlocks.SPORE_MUSHROOM_BLOCK).setWeight(7))
+                                .add(LootItem.lootTableItem(BaseModBlocks.JUMP_MUSHROOM).setWeight(6))
                         )
         );
 
@@ -196,7 +197,7 @@ public class ModChestLoot implements LootTableSubProvider {
                                 .add(LootItem.lootTableItem(SelectivepowersItems.LIGHTNING_BALL).setWeight(5))
                                 .add(LootItem.lootTableItem(SelectivepowersItems.POCKET_TESSLA_COIL).setWeight(5))
                                 .add(LootItem.lootTableItem(SelectivepowersBlocks.TESSLA_COIL).setWeight(7))
-                                .add(LootItem.lootTableItem(SelectivepowersItems.LIGHTNING_IN_A_BOTTLE).setWeight(6))
+                                .add(LootItem.lootTableItem(BaseModItems.LIGHTNING_IN_A_BOTTLE).setWeight(6))
                         )
         );
 
@@ -226,7 +227,7 @@ public class ModChestLoot implements LootTableSubProvider {
                                 .add(LootItem.lootTableItem(Items.DIAMOND_ORE).setWeight(2))
                                 .add(LootItem.lootTableItem(SelectivepowersItems.MINERS_HAT).setWeight(5))
                                 .add(LootItem.lootTableItem(SelectivepowersItems.DUST_MASK).setWeight(5))
-                                .add(LootItem.lootTableItem(SelectivepowersItems.EMBEDDED_CRYSTALS).setWeight(5))
+                                .add(LootItem.lootTableItem(SelectivepowersItems.ARM_DRILL).setWeight(5))
                                 .add(LootItem.lootTableItem(SelectivepowersItems.PROSPECTORS_SHOVEL).setWeight(7))
                                 .add(LootItem.lootTableItem(SelectivepowersBlocks.OBSIDIAN_DUST).setWeight(6))
                         )

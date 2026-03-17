@@ -3,6 +3,7 @@ package net.blumasc.selectivepowers.events;
 import net.blumasc.selectivepowers.Config;
 import net.blumasc.selectivepowers.PowerManager;
 import net.blumasc.selectivepowers.SelectivePowers;
+import net.blumasc.selectivepowers.util.ModTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
@@ -10,6 +11,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.EntityTypeTags;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
@@ -55,22 +57,22 @@ public class PowerApplyingEvents {
         PowerManager pm = PowerManager.get(event.getPlayer().getServer().overworld());
         if(!pm.doesPlayerHaveAnyPower(player.getUUID())){
             if(pm.isPowerFree(PowerManager.FORREST_POWER)) {
-                int uniqueFlowers = countUniqueItems(player, Config.ITEM_STRINGS_NATURE.get());
+                int uniqueFlowers = countUniqueItems(player, ModTags.Items.PLANT_ITEMS);
 
                 if (uniqueFlowers >= 10) {
                     pm.assignPower(PowerManager.FORREST_POWER,player);
                     player.sendSystemMessage(
-                            Component.translatable("selectivepowers.messages.offer."+PowerManager.FORREST_POWER, "selectivepowers.name."+PowerManager.FORREST_POWER)
+                            Component.translatable("selectivepowers.messages.offer."+PowerManager.FORREST_POWER, Component.translatable("selectivepowers.name."+PowerManager.FORREST_POWER))
                     );
                 }
             }
             if(!pm.isPowerFree(PowerManager.MUSHROOM_POWER)) {
-                int numberMushrooms = countTotalItems(player, Config.ITEM_STRINGS_MUSHROOM.get());
+                int numberMushrooms = countTotalItems(player, ModTags.Items.MUSHROOM_ITEMS);
 
                 if (numberMushrooms >= 10) {
                     pm.assignPower(PowerManager.MUSHROOM_POWER,player);
                     player.sendSystemMessage(
-                            Component.translatable("selectivepowers.messages.offer."+PowerManager.MUSHROOM_POWER, "selectivepowers.name."+PowerManager.MUSHROOM_POWER)
+                            Component.translatable("selectivepowers.messages.offer."+PowerManager.MUSHROOM_POWER, Component.translatable("selectivepowers.name."+PowerManager.MUSHROOM_POWER))
                     );
                 }
             }}
@@ -87,14 +89,11 @@ public class PowerApplyingEvents {
         if (pm.isPowerFree(PowerManager.STORM_POWER)) {
 
             if (!(event.getContainer() instanceof ChestMenu)) return;
-
-            List<? extends String> villagerTypes = Config.MOB_STRINGS_VILLAGER.get();
-
-            List<Entity> villagers = player.level().getEntitiesOfClass(Entity.class, player.getBoundingBox().inflate(10), mob -> villagerTypes.contains(BuiltInRegistries.ENTITY_TYPE.getKey(mob.getType()).toString()));
+            List<Entity> villagers = player.level().getEntitiesOfClass(Entity.class, player.getBoundingBox().inflate(10), mob -> mob.getType().is(ModTags.EntityTypes.VILLAGER_LIKE));
             if (!villagers.isEmpty()) {
                 pm.assignPower(PowerManager.RAGE_POWER, player);
                 player.sendSystemMessage(
-                        Component.translatable("selectivepowers.messages.offer."+PowerManager.RAGE_POWER, "selectivepowers.name."+PowerManager.RAGE_POWER)
+                        Component.translatable("selectivepowers.messages.offer."+PowerManager.RAGE_POWER, Component.translatable("selectivepowers.name."+PowerManager.RAGE_POWER))
                 );
                 pm.setDirty();
             }
@@ -113,7 +112,7 @@ public class PowerApplyingEvents {
         if (pm.isPowerFree(PowerManager.STORM_POWER)){
             pm.assignPower(PowerManager.STORM_POWER, player);
             player.sendSystemMessage(
-                    Component.translatable("selectivepowers.messages.offer."+PowerManager.STORM_POWER, "selectivepowers.name."+PowerManager.STORM_POWER)
+                    Component.translatable("selectivepowers.messages.offer."+PowerManager.STORM_POWER, Component.translatable("selectivepowers.name."+PowerManager.STORM_POWER))
             );
             pm.setDirty();
         }
@@ -134,7 +133,7 @@ public class PowerApplyingEvents {
             if(progress.booksCrafted>=64) {
                 pm.assignPower(PowerManager.TRUTH_POWER, player);
                 player.sendSystemMessage(
-                        Component.translatable("selectivepowers.messages.offer." + PowerManager.TRUTH_POWER, "selectivepowers.name."+PowerManager.TRUTH_POWER)
+                        Component.translatable("selectivepowers.messages.offer." + PowerManager.TRUTH_POWER, Component.translatable("selectivepowers.name."+PowerManager.TRUTH_POWER))
                 );
                 pm.syncToAll((ServerLevel) player.level());
             }
@@ -151,19 +150,15 @@ public class PowerApplyingEvents {
         if (pm.doesPlayerHaveAnyPower(serverPlayer.getUUID())) return;
         if (pm.isPowerFree(PowerManager.ROCK_POWER)) {
             BlockState state = event.getState();
-            Block block = state.getBlock();
 
-            ResourceLocation blockRL = BuiltInRegistries.BLOCK.getKey(block);
-            String blockName = blockRL.toString();
-
-            if (Config.BLOCK_STRINGS_ORE.get().contains(blockName)) {
+            if (state.is(BlockTags.create(ResourceLocation.parse("c:ores")))) {
                 PowerManager.PlayerProgress progress = pm.getProgress(serverPlayer.getUUID());
                 progress.minedOres++;
                 if(progress.minedOres>64)
                 {
                     pm.assignPower(PowerManager.ROCK_POWER,serverPlayer);
                     serverPlayer.sendSystemMessage(
-                            Component.translatable("selectivepowers.messages.offer." + PowerManager.ROCK_POWER, "selectivepowers.name."+PowerManager.ROCK_POWER)
+                            Component.translatable("selectivepowers.messages.offer." + PowerManager.ROCK_POWER, Component.translatable("selectivepowers.name."+PowerManager.ROCK_POWER))
                     );
                 }
                 pm.setDirty();
@@ -250,7 +245,7 @@ public class PowerApplyingEvents {
             {
                 pm.assignPower(PowerManager.ELEMENTAL_POWER, player);
                 player.sendSystemMessage(
-                        Component.translatable("selectivepowers.messages.offer."+PowerManager.ELEMENTAL_POWER, "selectivepowers.name."+PowerManager.ELEMENTAL_POWER)
+                        Component.translatable("selectivepowers.messages.offer."+PowerManager.ELEMENTAL_POWER, Component.translatable("selectivepowers.name."+PowerManager.ELEMENTAL_POWER))
                 );
             }
             pm.setDirty();
@@ -281,7 +276,7 @@ public class PowerApplyingEvents {
                 {
                     pm.assignPower(PowerManager.LIGHT_POWER, player);
                     player.sendSystemMessage(
-                            Component.translatable("selectivepowers.messages.offer."+PowerManager.LIGHT_POWER, "selectivepowers.name."+PowerManager.LIGHT_POWER)
+                            Component.translatable("selectivepowers.messages.offer."+PowerManager.LIGHT_POWER, Component.translatable("selectivepowers.name."+PowerManager.LIGHT_POWER))
                     );
                 }
             }else{
@@ -300,7 +295,7 @@ public class PowerApplyingEvents {
                 {
                     pm.assignPower(PowerManager.DARK_POWER, player);
                     player.sendSystemMessage(
-                            Component.translatable("selectivepowers.messages.offer."+PowerManager.DARK_POWER, "selectivepowers.name."+PowerManager.DARK_POWER)
+                            Component.translatable("selectivepowers.messages.offer."+PowerManager.DARK_POWER, Component.translatable("selectivepowers.name."+PowerManager.DARK_POWER))
                     );
                 }
             }else{
@@ -338,21 +333,20 @@ public class PowerApplyingEvents {
                 Vec3 toEntity = entity.getEyePosition().subtract(start).normalize();
                 if (look.dot(toEntity) > 0.95) {
                     PowerManager.PlayerProgress progress = pm.getProgress(player.getUUID());
-                    ResourceLocation id = BuiltInRegistries.ENTITY_TYPE.getKey(entity.getType());
                     if (entity instanceof TamableAnimal && pm.isPowerFree(PowerManager.ANIMAL_POWER)) {
                         progress.lookAtTameableTimer++;
                         if(progress.lookAtTameableTimer >= 1200)
                         {
                             pm.assignPower(PowerManager.ANIMAL_POWER, player);
                             player.sendSystemMessage(
-                                    Component.translatable("selectivepowers.messages.offer."+PowerManager.ANIMAL_POWER, "selectivepowers.name."+PowerManager.ANIMAL_POWER)
+                                    Component.translatable("selectivepowers.messages.offer."+PowerManager.ANIMAL_POWER, Component.translatable("selectivepowers.name."+PowerManager.ANIMAL_POWER))
                             );
                         }
-                    }else if (Config.MOB_STRINGS_DRAGON.get().contains(id.toString()) && pm.isPowerFree(PowerManager.DRAGON_POWER))
+                    }else if (entity.getType().is(ModTags.EntityTypes.DRAGON_LIKE) && pm.isPowerFree(PowerManager.DRAGON_POWER))
                     {
                         pm.assignPower(PowerManager.DRAGON_POWER, player);
                         player.sendSystemMessage(
-                                Component.translatable("selectivepowers.messages.offer."+PowerManager.DRAGON_POWER, "selectivepowers.name."+PowerManager.DRAGON_POWER)
+                                Component.translatable("selectivepowers.messages.offer."+PowerManager.DRAGON_POWER, Component.translatable("selectivepowers.name."+PowerManager.DRAGON_POWER))
                         );
                         pm.syncToAll((ServerLevel) player.level());
                     }
@@ -378,7 +372,7 @@ public class PowerApplyingEvents {
                 {
                     pm.upgradePower(PowerManager.FORREST_POWER);
                     p.sendSystemMessage(
-                            Component.translatable("selectivepowers.messages.awaking."+PowerManager.FORREST_POWER, "selectivepowers.name."+PowerManager.FORREST_POWER)
+                            Component.translatable("selectivepowers.messages.awaking."+PowerManager.FORREST_POWER, Component.translatable("selectivepowers.name."+PowerManager.FORREST_POWER))
                     );
                 }
                 pm.setDirty();
@@ -396,14 +390,14 @@ public class PowerApplyingEvents {
 
             ItemStack stack = event.getItem();
 
-            if (isMushroom(stack)) {
+            if (stack.is(ModTags.Items.MUSHROOM_ITEMS)) {
                 PowerManager.PlayerProgress progress = pm.getProgress(player.getUUID());
                 progress.ascensionCounter++;
                 if(progress.ascensionCounter>=32)
                 {
                     pm.upgradePower(PowerManager.MUSHROOM_POWER);
                     player.sendSystemMessage(
-                            Component.translatable("selectivepowers.messages.awaking."+PowerManager.MUSHROOM_POWER, "selectivepowers.name."+PowerManager.MUSHROOM_POWER)
+                            Component.translatable("selectivepowers.messages.awaking."+PowerManager.MUSHROOM_POWER, Component.translatable("selectivepowers.name."+PowerManager.MUSHROOM_POWER))
                     );
                 }
                 pm.setDirty();
@@ -427,7 +421,7 @@ public class PowerApplyingEvents {
             {
                 pm.upgradePower(PowerManager.ANIMAL_POWER);
                 player.sendSystemMessage(
-                        Component.translatable("selectivepowers.messages.awaking."+PowerManager.ANIMAL_POWER, "selectivepowers.name."+PowerManager.ANIMAL_POWER)
+                        Component.translatable("selectivepowers.messages.awaking."+PowerManager.ANIMAL_POWER, Component.translatable("selectivepowers.name."+PowerManager.ANIMAL_POWER))
                 );
             }
             pm.setDirty();
@@ -449,7 +443,7 @@ public class PowerApplyingEvents {
             if (state.is(Blocks.BEDROCK)) {
                     pm.upgradePower(PowerManager.ROCK_POWER);
                     player.sendSystemMessage(
-                            Component.translatable("selectivepowers.messages.awaking."+PowerManager.ROCK_POWER, "selectivepowers.name."+PowerManager.ROCK_POWER)
+                            Component.translatable("selectivepowers.messages.awaking."+PowerManager.ROCK_POWER, Component.translatable("selectivepowers.name."+PowerManager.ROCK_POWER))
                     );
             }
         }
@@ -467,7 +461,7 @@ public class PowerApplyingEvents {
             if (state.is(Blocks.BEDROCK)) {
                 pm.upgradePower(PowerManager.ROCK_POWER);
                 player.sendSystemMessage(
-                        Component.translatable("selectivepowers.messages.awaking."+PowerManager.ROCK_POWER, "selectivepowers.name."+PowerManager.ROCK_POWER)
+                        Component.translatable("selectivepowers.messages.awaking."+PowerManager.ROCK_POWER, Component.translatable("selectivepowers.name."+PowerManager.ROCK_POWER))
                 );
             }
         }
@@ -476,9 +470,7 @@ public class PowerApplyingEvents {
     public static void onDragonDeath(LivingDeathEvent event) {
         LivingEntity entity = event.getEntity();
 
-        ResourceLocation id = BuiltInRegistries.ENTITY_TYPE.getKey(entity.getType());
-
-        if(!Config.MOB_STRINGS_DRAGON.get().contains(id.toString())) return;
+        if(!entity.getType().is(ModTags.EntityTypes.DRAGON_LIKE)) return;
 
         Level level = entity.level();
         if(!(level instanceof ServerLevel sl)) return;
@@ -497,7 +489,7 @@ public class PowerApplyingEvents {
         if(pm.getPowerOfPlayer(player.getUUID()).equals(PowerManager.DRAGON_POWER) && pm.getPowerLevelOfPlayer(player.getUUID()).equals(PowerManager.PowerLevel.BOUND)) {
                 pm.upgradePower(PowerManager.DRAGON_POWER);
                 player.sendSystemMessage(
-                        Component.translatable("selectivepowers.messages.awaking."+PowerManager.DRAGON_POWER, "selectivepowers.name."+PowerManager.DRAGON_POWER)
+                        Component.translatable("selectivepowers.messages.awaking."+PowerManager.DRAGON_POWER, Component.translatable("selectivepowers.name."+PowerManager.DRAGON_POWER))
                 );
         }
 
@@ -527,7 +519,7 @@ public class PowerApplyingEvents {
             {
                 pm.upgradePower(PowerManager.DARK_POWER);
                 player.sendSystemMessage(
-                        Component.translatable("selectivepowers.messages.awaking."+PowerManager.DARK_POWER,"selectivepowers.name."+PowerManager.DARK_POWER)
+                        Component.translatable("selectivepowers.messages.awaking."+PowerManager.DARK_POWER,Component.translatable("selectivepowers.name."+PowerManager.DARK_POWER))
                 );
             }
         }
@@ -546,17 +538,16 @@ public class PowerApplyingEvents {
             DamageSource source = event.getSource();
             if(source == null) return;
             Entity sourceEntity = source.getDirectEntity();
+            if(sourceEntity == null) return;
 
-            ResourceLocation id = BuiltInRegistries.ENTITY_TYPE.getKey(sourceEntity.getType());
-
-            if(!Config.MOB_STRINGS_ELEMENTAL_ATTACK.get().contains(id.toString())){
+            if(sourceEntity.getType().is(ModTags.EntityTypes.ELEMENTAL_PROJECTILES)){
                 PowerManager.PlayerProgress progress = pm.getProgress(player.getUUID());
                 progress.ascensionCounter++;
                 if(progress.ascensionCounter>=64)
                 {
                     pm.upgradePower(PowerManager.ELEMENTAL_POWER);
                     player.sendSystemMessage(
-                            Component.translatable("selectivepowers.messages.awaking."+PowerManager.ELEMENTAL_POWER, "selectivepowers.name."+PowerManager.ELEMENTAL_POWER)
+                            Component.translatable("selectivepowers.messages.awaking."+PowerManager.ELEMENTAL_POWER, Component.translatable("selectivepowers.name."+PowerManager.ELEMENTAL_POWER))
                     );
                 }
                 pm.setDirty();
@@ -581,7 +572,7 @@ public class PowerApplyingEvents {
                 {
                     pm.upgradePower(PowerManager.LIGHT_POWER);
                     player.sendSystemMessage(
-                            Component.translatable("selectivepowers.messages.awaking."+PowerManager.LIGHT_POWER, "selectivepowers.name."+PowerManager.LIGHT_POWER)
+                            Component.translatable("selectivepowers.messages.awaking."+PowerManager.LIGHT_POWER, Component.translatable("selectivepowers.name."+PowerManager.LIGHT_POWER))
                     );
                 }
                 pm.setDirty();
@@ -592,9 +583,7 @@ public class PowerApplyingEvents {
     public static void onVillagerDeath(LivingDeathEvent event) {
         LivingEntity entity = event.getEntity();
 
-        ResourceLocation id = BuiltInRegistries.ENTITY_TYPE.getKey(entity.getType());
-
-        if(!Config.MOB_STRINGS_VILLAGER.get().contains(id.toString())) return;
+        if(!entity.getType().is(ModTags.EntityTypes.VILLAGER_LIKE)) return;
 
         Level level = entity.level();
         if(!(level instanceof ServerLevel sl)) return;
@@ -619,7 +608,7 @@ public class PowerApplyingEvents {
             {
                 pm.upgradePower(PowerManager.RAGE_POWER);
                 player.sendSystemMessage(
-                        Component.translatable("selectivepowers.messages.awaking."+PowerManager.RAGE_POWER, "selectivepowers.name."+PowerManager.RAGE_POWER)
+                        Component.translatable("selectivepowers.messages.awaking."+PowerManager.RAGE_POWER, Component.translatable("selectivepowers.name."+PowerManager.RAGE_POWER))
                 );
             }
             pm.setDirty();
@@ -641,7 +630,7 @@ public class PowerApplyingEvents {
             if(progress.ascensionCounter>=64) {
                 pm.upgradePower(PowerManager.STORM_POWER);
                 player.sendSystemMessage(
-                        Component.translatable("selectivepowers.messages.awaking."+PowerManager.STORM_POWER,  "selectivepowers.name."+PowerManager.STORM_POWER)
+                        Component.translatable("selectivepowers.messages.awaking."+PowerManager.STORM_POWER,  Component.translatable("selectivepowers.name."+PowerManager.STORM_POWER))
                 );
             }
             pm.setDirty();
@@ -672,7 +661,7 @@ public class PowerApplyingEvents {
             {
                 pm.upgradePower(PowerManager.TRUTH_POWER);
                 player.sendSystemMessage(
-                        Component.translatable("selectivepowers.messages.awaking."+PowerManager.TRUTH_POWER, "selectivepowers.name."+PowerManager.TRUTH_POWER)
+                        Component.translatable("selectivepowers.messages.awaking."+PowerManager.TRUTH_POWER, Component.translatable("selectivepowers.name."+PowerManager.TRUTH_POWER))
                 );
             }
         }
