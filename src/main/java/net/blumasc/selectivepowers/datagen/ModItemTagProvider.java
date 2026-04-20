@@ -9,6 +9,7 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
 import net.minecraft.references.Blocks;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
@@ -33,6 +34,37 @@ public class ModItemTagProvider extends ItemTagsProvider {
                 .add(SelectivepowersItems.MOONCAP_MUSHROOM.get());
         tag(ItemTags.create(ResourceLocation.fromNamespaceAndPath("c","eggs")))
                 .add(SelectivepowersItems.FLAMING_EGG.get());
+        tag(ItemTags.create(ResourceLocation.fromNamespaceAndPath("c","gems")))
+                .add(SelectivepowersItems.MOON_SACRIFICE.get())
+                .add(SelectivepowersItems.SUN_SACRIFICE.get());
+        tag(ItemTags.create(ResourceLocation.fromNamespaceAndPath("c","enchantables")))
+                .add(SelectivepowersItems.ICE_SHIELD.get())
+                .add(SelectivepowersItems.DRAGON_SLEEVES.get())
+                .add(SelectivepowersItems.PERMAFROST_SHIELD.get());
+        tag(ItemTags.create(ResourceLocation.fromNamespaceAndPath("c","tools/melee_weapon")))
+                .add(SelectivepowersItems.SUN_SLICER.get())
+                .add(SelectivepowersItems.MOONLIGHT_GLAIVE.get())
+                .add(SelectivepowersItems.FLAMING_HAMMER.get());
+        tag(ItemTags.create(ResourceLocation.fromNamespaceAndPath("c","tools/mace")))
+                .add(SelectivepowersItems.FLAMING_HAMMER.get());
+        tag(ItemTags.create(ResourceLocation.fromNamespaceAndPath("c","seeds")))
+                .add(SelectivepowersItems.MOONCAP_SEEDS.get());
+        tag(ItemTags.create(ResourceLocation.fromNamespaceAndPath("c","bricks")))
+                .add(SelectivepowersItems.SOLAR_BRICK.get());
+        tag(ItemTags.create(ResourceLocation.fromNamespaceAndPath("c","music_discs")))
+                .add(SelectivepowersItems.BATTLE_FOR_ETERNITY_MUSIC_DISC.get());
+        tag(ItemTags.create(ResourceLocation.fromNamespaceAndPath("c","drinks/magic")))
+                .add(SelectivepowersItems.DRINKING_HORN.get());
+        tag(ItemTags.create(ResourceLocation.fromNamespaceAndPath("c","storage_blocks")))
+                .add(SelectivepowersBlocks.MOON_SACRIFICE_BLOCK.asItem())
+                .add(SelectivepowersBlocks.SUN_SACRIFICE_BLOCK.asItem());
+        tag(ItemTags.create(ResourceLocation.fromNamespaceAndPath("c","glass_blocks")))
+                .add(SelectivepowersBlocks.EARTH_GLASS.asItem())
+                .add(SelectivepowersBlocks.MOON_GLASS.asItem());
+        tag(ItemTags.create(ResourceLocation.fromNamespaceAndPath("c","foods")))
+                .add(SelectivepowersItems.MOON_TAKOYAKI.get())
+                .add(SelectivepowersItems.MOONLIGHT_JELLY.get())
+                .add(SelectivepowersItems.RAGE_COOKIE.get());
         tag(ItemTags.create(ResourceLocation.fromNamespaceAndPath("minecraft","spears")))
                 .add(SelectivepowersItems.MOONLIGHT_GLAIVE.get());
 
@@ -40,15 +72,23 @@ public class ModItemTagProvider extends ItemTagsProvider {
                 .add(SelectivepowersItems.PERMAFROST_SHIELD.get())
                         .add(SelectivepowersItems.ICE_SHIELD.get());
 
+        tag(ItemTags.FLOWERS)
+                .add(SelectivepowersBlocks.ROSE_VINES.asItem());
+
         tag(ItemTags.ARROWS)
                 .add(SelectivepowersItems.CORRUPTING_ARROW.get())
                 .add(SelectivepowersItems.BEAM_ARROW.get());
+
+        tag(ItemTags.BREAKS_DECORATED_POTS)
+                .add(SelectivepowersItems.FLAMING_HAMMER.get());
 
         tag(ItemTags.DURABILITY_ENCHANTABLE)
                 .add(SelectivepowersItems.SUN_SLICER.get())
                 .add(SelectivepowersItems.MOONLIGHT_GLAIVE.get())
                 .add(SelectivepowersItems.FLAMING_HAMMER.get())
-                .add(SelectivepowersItems.DRAGON_SLEEVES.get());
+                .add(SelectivepowersItems.DRAGON_SLEEVES.get())
+                .add(SelectivepowersItems.ICE_SHIELD.get())
+                .add(SelectivepowersItems.PERMAFROST_SHIELD.get());
 
         tag(ItemTags.WEAPON_ENCHANTABLE)
                 .add(SelectivepowersItems.SUN_SLICER.get())
@@ -56,6 +96,14 @@ public class ModItemTagProvider extends ItemTagsProvider {
                 .add(SelectivepowersItems.FLAMING_HAMMER.get());
 
         tag(ItemTags.SWORD_ENCHANTABLE)
+                .add(SelectivepowersItems.SUN_SLICER.get())
+                .add(SelectivepowersItems.MOONLIGHT_GLAIVE.get());
+
+        tag(ItemTags.SWORDS)
+                .add(SelectivepowersItems.SUN_SLICER.get())
+                .add(SelectivepowersItems.MOONLIGHT_GLAIVE.get());
+
+        tag(ItemTags.SHARP_WEAPON_ENCHANTABLE)
                 .add(SelectivepowersItems.SUN_SLICER.get())
                 .add(SelectivepowersItems.MOONLIGHT_GLAIVE.get());
 

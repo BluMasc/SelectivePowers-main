@@ -116,11 +116,55 @@ public class ClientEventHandler {
         );
     }
     @SubscribeEvent
-    public static void onModelBake(ModelEvent.ModifyBakingResult event) {
+    public static void onGlaveModelBake(ModelEvent.ModifyBakingResult event) {
         ModelResourceLocation inventoryLoc = ModelResourceLocation.inventory(
                 ResourceLocation.fromNamespaceAndPath(SelectivePowers.MODID, "moonlight_glaive"));
         ModelResourceLocation handLoc = ModelResourceLocation.inventory(
                 ResourceLocation.fromNamespaceAndPath(SelectivePowers.MODID, "moon_glaive_3d"));
+
+        BakedModel inventoryModel = event.getModels().get(inventoryLoc);
+        BakedModel handModel = event.getModels().get(handLoc);
+
+        if (inventoryModel != null && handModel != null) {
+            event.getModels().put(inventoryLoc, new InWorld3dBakedModel(inventoryModel, handModel));
+        }
+    }
+    @SubscribeEvent
+    public static void onSlicerModelBake(ModelEvent.ModifyBakingResult event) {
+        ModelResourceLocation inventoryLoc = ModelResourceLocation.inventory(
+                ResourceLocation.fromNamespaceAndPath(SelectivePowers.MODID, "sun_slicer"));
+        ModelResourceLocation handLoc = ModelResourceLocation.inventory(
+                ResourceLocation.fromNamespaceAndPath(SelectivePowers.MODID, "sun_slicer_3d"));
+
+        BakedModel inventoryModel = event.getModels().get(inventoryLoc);
+        BakedModel handModel = event.getModels().get(handLoc);
+
+        if (inventoryModel != null && handModel != null) {
+            event.getModels().put(inventoryLoc, new InWorld3dBakedModel(inventoryModel, handModel));
+        }
+    }
+
+    @SubscribeEvent
+    public static void onHammerModelBake(ModelEvent.ModifyBakingResult event) {
+        ModelResourceLocation inventoryLoc = ModelResourceLocation.inventory(
+                ResourceLocation.fromNamespaceAndPath(SelectivePowers.MODID, "flaming_hammer"));
+        ModelResourceLocation handLoc = ModelResourceLocation.inventory(
+                ResourceLocation.fromNamespaceAndPath(SelectivePowers.MODID, "flaming_hammer_3d"));
+
+        BakedModel inventoryModel = event.getModels().get(inventoryLoc);
+        BakedModel handModel = event.getModels().get(handLoc);
+
+        if (inventoryModel != null && handModel != null) {
+            event.getModels().put(inventoryLoc, new InWorld3dBakedModel(inventoryModel, handModel));
+        }
+    }
+
+    @SubscribeEvent
+    public static void onLauncherModelBake(ModelEvent.ModifyBakingResult event) {
+        ModelResourceLocation inventoryLoc = ModelResourceLocation.inventory(
+                ResourceLocation.fromNamespaceAndPath(SelectivePowers.MODID, "elemental_gun"));
+        ModelResourceLocation handLoc = ModelResourceLocation.inventory(
+                ResourceLocation.fromNamespaceAndPath(SelectivePowers.MODID, "elemental_gun_3d"));
 
         BakedModel inventoryModel = event.getModels().get(inventoryLoc);
         BakedModel handModel = event.getModels().get(handLoc);

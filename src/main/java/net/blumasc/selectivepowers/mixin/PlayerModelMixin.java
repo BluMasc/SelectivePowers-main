@@ -24,7 +24,7 @@ public abstract class PlayerModelMixin<T extends Player> extends HumanoidModel<T
     @Shadow
     public ModelPart leftSleeve;
 
-    private static final float ARM_LIFT_RAD = (float) Math.toRadians(70);
+    private static final float ARM_LIFT_RAD = (float) Math.toRadians(90);
 
     @Inject(method = "setupAnim", at = @At("TAIL"))
     private void holdGunArms(
@@ -41,13 +41,17 @@ public abstract class PlayerModelMixin<T extends Player> extends HumanoidModel<T
         if(player.isSwimming() || player.isVisuallyCrawling()) return;
 
         if (player.getMainHandItem().getItem() instanceof ElementalGunItem) {
-            this.rightArm.xRot = -ARM_LIFT_RAD;
-            this.rightSleeve.xRot = -ARM_LIFT_RAD;
+            this.rightArm.xRot = (float) (-ARM_LIFT_RAD+ Math.toRadians(headPitch));
+            this.rightSleeve.xRot = (float) (-ARM_LIFT_RAD+ Math.toRadians(headPitch));
+            this.rightArm.yRot = (float) (Math.toRadians(netHeadYaw) * 0.5f);
+            this.rightSleeve.yRot = (float) (Math.toRadians(netHeadYaw) * 0.5f);
         }
 
         if (player.getOffhandItem().getItem() instanceof ElementalGunItem) {
-            this.leftArm.xRot = -ARM_LIFT_RAD;
-            this.leftSleeve.xRot = -ARM_LIFT_RAD;
+            this.leftArm.xRot = (float) (-ARM_LIFT_RAD+ Math.toRadians(headPitch));
+            this.leftSleeve.xRot = (float) (-ARM_LIFT_RAD+ Math.toRadians(headPitch));
+            this.leftArm.yRot = (float) (Math.toRadians(netHeadYaw) * 0.5f);
+            this.leftSleeve.yRot = (float) (Math.toRadians(netHeadYaw) * 0.5f);
         }
     }
 }

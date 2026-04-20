@@ -462,17 +462,23 @@ public class PowerUseEvents {
 
         if (player.level().isClientSide()) return;
 
-        if(!(player.level() instanceof ServerLevel sl))return;
+        if (!(player.level() instanceof ServerLevel sl)) return;
         PowerManager pm = PowerManager.get(sl);
-        if(!(pm.getPowerOfPlayer(player.getUUID()).equals(PowerManager.MUSHROOM_POWER)))return;
+        if (!(pm.getPowerOfPlayer(player.getUUID()).equals(PowerManager.MUSHROOM_POWER))) return;
 
         List<? extends String> effectsToRemove = Config.EFFECT_STRINGS_POISON.get();
+
+        List<Holder<MobEffect>> toRemove = new ArrayList<>();
 
         for (Holder<MobEffect> effect : player.getActiveEffectsMap().keySet()) {
             ResourceLocation id = BuiltInRegistries.MOB_EFFECT.getKey(effect.value());
             if (id != null && effectsToRemove.contains(id.toString())) {
-                player.removeEffect(effect);
+                toRemove.add(effect);
             }
+        }
+
+        for (Holder<MobEffect> effect : toRemove) {
+            player.removeEffect(effect);
         }
     }
 

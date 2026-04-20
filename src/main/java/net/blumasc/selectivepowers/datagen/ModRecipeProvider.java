@@ -130,11 +130,12 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .save(recipeOutput);
         ShapelessRecipeBuilder.shapeless(RecipeCategory.TOOLS, SelectivepowersItems.BOUND_CONTRACT)
                 .requires(Items.PAPER)
-                .requires(ItemTags.create(ResourceLocation.fromNamespaceAndPath("c","dyes/blue")))
+                .requires(ItemTags.create(ResourceLocation.fromNamespaceAndPath("c","dyes/yellow")))
                 .unlockedBy("has_armor_stand", has(Items.PAPER))
                 .save(recipeOutput);
         ShapelessRecipeBuilder.shapeless(RecipeCategory.TOOLS, SelectivepowersItems.DENIAL_CONTRACT)
                 .requires(SelectivepowersItems.BOUND_CONTRACT)
+                .requires(SelectivepowersItems.MOON_SACRIFICE)
                 .requires(ItemTags.create(ResourceLocation.fromNamespaceAndPath("c","dyes/red")))
                 .requires(ItemTags.create(ResourceLocation.fromNamespaceAndPath("c","feathers")))
                 .unlockedBy("has_armor_stand", has(SelectivepowersItems.BOUND_CONTRACT))

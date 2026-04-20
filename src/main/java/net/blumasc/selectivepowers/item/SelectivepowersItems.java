@@ -63,9 +63,6 @@ public class SelectivepowersItems {
     public static final DeferredItem<SwordItem> MOONLIGHT_GLAIVE = ITEMS.register("moonlight_glaive",
             () -> new MoonGlaiveItem(new Item.Properties().attributes(SwordItem.createAttributes(Tiers.NETHERITE, 3, -2.4F))));
 
-    public static final DeferredItem<Item> MOON_GLAIVE_3D = ITEMS.register("moon_glaive_3d",
-            () -> new Item(new Item.Properties()));
-
     public static final DeferredItem<Item> MOON_SQUID_SPAWN_EGG = ITEMS.register("moon_squid_spawn_egg",
             () -> new DeferredSpawnEggItem(SelectivepowersEntities.MOON_SQUID, 0x334697, 0x9caefa, new Item.Properties()));
 
@@ -258,6 +255,18 @@ public class SelectivepowersItems {
 
     public static final DeferredItem<CurioItem> SHOULDER_LEAF = ITEMS.register("shoulder_leaf",
             () -> new CurioItem(new Item.Properties().stacksTo(1)));
+
+    public static final DeferredItem<Item> MOON_GLAIVE_3D = ITEMS.register("moon_glaive_3d",
+            () -> new Item(new Item.Properties()));
+
+    public static final DeferredItem<Item> ELEMENTAL_GUN_3D = ITEMS.register("elemental_gun_3d",
+            () -> new Item(new Item.Properties()));
+
+    public static final DeferredItem<Item> FLAMING_HAMMER_3D = ITEMS.register("flaming_hammer_3d",
+            () -> new Item(new Item.Properties()));
+
+    public static final DeferredItem<Item> SUN_SLICER_3D = ITEMS.register("sun_slicer_3d",
+            () -> new Item(new Item.Properties()));
 
     public static void register(IEventBus eventBus){
         ITEMS.register(eventBus);

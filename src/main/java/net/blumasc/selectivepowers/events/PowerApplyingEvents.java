@@ -55,7 +55,9 @@ public class PowerApplyingEvents {
         Player player = event.getPlayer();
         if(player.isCreative() || player.isSpectator()) return;
         PowerManager pm = PowerManager.get(event.getPlayer().getServer().overworld());
+        System.out.println(pm.getPowerOfPlayer(player.getUUID()));
         if(!pm.doesPlayerHaveAnyPower(player.getUUID())){
+            System.out.println("Check");
             if(pm.isPowerFree(PowerManager.FORREST_POWER)) {
                 int uniqueFlowers = countUniqueItems(player, ModTags.Items.PLANT_ITEMS);
 
@@ -66,10 +68,10 @@ public class PowerApplyingEvents {
                     );
                 }
             }
-            if(!pm.isPowerFree(PowerManager.MUSHROOM_POWER)) {
+            if(pm.isPowerFree(PowerManager.MUSHROOM_POWER)) {
                 int numberMushrooms = countTotalItems(player, ModTags.Items.MUSHROOM_ITEMS);
-
-                if (numberMushrooms >= 10) {
+                System.out.println(numberMushrooms);
+                if (numberMushrooms >= 64) {
                     pm.assignPower(PowerManager.MUSHROOM_POWER,player);
                     player.sendSystemMessage(
                             Component.translatable("selectivepowers.messages.offer."+PowerManager.MUSHROOM_POWER, Component.translatable("selectivepowers.name."+PowerManager.MUSHROOM_POWER))

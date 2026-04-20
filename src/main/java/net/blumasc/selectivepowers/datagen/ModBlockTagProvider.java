@@ -5,7 +5,9 @@ import net.blumasc.selectivepowers.block.SelectivepowersBlocks;
 import net.blumasc.selectivepowers.util.ModTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
@@ -95,5 +97,25 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(Blocks.LAVA);
         tag(ModTags.Blocks.ICE_CORE)
                 .add(Blocks.POWDER_SNOW);
+        tag(BlockTags.create(ResourceLocation.fromNamespaceAndPath("c","storage_blocks")))
+                .add(SelectivepowersBlocks.MOON_SACRIFICE_BLOCK.get())
+                .add(SelectivepowersBlocks.SUN_SACRIFICE_BLOCK.get());
+        tag(BlockTags.create(ResourceLocation.fromNamespaceAndPath("c","glass_blocks")))
+                .add(SelectivepowersBlocks.EARTH_GLASS.get())
+                .add(SelectivepowersBlocks.MOON_GLASS.get());
+        tag(BlockTags.IMPERMEABLE)
+                .add(SelectivepowersBlocks.EARTH_GLASS.get())
+                .add(SelectivepowersBlocks.MOON_GLASS.get());
+        tag(BlockTags.INFINIBURN_END)
+                .add(SelectivepowersBlocks.SOLAR_BLOCK.get())
+                .add(SelectivepowersBlocks.M_SOLAR_BLOCK.get());
+        tag(BlockTags.INFINIBURN_NETHER)
+                .add(SelectivepowersBlocks.SOLAR_BLOCK.get())
+                .add(SelectivepowersBlocks.M_SOLAR_BLOCK.get());
+        tag(BlockTags.INFINIBURN_OVERWORLD)
+                .add(SelectivepowersBlocks.SOLAR_BLOCK.get())
+                .add(SelectivepowersBlocks.M_SOLAR_BLOCK.get());
+        tag(BlockTags.FLOWERS)
+                .add(SelectivepowersBlocks.ROSE_VINES.get());
     }
 }

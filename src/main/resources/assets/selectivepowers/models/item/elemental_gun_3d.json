@@ -6,7 +6,7 @@
 		32
 	],
 	"textures": {
-		"0": "selectivepowers:item/elemental_gun",
+		"0": "selectivepowers:item/elemental_gun_3d",
 		"particle": "selectivepowers:item/elemental_gun"
 	},
 	"elements": [

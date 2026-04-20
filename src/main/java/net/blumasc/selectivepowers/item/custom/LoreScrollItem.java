@@ -2,6 +2,8 @@ package net.blumasc.selectivepowers.item.custom;
 
 import net.blumasc.selectivepowers.item.client.gui.LoreScrollMenu;
 import net.minecraft.network.chat.Component;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.SimpleMenuProvider;
@@ -18,6 +20,7 @@ public class LoreScrollItem extends Item {
     @Override
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
         if (!level.isClientSide) {
+            level.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.BOOK_PAGE_TURN, SoundSource.PLAYERS);
             player.openMenu(new SimpleMenuProvider(
                     (id, inv, p) -> new LoreScrollMenu(id, inv),
                     Component.literal("Lore Scroll")

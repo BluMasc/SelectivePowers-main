@@ -67,7 +67,7 @@ public class SelectivepowersBlocks {
     public static final DeferredBlock<Block> MOON_CAP_BLOCK = registerBlock("mooncap_block",
             () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.NETHER_WART_BLOCK).mapColor(MapColor.COLOR_BLUE)));
 
-    public static final DeferredBlock<StairBlock> SMOOTH_MOON_ROCK_STAIRS = registerBlock("smooth_moon_rock_staris",
+    public static final DeferredBlock<StairBlock> SMOOTH_MOON_ROCK_STAIRS = registerBlock("smooth_moon_rock_stairs",
             () -> new StairBlock(SelectivepowersBlocks.SMOOTH_MOON_ROCK.get().defaultBlockState(),
                     BlockBehaviour.Properties.ofFullCopy(Blocks.DEEPSLATE_BRICK_STAIRS).mapColor(MapColor.STONE)));
     public static final DeferredBlock<SlabBlock> SMOOTH_MOON_ROCK_SLAB = registerBlock("smooth_moon_rock_slab",
@@ -75,7 +75,7 @@ public class SelectivepowersBlocks {
     public static final DeferredBlock<WallBlock> SMOOTH_MOON_ROCK_WALL = registerBlock("smooth_moon_rock_wall",
             () -> new WallBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.DEEPSLATE_BRICK_WALL).mapColor(MapColor.STONE)));
 
-    public static final DeferredBlock<StairBlock> MOON_ROCK_BRICKS_STAIRS = registerBlock("moon_bricks_staris",
+    public static final DeferredBlock<StairBlock> MOON_ROCK_BRICKS_STAIRS = registerBlock("moon_bricks_stairs",
             () -> new StairBlock(SelectivepowersBlocks.MOON_ROCK_BRICKS.get().defaultBlockState(),
                     BlockBehaviour.Properties.ofFullCopy(Blocks.DEEPSLATE_BRICK_STAIRS).mapColor(MapColor.STONE)));
     public static final DeferredBlock<SlabBlock> MOON_ROCK_BRICKS_SLAB = registerBlock("moon_bricks_slab",
@@ -83,7 +83,7 @@ public class SelectivepowersBlocks {
     public static final DeferredBlock<WallBlock> MOON_ROCK_BRICKS_WALL = registerBlock("moon_bricks_wall",
             () -> new WallBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.DEEPSLATE_BRICK_WALL).mapColor(MapColor.STONE)));
 
-    public static final DeferredBlock<StairBlock> MOON_ROCK_TILES_STAIRS = registerBlock("moon_tiles_staris",
+    public static final DeferredBlock<StairBlock> MOON_ROCK_TILES_STAIRS = registerBlock("moon_tiles_stairs",
             () -> new StairBlock(SelectivepowersBlocks.MOON_ROCK_TILES.get().defaultBlockState(),
                     BlockBehaviour.Properties.ofFullCopy(Blocks.DEEPSLATE_BRICK_STAIRS).mapColor(MapColor.STONE)));
     public static final DeferredBlock<SlabBlock> MOON_ROCK_TILES_SLAB = registerBlock("moon_tiles_slab",
@@ -109,7 +109,7 @@ public class SelectivepowersBlocks {
     public static final DeferredBlock<WallBlock> SOLAR_BRICK_WALL = registerBlock("solar_brick_wall",
             () -> new WallBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.DEEPSLATE_BRICK_WALL).mapColor(MapColor.COLOR_YELLOW)));
 
-    public static final DeferredBlock<StairBlock> SOLAR_BRICK_STAIRS = registerBlock("solar_brick_staris",
+    public static final DeferredBlock<StairBlock> SOLAR_BRICK_STAIRS = registerBlock("solar_brick_stairs",
             () -> new StairBlock(SelectivepowersBlocks.SOLAR_BRICKS.get().defaultBlockState(),
                     BlockBehaviour.Properties.ofFullCopy(Blocks.NETHER_BRICK_STAIRS).mapColor(MapColor.COLOR_YELLOW)));
 

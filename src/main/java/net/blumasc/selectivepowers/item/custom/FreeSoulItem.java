@@ -111,7 +111,7 @@ public class FreeSoulItem extends Item {
             double ox = (rand.nextDouble() - 0.5) * 1.5;
             double oy = rand.nextDouble() * 2.0;
             double oz = (rand.nextDouble() - 0.5) * 1.5;
-            level.addParticle(ParticleTypes.SMOKE, x, y, z, 0, 0.01f, 0);
+            level.addParticle(ParticleTypes.CAMPFIRE_COSY_SMOKE, x, y, z, 0, 0.01f, 0);
         }
     }
     public static void spawnWispParticles(Level level, double x, double y, double z, int count, Color startingColor, Color endingColor) {
