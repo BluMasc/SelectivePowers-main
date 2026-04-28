@@ -501,5 +501,7 @@
   "selectivepowers.configuration.lunar_maiden": "Lunar Maiden",
 
   "lore.selectivepowers.empty": "Nothing is known about this.",
-  "lore.minecraft.apple": "A major subset of the Discworld novels of Terry Pratchett involves the witches of Lancre. Appearing alone in 1987's Equal Rites, 'crone' Esme Weatherwax is joined in Wyrd Sisters by 'mother' Nanny Ogg and 'maiden' Magrat Garlick, and together can be seen as a spoof on the Three Witches in Shakespeare's Macbeth, and a tongue-in-cheek reinterpretation of the Neopagans' Triple Goddess. Granny Weatherwax especially tends to give voice to the major themes of Pratchett's work."
+
+  "biome.selectivepowers.lunar_biome": "Lunar Biome",
+  "biome.selectivepowers.solar_biome": "Solar Biome"
 }
