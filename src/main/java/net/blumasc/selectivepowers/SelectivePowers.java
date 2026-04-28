@@ -17,6 +17,7 @@ import net.blumasc.selectivepowers.particles.SelectivePowersParticles;
 import net.blumasc.selectivepowers.potion.SelectivePowerPotions;
 import net.blumasc.selectivepowers.recipe.SelectivePowersRecipes;
 import net.blumasc.selectivepowers.sound.SelectivepowersSounds;
+import net.blumasc.selectivepowers.structureprocessor.ModProcessors;
 import net.blumasc.selectivepowers.worldgen.features.ModFeatures;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
@@ -78,6 +79,7 @@ public class SelectivePowers {
         ModMenuTypes.register(modEventBus);
         modEventBus.addListener(ModNetworking::register);
         SelectivePowersParticles.register(modEventBus);
+        ModProcessors.PROCESSOR_TYPES.register(modEventBus);
 
         // Register our mod's ModConfigSpec so that FML can create and load the config file for us
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);

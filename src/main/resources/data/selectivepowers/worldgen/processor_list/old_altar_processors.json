@@ -79,6 +79,9 @@
         }
 
       ]
+    },
+    {
+      "processor_type": "selectivepowers:cleanup_processor"
     }
   ]
 }

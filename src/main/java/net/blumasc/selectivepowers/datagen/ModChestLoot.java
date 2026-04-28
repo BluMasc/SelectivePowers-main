@@ -11,11 +11,14 @@ import net.minecraft.data.loot.LootTableSubProvider;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.world.level.storage.loot.entries.LootPoolEntryContainer;
+import net.minecraft.world.level.storage.loot.entries.NestedLootTable;
 import net.minecraft.world.level.storage.loot.entries.TagEntry;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
+import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 
 import java.util.function.BiConsumer;
@@ -23,6 +26,7 @@ import java.util.function.BiConsumer;
 public class ModChestLoot implements LootTableSubProvider {
 
     public static final ResourceKey<LootTable> CROWS_NEST_LOOT_TABLE = ResourceKey.create(Registries.LOOT_TABLE, ResourceLocation.fromNamespaceAndPath(SelectivePowers.MODID, "crows_nest_loot"));
+    public static final ResourceKey<LootTable> OLD_ALTAR_SAPLING_LOOT_TABLE = ResourceKey.create(Registries.LOOT_TABLE, ResourceLocation.fromNamespaceAndPath(SelectivePowers.MODID, "old_altar_sapling_loot"));
     public static final ResourceKey<LootTable> OLD_ALTAR_LOOT_TABLE = ResourceKey.create(Registries.LOOT_TABLE, ResourceLocation.fromNamespaceAndPath(SelectivePowers.MODID, "old_altar_loot"));
     public static final ResourceKey<LootTable> FRESH_ALTAR_LOOT_TABLE = ResourceKey.create(Registries.LOOT_TABLE, ResourceLocation.fromNamespaceAndPath(SelectivePowers.MODID, "fresh_altar_loot"));
     public static final ResourceKey<LootTable> DARK_POWER_LOOT_TABLE = ResourceKey.create(Registries.LOOT_TABLE, ResourceLocation.fromNamespaceAndPath(SelectivePowers.MODID, "dark_power_altar_loot"));
@@ -73,6 +77,15 @@ public class ModChestLoot implements LootTableSubProvider {
         );
 
         consumer.accept(
+                OLD_ALTAR_SAPLING_LOOT_TABLE,
+                LootTable.lootTable()
+                        .withPool(LootPool.lootPool()
+                                .setRolls(ConstantValue.exactly(1))
+                                .add(TagEntry.expandTag(ItemTags.SAPLINGS))
+                        )
+        );
+
+        consumer.accept(
                 OLD_ALTAR_LOOT_TABLE,
                 LootTable.lootTable()
                         .withPool(LootPool.lootPool()
@@ -86,7 +99,8 @@ public class ModChestLoot implements LootTableSubProvider {
                                 .add(LootItem.lootTableItem(Items.GOLD_NUGGET).setWeight(2))
                                 .add(LootItem.lootTableItem(Items.CLAY).setWeight(2))
                                 .add(LootItem.lootTableItem(Items.ARROW).setWeight(4))
-                                .add(TagEntry.expandTag(ItemTags.SAPLINGS).setWeight(1))
+                                .add(NestedLootTable.lootTableReference(OLD_ALTAR_SAPLING_LOOT_TABLE).setWeight(3))
+                                .add(LootItem.lootTableItem(SelectivepowersBlocks.SACRIFICIAL_ALTAR_BLOCK.asItem()).setWeight(2))
                         )
         );
 
