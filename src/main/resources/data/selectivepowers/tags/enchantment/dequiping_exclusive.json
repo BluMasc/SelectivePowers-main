@@ -1,8 +1,0 @@
-{
-  "replace": false,
-  "values": [
-    "minecraft:density",
-    "minecraft:wind_burst",
-    "selectivepowers:gravity_implosion"
-  ]
-}

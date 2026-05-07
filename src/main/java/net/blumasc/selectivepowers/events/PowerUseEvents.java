@@ -30,6 +30,7 @@ import net.minecraft.data.worldgen.features.TreeFeatures;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.PlayerRespawnLogic;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
@@ -52,6 +53,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.GameType;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
@@ -82,10 +84,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import top.theillusivec4.curios.api.CuriosApi;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicReference;
 
 import static net.blumasc.selectivepowers.entity.helper.SquidSortHelper.isSorted;
@@ -227,30 +226,34 @@ public class PowerUseEvents {
     }
 
     @SubscribeEvent
-    public static void onStillOnMoonEvent(PlayerTickEvent.Post e)
-    {
+    public static void onStillOnMoonEvent(PlayerTickEvent.Post e) {
         if (!(e.getEntity() instanceof ServerPlayer player)) return;
-
         if (player.level().dimension() != ModDimensions.LUNAR_DIM_LEVEL) return;
+        if (player.hasEffect(SelectivepowersEffects.MOON_BOUND_EFFECT)) return;
 
-        if (!player.hasEffect(SelectivepowersEffects.MOON_BOUND_EFFECT)) {
-            BlockPos respawnPos = player.getRespawnPosition() != null
-                    ? player.getRespawnPosition()
-                    : player.level().getSharedSpawnPos();
+        ServerLevel respawnLevel = player.getServer().getLevel(
+                player.getRespawnDimension() != null ? player.getRespawnDimension() : Level.OVERWORLD
+        );
 
-            ServerLevel respawnLevel = player.getServer().getLevel(
-                    player.getRespawnDimension() != null ? player.getRespawnDimension() : Level.OVERWORLD
-            );
+        BlockPos respawnPos = player.getRespawnPosition();
+        Vec3 dest;
 
-            if (respawnLevel != null && respawnPos != null) {
-                player.teleportTo(respawnLevel,
-                        respawnPos.getX() + 0.5,
-                        respawnPos.getY() + 0.5,
-                        respawnPos.getZ() + 0.5,
-                        player.getYRot(),
-                        player.getXRot());
-            }
+        if (respawnPos != null) {
+            dest = respawnPos.getBottomCenter();
+        } else {
+            dest = findSafeWorldSpawn(respawnLevel);
         }
+
+        player.teleportTo(respawnLevel, dest.x, dest.y, dest.z, player.getYRot(), player.getXRot());
+    }
+
+    private static Vec3 findSafeWorldSpawn(ServerLevel level) {
+        BlockPos spawn = level.getSharedSpawnPos();
+        BlockPos safe = PlayerRespawnLogic.getSpawnPosInChunk(level, new ChunkPos(spawn));
+        if (safe != null) {
+            return new Vec3(safe.getX() + 0.5, safe.getY(), safe.getZ() + 0.5);
+        }
+        return new Vec3(spawn.getX() + 0.5, spawn.getY() + 1.0, spawn.getZ() + 0.5);
     }
 
     @SubscribeEvent

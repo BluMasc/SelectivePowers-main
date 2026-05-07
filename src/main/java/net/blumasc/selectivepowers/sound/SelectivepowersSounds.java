@@ -34,6 +34,8 @@ public class SelectivepowersSounds {
     public static final Supplier<SoundEvent> ULT = registerSoundEvent("ult");
     public static final Supplier<SoundEvent> LUNAR_LADY = registerSoundEvent("lunar_lady");
     public static final Supplier<SoundEvent> SHOOT = registerSoundEvent("shoot");
+    public static final Supplier<SoundEvent> ICE_SHIELD_CRACK = registerSoundEvent("ice_shield_crack");
+    public static final Supplier<SoundEvent> FILL_ALTAR = registerSoundEvent("fill_altar");
     public static final Supplier<SoundEvent> BATTLE_FOR_ETERNITY = registerSoundEvent("battle_for_eternity");
 
     public static final ResourceKey<JukeboxSong> BATTLE_FOR_ETERNITY_KEY = createSong("battle_for_eternity");

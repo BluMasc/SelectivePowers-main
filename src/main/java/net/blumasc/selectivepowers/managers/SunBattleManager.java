@@ -7,10 +7,12 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.LongTag;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.PlayerRespawnLogic;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructurePlaceSettings;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate;
@@ -93,22 +95,31 @@ public class SunBattleManager extends SavedData {
     }
     private void movePlayerHome(ServerLevel sl, ServerPlayer sp){
 
-        BlockPos respawnPos = sp.getRespawnPosition() != null
-                ? sp.getRespawnPosition()
-                : sl.getSharedSpawnPos();
-
-        ServerLevel respawnLevel = sl.getServer().getLevel(
+        ServerLevel respawnLevel = sp.getServer().getLevel(
                 sp.getRespawnDimension() != null ? sp.getRespawnDimension() : Level.OVERWORLD
         );
 
-        if (respawnLevel != null && respawnPos != null) {
+        Vec3 respawnPos = sp.getRespawnPosition() != null
+                ? sp.getRespawnPosition().getBottomCenter()
+                : findSafeWorldSpawn(respawnLevel);
+
+        if (respawnPos != null) {
             sp.teleportTo(respawnLevel,
-                    respawnPos.getX() + 0.5,
-                    respawnPos.getY() + 0.5,
-                    respawnPos.getZ() + 0.5,
+                    respawnPos.x + 0.5,
+                    respawnPos.y + 0.5,
+                    respawnPos.z + 0.5,
                     sp.getYRot(),
                     sp.getXRot());
         }
+    }
+
+    private static Vec3 findSafeWorldSpawn(ServerLevel level) {
+        BlockPos spawn = level.getSharedSpawnPos();
+        BlockPos safe = PlayerRespawnLogic.getSpawnPosInChunk(level, new ChunkPos(spawn));
+        if (safe != null) {
+            return new Vec3(safe.getX() + 0.5, safe.getY(), safe.getZ() + 0.5);
+        }
+        return new Vec3(spawn.getX() + 0.5, spawn.getY() + 1.0, spawn.getZ() + 0.5);
     }
 
     public boolean PlayerInBattle(Player p)

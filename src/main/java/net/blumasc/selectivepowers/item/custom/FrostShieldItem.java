@@ -2,6 +2,7 @@ package net.blumasc.selectivepowers.item.custom;
 
 import net.blumasc.blubasics.entity.custom.projectile.ShardProjectileEntity;
 import net.blumasc.selectivepowers.PowerManager;
+import net.blumasc.selectivepowers.sound.SelectivepowersSounds;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -107,7 +108,7 @@ public class FrostShieldItem extends ShieldItem {
         level.playSound(
                 null,
                 player.blockPosition(),
-                SoundEvents.SNIFFER_EGG_CRACK,
+                SelectivepowersSounds.ICE_SHIELD_CRACK.get(),
                 SoundSource.PLAYERS,
                 1.0F,
                 0.8F

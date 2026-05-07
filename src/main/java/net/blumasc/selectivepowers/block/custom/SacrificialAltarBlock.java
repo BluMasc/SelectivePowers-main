@@ -5,6 +5,7 @@ import net.blumasc.selectivepowers.PowerManager;
 import net.blumasc.selectivepowers.block.entity.AltarBlockEntity;
 import net.blumasc.selectivepowers.block.entity.SacrificeAltarBlockEntity;
 import net.blumasc.selectivepowers.block.entity.SelectivepowersBlockEntities;
+import net.blumasc.selectivepowers.sound.SelectivepowersSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
@@ -82,7 +83,7 @@ public class SacrificialAltarBlock extends BaseEntityBlock {
                         altar.power=pm.getPowerOfPlayer(player.getUUID());
                         altar.setChanged();
                         level.sendBlockUpdated(pos, state, state, 3);
-                        level.playSound(null, pos, SoundEvents.BOTTLE_FILL_DRAGONBREATH, SoundSource.BLOCKS, 1f, 0.8f);
+                        level.playSound(null, pos, SelectivepowersSounds.FILL_ALTAR.get(), SoundSource.BLOCKS, 1f, 0.8f);
                         return ItemInteractionResult.SUCCESS;
                     }
 
@@ -95,7 +96,7 @@ public class SacrificialAltarBlock extends BaseEntityBlock {
                 altar.power=PowerManager.NO_POWER;
                 altar.setChanged();
                 level.sendBlockUpdated(pos, state, state, 3);
-                level.playSound(null, pos, SoundEvents.BOTTLE_FILL_DRAGONBREATH, SoundSource.BLOCKS, 1f, 0.8f);
+                level.playSound(null, pos, SelectivepowersSounds.FILL_ALTAR.get(), SoundSource.BLOCKS, 1f, 0.8f);
                 return ItemInteractionResult.SUCCESS;
             }
         }

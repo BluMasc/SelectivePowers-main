@@ -334,6 +334,9 @@
   "sound.selectivepowers.rope":"Rope Pulling",
   "sound.selectivepowers.pickerang":"Pickerang Flying",
   "sound.selectivepowers.grape_shot":"Grape Shot Fired",
+  "sound.selectivepowers.magical_success": "Magical Puff",
+  "sound.selectivepowers.ice_shield_crack": "Ice Shield Cracks",
+  "sound.selectivepowers.fill_altar": "Alter Filling",
 
   "selectivepowers.messages.nopower": "You have no affiliation to break.",
   "selectivepowers.messages.notjustbound": "Your bond is too strong for this item.",
