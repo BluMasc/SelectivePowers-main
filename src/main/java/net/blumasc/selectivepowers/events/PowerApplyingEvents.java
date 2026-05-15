@@ -483,9 +483,9 @@ public class PowerApplyingEvents {
         Player player = null;
         if (killer instanceof Player p) {
             player = p;
-        } else if (killer instanceof ServerPlayer sp) {
-            player = sp;
         }
+
+        if (player == null) return;
 
         PowerManager pm = PowerManager.get(sl);
         if(pm.getPowerOfPlayer(player.getUUID()).equals(PowerManager.DRAGON_POWER) && pm.getPowerLevelOfPlayer(player.getUUID()).equals(PowerManager.PowerLevel.BOUND)) {

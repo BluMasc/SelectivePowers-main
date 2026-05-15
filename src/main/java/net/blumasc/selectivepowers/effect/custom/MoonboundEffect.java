@@ -1,5 +1,6 @@
 package net.blumasc.selectivepowers.effect.custom;
 
+import net.blumasc.selectivepowers.managers.MoonManager;
 import net.blumasc.selectivepowers.worldgen.ModDimensions;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
@@ -26,7 +27,10 @@ public class MoonboundEffect extends MobEffect {
     }
 
     private void teleportToCustomDimensionSurface(LivingEntity entity) {
-        if(!(entity.level() instanceof ServerLevel))return;
+        if(!(entity.level() instanceof ServerLevel sl))return;
+        MoonManager mm = MoonManager.get(sl);
+        mm.setMoonbound(entity.getUUID(), true);
+        mm.setDirty();
         ServerLevel targetLevel = entity.getServer().getLevel(ModDimensions.LUNAR_DIM_LEVEL);
         if (targetLevel == null || entity.level().dimension() == ModDimensions.LUNAR_DIM_LEVEL) return;
 

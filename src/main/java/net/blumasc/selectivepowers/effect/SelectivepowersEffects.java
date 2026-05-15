@@ -21,10 +21,7 @@ public class SelectivepowersEffects {
     public static final Holder<MobEffect> YELLOW_FEVER_EFFECT = MOB_EFFECTS.register("yellow_fever",
             () -> new YellowFeverEffect(MobEffectCategory.HARMFUL, 0xd3af37));
    public static final Holder<MobEffect> MOON_BOUND_EFFECT = MOB_EFFECTS.register("moon_bound",
-            () -> new MoonboundEffect()
-                    .addAttributeModifier(Attributes.GRAVITY, ResourceLocation.fromNamespaceAndPath(SelectivePowers.MODID, "low_moon_gravity"), -0.6, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
-                    .addAttributeModifier(Attributes.FALL_DAMAGE_MULTIPLIER, ResourceLocation.fromNamespaceAndPath(SelectivePowers.MODID, "fall_moon_gravity"), -1.0, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
-    );
+            () -> new MoonboundEffect());
     public static final Holder<MobEffect> RAGE_EFFECT = MOB_EFFECTS.register("rage",
             () -> new RageEffect());
     public static final Holder<MobEffect> TRUTH_VISION_EFFECT = MOB_EFFECTS.register("truth_vision",

@@ -43,6 +43,7 @@ import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
@@ -207,11 +208,11 @@ public class PowerUseEvents {
     @SubscribeEvent
     public static void onNoFallDamage(LivingIncomingDamageEvent event) {
 
+        if (!event.getSource().is(DamageTypes.FALL)) return;
+
         if (event.getEntity().level().dimension() == ModDimensions.LUNAR_DIM_LEVEL){
             event.setCanceled(true);
         }
-
-        if (!event.getSource().is(DamageTypes.FALL)) return;
 
         if(event.getEntity() instanceof Player p){
             if(p.level() instanceof ServerLevel sl)
@@ -225,11 +226,38 @@ public class PowerUseEvents {
         }
     }
 
+    public static final ResourceLocation MOON_SLOW_FALL_RESOURCE = ResourceLocation.fromNamespaceAndPath(SelectivePowers.MODID, "moon_slow_fall_modifier");
+    public static final AttributeModifier MOON_SLOW_FALL_MODIFIER = new AttributeModifier(
+            MOON_SLOW_FALL_RESOURCE,
+            -0.6,
+            AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL
+    );
+
+    @SubscribeEvent
+    public static void onMoonEvent(PlayerTickEvent.Post e) {
+        if (!(e.getEntity() instanceof ServerPlayer player)) return;
+        if (player.level().dimension() == ModDimensions.LUNAR_DIM_LEVEL){
+            var attribute = player.getAttribute(Attributes.GRAVITY);
+            if (attribute != null && attribute.getModifier(MOON_SLOW_FALL_RESOURCE) == null) {
+                attribute.addTransientModifier(MOON_SLOW_FALL_MODIFIER);
+            }
+        }
+        else{
+            var attribute = player.getAttribute(Attributes.GRAVITY);
+            attribute.removeModifier(MOON_SLOW_FALL_MODIFIER);
+        }
+    }
+
     @SubscribeEvent
     public static void onStillOnMoonEvent(PlayerTickEvent.Post e) {
         if (!(e.getEntity() instanceof ServerPlayer player)) return;
         if (player.level().dimension() != ModDimensions.LUNAR_DIM_LEVEL) return;
         if (player.hasEffect(SelectivepowersEffects.MOON_BOUND_EFFECT)) return;
+        if(!(player.level() instanceof ServerLevel sl)) return;
+        MoonManager mm = MoonManager.get(sl);
+        if(!mm.getMoonbound(player.getUUID())){
+            return;
+        }
 
         ServerLevel respawnLevel = player.getServer().getLevel(
                 player.getRespawnDimension() != null ? player.getRespawnDimension() : Level.OVERWORLD
@@ -245,6 +273,8 @@ public class PowerUseEvents {
         }
 
         player.teleportTo(respawnLevel, dest.x, dest.y, dest.z, player.getYRot(), player.getXRot());
+        mm.setMoonbound(player.getUUID(), false);
+        mm.setDirty();
     }
 
     private static Vec3 findSafeWorldSpawn(ServerLevel level) {
