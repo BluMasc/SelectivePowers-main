@@ -88,7 +88,7 @@ public class PowerApplyingEvents {
         PowerManager pm = PowerManager.get((ServerLevel) player.level());
         if (pm.doesPlayerHaveAnyPower(player.getUUID())) return;
 
-        if (pm.isPowerFree(PowerManager.STORM_POWER)) {
+        if (pm.isPowerFree(PowerManager.RAGE_POWER)) {
 
             if (!(event.getContainer() instanceof ChestMenu)) return;
             List<Entity> villagers = player.level().getEntitiesOfClass(Entity.class, player.getBoundingBox().inflate(10), mob -> mob.getType().is(ModTags.EntityTypes.VILLAGER_LIKE));
@@ -173,6 +173,7 @@ public class PowerApplyingEvents {
         if (event.getEntity().level().isClientSide()) return;
 
         ServerPlayer player = (ServerPlayer) event.getEntity();
+        if (player.tickCount % 20 != 0) return;
 
         if(player.isSpectator()) return;
 
@@ -190,7 +191,7 @@ public class PowerApplyingEvents {
                 pm.syncToAll((ServerLevel) player.level());
             }
         }else{
-            if(playerID == player.getUUID() && pm.getPowerLevelOfPlayer(playerID)== PowerManager.PowerLevel.BOUND &&  pm.countAtLeastAwokenAbilities()>5){
+            if(playerID.equals(player.getUUID()) && pm.getPowerLevelOfPlayer(playerID)== PowerManager.PowerLevel.BOUND &&  pm.countAtLeastAwokenAbilities()>5){
                 pm.upgradePower(PowerManager.YELLOW_POWER);
                 player.sendSystemMessage(
                         Component.translatable("selectivepowers.messages.awaking." + PowerManager.YELLOW_POWER)
@@ -210,7 +211,7 @@ public class PowerApplyingEvents {
                 pm.syncToAll((ServerLevel) player.level());
             }
         }else{
-            if(playerID == player.getUUID() && pm.getPowerLevelOfPlayer(player.getUUID())== PowerManager.PowerLevel.BOUND &&  pm.countAtLeastAwokenAbilities()>5){
+            if(playerID.equals(player.getUUID()) && pm.getPowerLevelOfPlayer(player.getUUID())== PowerManager.PowerLevel.BOUND &&  pm.countAtLeastAwokenAbilities()>5){
                 pm.upgradePower(PowerManager.MOON_POWER);
                 player.sendSystemMessage(
                         Component.translatable("selectivepowers.messages.awaking." + PowerManager.MOON_POWER)
@@ -500,6 +501,7 @@ public class PowerApplyingEvents {
     @SubscribeEvent
     public static void onReachingAncinetCity(PlayerTickEvent.Post event) {
         Player player = event.getEntity();
+        if (player.tickCount % 20 != 0) return;
         if(!(player.level() instanceof ServerLevel sl)) return;
 
         PowerManager pm = PowerManager.get(sl);
@@ -567,7 +569,7 @@ public class PowerApplyingEvents {
 
             if (pm.getPowerOfPlayer(player.getUUID()).equals(PowerManager.LIGHT_POWER) && pm.getPowerLevelOfPlayer(player.getUUID()).equals(PowerManager.PowerLevel.BOUND)) {
                 LivingEntity entity = event.getEntity();
-                if (entity.getType().is(EntityTypeTags.SENSITIVE_TO_SMITE)) return;
+                if (!(entity.getType().is(EntityTypeTags.SENSITIVE_TO_SMITE))) return;
                 PowerManager.PlayerProgress progress = pm.getProgress(player.getUUID());
                 progress.ascensionCounter++;
                 if(progress.ascensionCounter>=32)
@@ -596,8 +598,6 @@ public class PowerApplyingEvents {
         Player player = null;
         if (killer instanceof Player p) {
             player = p;
-        } else if (killer instanceof ServerPlayer sp) {
-            player = sp;
         }
 
         if(player == null)return;
@@ -623,7 +623,6 @@ public class PowerApplyingEvents {
     {
         if (!(event.getEntity() instanceof ServerPlayer player)) return;
         PowerManager pm = PowerManager.get((ServerLevel) player.level());
-        if (pm.doesPlayerHaveAnyPower(player.getUUID())) return;
         PowerManager.PlayerProgress progress = pm.getProgress(player.getUUID());
         if (pm.getPowerOfPlayer(player.getUUID()).equals(PowerManager.STORM_POWER) && pm.getPowerLevelOfPlayer(player.getUUID()).equals(PowerManager.PowerLevel.BOUND)){
             ItemStack result = event.getCrafting();
@@ -642,6 +641,7 @@ public class PowerApplyingEvents {
     @SubscribeEvent
     public static void onReachingLibrary(PlayerTickEvent.Post event) {
         Player player = event.getEntity();
+        if (player.tickCount % 20 != 0) return;
         if(!(player.level() instanceof ServerLevel sl)) return;
 
         PowerManager pm = PowerManager.get(sl);

@@ -31,6 +31,11 @@ public class SelectivePowersDamageTypes {
                 causer);
     }
 
+    public static DamageSource solarDamage(Level l) {
+        return new DamageSource(
+                l.registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(SOLAR_DAMAGE));
+    }
+
     public static DamageSource rageDamage(Level level) {
         return new DamageSource(
                 level.registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(RAGE_DAMAGE));

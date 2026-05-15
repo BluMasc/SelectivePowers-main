@@ -480,9 +480,8 @@ public class PowerActiveUse {
 
             switch (enityType)
             {
-                case 0: mob = SelectivepowersEntities.QUETZAL_YELLOW.get().create(sl);
-                case 1: mob = SelectivepowersEntities.CORRUPTING_MASK.get().create(sl);
-                case 2: mob = SelectivepowersEntities.YELLOW_FANATIC.get().create(sl);
+                case 1: mob = SelectivepowersEntities.CORRUPTING_MASK.get().create(sl);break;
+                case 2: mob = SelectivepowersEntities.YELLOW_FANATIC.get().create(sl);break;
                 default: mob = SelectivepowersEntities.QUETZAL_YELLOW.get().create(sl);
             }
 
@@ -536,7 +535,6 @@ public class PowerActiveUse {
         if (!(player.level() instanceof ServerLevel level)) return;
 
         RandomSource random = player.getRandom();
-        BlockPos center = player.blockPosition();
         List<Entity> entities = level.getEntities(player, player.getBoundingBox().inflate(radius));
 
         for (Entity entity : entities) {

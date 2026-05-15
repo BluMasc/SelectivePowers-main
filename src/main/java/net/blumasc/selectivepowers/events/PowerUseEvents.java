@@ -244,7 +244,9 @@ public class PowerUseEvents {
         }
         else{
             var attribute = player.getAttribute(Attributes.GRAVITY);
-            attribute.removeModifier(MOON_SLOW_FALL_MODIFIER);
+            if (attribute != null) {
+                attribute.removeModifier(MOON_SLOW_FALL_MODIFIER);
+            }
         }
     }
 
@@ -413,7 +415,7 @@ public class PowerUseEvents {
 
         if(target instanceof Player) {
             PowerManager pm = PowerManager.get(sl);
-            if(!(pm.getPowerOfPlayer(target.getUUID())==PowerManager.YELLOW_POWER))
+            if(!(pm.getPowerOfPlayer(target.getUUID()).equals(PowerManager.YELLOW_POWER)))
             {
                 return;
             }
@@ -670,7 +672,7 @@ public class PowerUseEvents {
         SunBattleManager sbm = SunBattleManager.get(sl);
         if(!(sbm.PlayerInBattle(player)))return;
         sbm.endBattle(sl);
-        player.hurt(SelectivePowersDamageTypes.lunarDamage(null), Float.MAX_VALUE);
+        player.hurt(SelectivePowersDamageTypes.solarDamage(player.level()), Float.MAX_VALUE);
     }
 
     @SubscribeEvent
@@ -866,10 +868,14 @@ public class PowerUseEvents {
         PowerManager.PlayerProgress progress = pm.getProgress(player.getUUID());
         if(progress.abilityTimer>0) {
             progress.abilityTimer--;
+            List<Holder<MobEffect>> toRemove = new ArrayList<>();
             for (MobEffectInstance effect : player.getActiveEffects()) {
                 if (((MobEffectAccessor) effect.getEffect().value()).getCategory().equals(MobEffectCategory.HARMFUL)) {
-                    player.removeEffect(effect.getEffect());
+                   toRemove.add(effect.getEffect());
                 }
+            }
+            for(Holder<MobEffect> e : toRemove){
+                player.removeEffect(e);
             }
             pm.setDirty();
         }
@@ -954,8 +960,6 @@ public class PowerUseEvents {
     @SubscribeEvent
     public static void downtickElementalWeapons(PlayerTickEvent.Pre event) {
         Player centerPlayer = event.getEntity();
-
-        if (!(centerPlayer.level() instanceof ServerLevel level)) return;
 
         if(!(centerPlayer.level() instanceof ServerLevel sl))return;
         PowerManager pm = PowerManager.get(sl);
