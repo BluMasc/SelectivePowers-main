@@ -15,6 +15,7 @@ import net.blumasc.selectivepowers.entity.helper.YellowFeverHelper;
 import net.blumasc.selectivepowers.item.SelectivepowersItems;
 import net.blumasc.selectivepowers.item.custom.FrostShieldItem;
 import net.blumasc.selectivepowers.item.custom.ProspectorsShovelItem;
+import net.blumasc.selectivepowers.item.custom.SunSlicerItem;
 import net.blumasc.selectivepowers.managers.*;
 import net.blumasc.selectivepowers.mixin.MobEffectAccessor;
 import net.blumasc.selectivepowers.util.ModTags;
@@ -202,6 +203,22 @@ public class PowerUseEvents {
     }
 
 
+    @SubscribeEvent
+    public static void onLivingHurt(LivingIncomingDamageEvent event) {
+        if (event.getSource().is(SelectivePowersDamageTypes.SUNRAY_DAMAGE)) return;
+
+        Entity attacker = event.getSource().getEntity();
+        if (!(attacker instanceof LivingEntity living)) return;
+
+        ItemStack held = living.getMainHandItem();
+        if (!(held.getItem() instanceof SunSlicerItem)) return;
+
+        float damage = event.getAmount();
+        DamageSource source = SelectivePowersDamageTypes.sunrayDamage(living, living);
+
+        event.setCanceled(true);
+        event.getEntity().hurt(source, damage);
+    }
 
 
 

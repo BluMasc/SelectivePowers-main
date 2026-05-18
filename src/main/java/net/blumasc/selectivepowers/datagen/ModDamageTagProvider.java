@@ -25,7 +25,8 @@ public class ModDamageTagProvider extends DamageTypeTagsProvider {
         tag(DamageTypeTags.BYPASSES_COOLDOWN)
                 .add(SelectivePowersDamageTypes.RAGE_DAMAGE);
         tag(DamageTypeTags.BYPASSES_INVULNERABILITY)
-                .add(SelectivePowersDamageTypes.RAGE_DAMAGE);
+                .add(SelectivePowersDamageTypes.RAGE_DAMAGE)
+                .add(SelectivePowersDamageTypes.SUNRAY_DAMAGE);
         tag(DamageTypeTags.BYPASSES_SHIELD)
                 .add(SelectivePowersDamageTypes.RAGE_DAMAGE);
     }

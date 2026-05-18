@@ -18,6 +18,8 @@ public class SelectivePowersDamageTypes {
             ResourceKey.create(Registries.DAMAGE_TYPE, ResourceLocation.fromNamespaceAndPath(SelectivePowers.MODID, "solar"));
     public static final ResourceKey<DamageType> RAGE_DAMAGE =
             ResourceKey.create(Registries.DAMAGE_TYPE, ResourceLocation.fromNamespaceAndPath(SelectivePowers.MODID, "rage"));
+    public static final ResourceKey<DamageType> SUNRAY_DAMAGE =
+            ResourceKey.create(Registries.DAMAGE_TYPE, ResourceLocation.fromNamespaceAndPath(SelectivePowers.MODID, "sunray"));
 
     public static DamageSource lunarDamage(Entity causer) {
         return new DamageSource(
@@ -39,5 +41,21 @@ public class SelectivePowersDamageTypes {
     public static DamageSource rageDamage(Level level) {
         return new DamageSource(
                 level.registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(RAGE_DAMAGE));
+    }
+    public static DamageSource sunrayDamage(Level level) {
+        return new DamageSource(
+                level.registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(SUNRAY_DAMAGE));
+    }
+
+    public static DamageSource sunrayDamage(Entity direct) {
+        return new DamageSource(
+                direct.level().registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(SUNRAY_DAMAGE),
+                direct);
+    }
+
+    public static DamageSource sunrayDamage(Entity direct, Entity indirect) {
+        return new DamageSource(
+                direct.level().registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(SUNRAY_DAMAGE),
+                direct, indirect);
     }
 }

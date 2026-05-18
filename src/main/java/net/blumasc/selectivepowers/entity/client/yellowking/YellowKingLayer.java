@@ -75,7 +75,7 @@ public class YellowKingLayer extends RenderLayer<AbstractClientPlayer, PlayerMod
         model.setupAnim(faker, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
 
         VertexConsumer vc = buffer.getBuffer(model.renderType(TEXTURE));
-        model.renderToBuffer(poseStack, vc, packedLight, OverlayTexture.NO_OVERLAY, 0xFFFFFF);
+        model.renderToBuffer(poseStack, vc, packedLight, OverlayTexture.NO_OVERLAY, 0xFFFFFFFF);
 
         poseStack.popPose();
     }

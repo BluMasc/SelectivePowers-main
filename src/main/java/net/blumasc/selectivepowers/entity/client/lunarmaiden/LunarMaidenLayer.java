@@ -50,17 +50,10 @@ public class LunarMaidenLayer
             float netHeadYaw,
             float headPitch
     ) {
-        if (!shouldRenderMoonForm(player)) return;
-
         PlayerModel<AbstractClientPlayer> playerModel = this.getParentModel();
-
-        playerModel.head.skipDraw = true;
-        playerModel.hat.skipDraw = true;
-        playerModel.body.skipDraw = true;
-        playerModel.leftArm.skipDraw = true;
-        playerModel.rightArm.skipDraw = true;
-        playerModel.leftLeg.skipDraw = true;
-        playerModel.rightLeg.skipDraw = true;
+        if (!shouldRenderMoonForm(player)) {
+            return;
+        }
 
         poseStack.pushPose();
 
@@ -72,7 +65,7 @@ public class LunarMaidenLayer
         model.setupAnim(faker, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
 
         VertexConsumer vc = buffer.getBuffer(model.renderType(TEXTURE));
-        model.renderToBuffer(poseStack, vc, packedLight, OverlayTexture.NO_OVERLAY, 0xFFFFFF);
+        model.renderToBuffer(poseStack, vc, packedLight, OverlayTexture.NO_OVERLAY, 0xFFFFFFFF);
 
         poseStack.popPose();
     }

@@ -38,7 +38,7 @@ public class DragonWingLayer extends RenderLayer<AbstractClientPlayer, PlayerMod
         wingModel.applyWingAnimation(ageInTicks / 20f,!player.onGround());
 
         VertexConsumer vertex = buffer.getBuffer(wingModel.renderType(TEXTURE));
-        wingModel.renderToBuffer(poseStack, vertex, packedLight, OverlayTexture.NO_OVERLAY, 0xFFFFFF);
+        wingModel.renderToBuffer(poseStack, vertex, packedLight, OverlayTexture.NO_OVERLAY, 0xFFFFFFFF);
 
         poseStack.popPose();
     }
