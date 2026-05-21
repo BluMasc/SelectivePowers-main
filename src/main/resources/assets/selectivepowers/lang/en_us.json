@@ -84,6 +84,10 @@
   "lore.selectivepowers.tessla_coil": "This coil shoots lightning bolts around it, when powered by Redstone.",
   "block.selectivepowers.decrepit_sacrifical_altar": "Old Sacrifice Altar",
   "lore.selectivepowers.decrepit_sacrifical_altar": "An altar to the old gods. Spend exp to gain some items.",
+  "block.selectivepowers.calibrated_pressure_plate": "Calibrated Pressure Plate",
+  "lore.selectivepowers.calibrated_pressure_plate": "A peculiar pressure plate, that only works if the same kind of mob, that wants to use it is also below it.",
+  "block.selectivepowers.item_sentinel": "Item Sentinel",
+  "lore.selectivepowers.item_sentinel": "A Comparator like block, that can be configured with an item. It outputs the signal when its ender eye side is looking at the same item.",
 
   "item.selectivepowers.soulgem": "Gem of the Freed Soul",
   "lore.selectivepowers.soulgem": "This gem may break your contract with a deity. But be warned it will hurt.",
@@ -168,6 +172,12 @@
   "lore.selectivepowers.drinking_horn": "This horn holds the liquid of the gods. Drinking it grants their strength, but few can endure the side effects.",
   "item.selectivepowers.lore_scroll": "Scroll of Lore",
   "lore.selectivepowers.lore_scroll": "For more information see: Scroll of Lore",
+  "item.selectivepowers.whirl_pearl": "Whirl Pearl",
+  "lore.selectivepowers.whirl_pearl": "Use it on a block to summon a whirlpool that holds mobs within it.",
+  "item.selectivepowers.anchor": "Anchor",
+  "lore.selectivepowers.anchor": "A weapon that can be thrown to pull entities closer. Deals extra damage to mob who are holding their breath.",
+  "item.selectivepowers.thrown_anchor": "Anchor",
+  "lore.selectivepowers.thrown_anchor": "A weapon that can be thrown to pull entities closer. Deals extra damage to mob who are holding their breath.",
 
   "item.selectivepowers.shelf_mushroom": "Shelf Mushroom",
   "lore.selectivepowers.shelf_mushroom": "This is just a cosmetic item.",
@@ -239,6 +249,12 @@
   "lore.selectivepowers.shoulder_leaf": "This is just a cosmetic item.",
   "item.selectivepowers.arm_drill": "Arm Drill",
   "lore.selectivepowers.arm_drill": "This is just a cosmetic item.",
+  "item.selectivepowers.nautic_belt": "Nautic Belt",
+  "lore.selectivepowers.nautic_belt": "This is just a cosmetic item.",
+  "item.selectivepowers.pirate_hat": "Pirate Hat",
+  "lore.selectivepowers.pirate_hat": "This is just a cosmetic item.",
+  "item.selectivepowers.bubble": "Bubble",
+  "lore.selectivepowers.bubble": "This is just a cosmetic item.",
 
   "item.minecraft.potion.effect.sp_truth_vision_potion": "Truth Potion",
   "item.minecraft.splash_potion.effect.sp_truth_vision_potion": "Truth Splash Potion",
@@ -277,6 +293,7 @@
   "effect.selectivepowers.pinned": "Pinned",
   "effect.selectivepowers.spiked": "Spiked",
   "effect.selectivepowers.pheromones": "Pheromones",
+  "effect.selectivepowers.bubbled": "Bubbled",
 
   "effect.selectivepowers.yellow_fever.description": "Obfuscates your screen and plays voices. Also gives you a headache when hurting the King in Yellow.",
   "effect.selectivepowers.moon_bound.description": "Transports you to the Moon for as long as this effect is active.",
@@ -291,6 +308,7 @@
   "effect.selectivepowers.pinned.description": "Makes you unable to move. Can be removed by sneaking. On higher levels, deals damage when removing.",
   "effect.selectivepowers.spiked.description": "Makes you take damage when moving.",
   "effect.selectivepowers.pheromones.description": "Makes all mobs around you aggro towards you.",
+  "effect.selectivepowers.bubbled.description": "Makes you drown on land or breathe under water.",
 
   "death.attack.rage": "%1$s was not able to persist on rage.",
   "death.attack.lunar": "%1$s was cleansed by the moon.",
@@ -337,6 +355,10 @@
   "sound.selectivepowers.magical_success": "Magical Puff",
   "sound.selectivepowers.ice_shield_crack": "Ice Shield Cracks",
   "sound.selectivepowers.fill_altar": "Alter Filling",
+  "sound.selectivepowers.whirlpool": "Whirlpool Splashing",
+  "sound.selectivepowers.anchor_land": "Anchor Landing",
+  "sound.selectivepowers.anchor_throw": "Anchor Throwing",
+  "sound.selectivepowers.rope_tightening": "Rope Tightening",
 
   "selectivepowers.messages.nopower": "You have no affiliation to break.",
   "selectivepowers.messages.notjustbound": "Your bond is too strong for this item.",
@@ -360,6 +382,8 @@
   "selectivepowers.name.truth": "All Seeing Eye",
   "selectivepowers.name.yellow": "Yellow King",
   "selectivepowers.name.moon": "Lunar Maiden",
+  "selectivepowers.name.water": "Tide Shaper",
+  "selectivepowers.name.machine": "Mechanical Soul",
 
   "selectivepowers.tooltip.heading": "§6§lContract Info",
   "selectivepowers.tooltip.contract": "§eEntity: §f",
@@ -385,6 +409,8 @@
   "selectivepowers.abilities.bound.truth": "You can see invisible entities.",
   "selectivepowers.abilities.bound.yellow": "For all abilities and mobs, you are the yellow king.",
   "selectivepowers.abilities.bound.moon": "Be patient.",
+  "selectivepowers.abilities.bound.water": "You can breathe underwater.",
+  "selectivepowers.abilities.bound.machine": "Killing Monsters can randomly drop Redstone.",
 
   "selectivepowers.abilities.awoken.animal": "Fully heal all your tamed companions.",
   "selectivepowers.abilities.awoken.dark": "Temporarily disable all light sources around you.",
@@ -399,6 +425,8 @@
   "selectivepowers.abilities.awoken.truth": "Give all mobs around you the glowing effect.",
   "selectivepowers.abilities.awoken.yellow": "Summon some of your thralls.",
   "selectivepowers.abilities.awoken.moon": "Shoot a moon beam.",
+  "selectivepowers.abilities.awoken.water": "Create a Whirlpool.",
+  "selectivepowers.abilities.awoken.machine": "Convert Redstone components in your hand into a higher version.",
 
   "selectivepowers.abilities.ascended.animal": "Summon a flock of tamed companions that fight for you.",
   "selectivepowers.abilities.ascended.dark": "Turn the world around you into darkness.",
@@ -413,6 +441,8 @@
   "selectivepowers.abilities.ascended.truth": "Unlock the well of knowledge hidden deep within the world.",
   "selectivepowers.abilities.ascended.rock": "Summon a mineral filled meteor.",
   "selectivepowers.abilities.ascended.moon": "Send a target to the Moon.",
+  "selectivepowers.abilities.ascended.water": "Let everyone around you drown.",
+  "selectivepowers.abilities.ascended.machine": "Convert yourself into the ultimate lifeform",
 
   "selectivepowers.messages.offer.forest.reminder": "Make all my children grow.",
   "selectivepowers.messages.offer.mushroom.reminder": "Consume us, become us.",
@@ -427,6 +457,8 @@
   "selectivepowers.messages.offer.truth.reminder": "Find the old libraries below the earth.",
   "selectivepowers.messages.offer.yellow.reminder": "Wait for enough players to awaken.",
   "selectivepowers.messages.offer.moon.reminder": "Wait for enough players to awaken.",
+  "selectivepowers.messages.offer.water.reminder": "Swim through my domain.",
+  "selectivepowers.messages.offer.machine.reminder": "Activate the devices around you.",
 
 
   "selectivepowers.messages.offer.forest": "§6[§e%s§6]§r §a I see you like my nature. Make all my children grow, and I will make you my champion.",
@@ -442,6 +474,8 @@
   "selectivepowers.messages.offer.truth": "§6[§e%s§6]§r §a Do you seek knowledge? Find it in the old libraries below the earth. There your search will be successful.",
   "selectivepowers.messages.offer.yellow": "Once they complete contracts, i will finally be able to defeat my brethren.",
   "selectivepowers.messages.offer.moon": "The power here is weak, but your powers persist.",
+  "selectivepowers.messages.offer.water": "§6[§e%s§6]§r §a It seems you enjoy being in my domain. Swim through it and prove your loyalty.",
+  "selectivepowers.messages.offer.machine": "§6[§e%s§6]§r §a You have strengthened me. Use the power sources around you to strengthen me further.",
 
   "selectivepowers.messages.awaking.forest": "§6[§e%s§6]§r §a You have grown my children, and now you are one of them.",
   "selectivepowers.messages.awaking.mushroom": "§6[§e%s§6]§r §a We are one now. One and the same.",
@@ -456,6 +490,8 @@
   "selectivepowers.messages.awaking.truth": "§6[§e%s§6]§r §a The knowledge you seek is here. Take it and be enlightened.",
   "selectivepowers.messages.awaking.yellow": "They took the bait, now let them bring sacrifices to the altar to banish them forever.",
   "selectivepowers.messages.awaking.moon": "A lot of power has Awoken. You have regained some power.",
+  "selectivepowers.messages.awaking.water": "§6[§e%s§6]§r §a You have proven your loyalty. Take my power and command our domain.",
+  "selectivepowers.messages.awaking.machine": "§6[§e%s§6]§r §a My strength has grown immensely. Take my knowledge to increase my power beyond all limits.",
 
   "selectivepowers.messages.lose_ascension": "Your Ascension has reverted after getting bested by another power.",
   "selectivepowers.messages.awoken_after_kill": "%s has awoken after killing %s!",

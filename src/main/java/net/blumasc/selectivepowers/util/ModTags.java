@@ -16,6 +16,7 @@ public class ModTags {
         public static final TagKey<Block> CROW_PERCHABLE = createTag("crow_perchable");
         public static final TagKey<Block> ICE_CORE = createTag("ice_core");
         public static final TagKey<Block> LAVA_CORE = createTag("lava_core");
+        public static final TagKey<Block> REDSTONE_ACTIVATOR = createTag("redstone_activator");
 
         private static TagKey<Block> createTag(String name){
             return BlockTags.create(ResourceLocation.fromNamespaceAndPath(SelectivePowers.MODID, name));

@@ -67,6 +67,9 @@ public class SelectivepowersBlocks {
     public static final DeferredBlock<Block> MOON_CAP_BLOCK = registerBlock("mooncap_block",
             () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.NETHER_WART_BLOCK).mapColor(MapColor.COLOR_BLUE)));
 
+    public static final DeferredBlock<Block> CALIBRATED_PRESSURE_PLATE = registerBlock("calibrated_pressure_plate",
+            () -> new MobSensorBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_PRESSURE_PLATE).mapColor(MapColor.COLOR_ORANGE)));
+
     public static final DeferredBlock<StairBlock> SMOOTH_MOON_ROCK_STAIRS = registerBlock("smooth_moon_rock_stairs",
             () -> new StairBlock(SelectivepowersBlocks.SMOOTH_MOON_ROCK.get().defaultBlockState(),
                     BlockBehaviour.Properties.ofFullCopy(Blocks.DEEPSLATE_BRICK_STAIRS).mapColor(MapColor.STONE)));
@@ -135,6 +138,9 @@ public class SelectivepowersBlocks {
 
     public static final DeferredBlock<TesslaCoilBlock> TESSLA_COIL = registerBlock("tessla_coil",
             () -> new TesslaCoilBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LIGHTNING_ROD).noOcclusion()));
+
+    public static final DeferredBlock<ItemSentinelBlock> ITEM_SENTINEL = registerBlock("item_sentinel",
+            () -> new ItemSentinelBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.REPEATER).noOcclusion()));
 
     public static final DeferredBlock<SacrificialAltarBlock> SACRIFICIAL_ALTAR_BLOCK = registerBlock("decrepit_sacrifical_altar",
             () -> new SacrificialAltarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.ANDESITE).noOcclusion().lightLevel((b) -> 3)));

@@ -1,8 +1,10 @@
 package net.blumasc.selectivepowers.events;
 
 import net.blumasc.selectivepowers.SelectivePowers;
+import net.blumasc.selectivepowers.block.entity.SelectivepowersBlockEntities;
 import net.blumasc.selectivepowers.block.entity.renderer.ProtectionEffigyModel;
 import net.blumasc.selectivepowers.entity.SelectivepowersEntities;
+import net.blumasc.selectivepowers.entity.client.anchor.AnchorModel;
 import net.blumasc.selectivepowers.entity.client.corruptingmask.CorruptingMaskModel;
 import net.blumasc.selectivepowers.entity.client.crow.CrowModel;
 import net.blumasc.selectivepowers.entity.client.lunarmaiden.LunarMaidenModel;
@@ -28,11 +30,14 @@ import net.minecraft.world.level.levelgen.structure.templatesystem.StructurePlac
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.capabilities.Capabilities;
+import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.event.brewing.RegisterBrewingRecipesEvent;
 import net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent;
 import net.neoforged.neoforge.event.entity.RegisterSpawnPlacementsEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
+import net.neoforged.neoforge.items.wrapper.InvWrapper;
 
 import java.util.Arrays;
 
@@ -78,6 +83,9 @@ public class SelectivepowersEventBusEvents {
         event.registerLayerDefinition(WolfTailModel.LAYER_LOCATION, WolfTailModel::createBodyLayer);
         event.registerLayerDefinition(DrillArmModel.LAYER_LOCATION, DrillArmModel::createBodyLayer);
         event.registerLayerDefinition(LeafPauldronsModel.LAYER_LOCATION, LeafPauldronsModel::createBodyLayer);
+        event.registerLayerDefinition(AnchorModel.LAYER_LOCATION, AnchorModel::createBodyLayer);
+        event.registerLayerDefinition(PirateHatModel.LAYER_LOCATION, PirateHatModel::createBodyLayer);
+        event.registerLayerDefinition(NauticBeltModel.LAYER_LOCATION, NauticBeltModel::createBodyLayer);
 }
 
     @SubscribeEvent
@@ -149,6 +157,15 @@ public class SelectivepowersEventBusEvents {
         );
 
         am.setGenerated();
+    }
+
+    @SubscribeEvent
+    public static void registerCapabilities(RegisterCapabilitiesEvent event) {
+        event.registerBlockEntity(
+                Capabilities.ItemHandler.BLOCK,
+                SelectivepowersBlockEntities.ITEM_SENTINEL_BE.get(),
+                (be, side) -> new InvWrapper(be)
+        );
     }
 
 }

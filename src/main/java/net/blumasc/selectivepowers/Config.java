@@ -4,6 +4,7 @@ import java.util.List;
 
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.ModConfigSpec;
 
 // An example config class. This is not required, but it's a good idea to have one to keep your config organized.
@@ -28,6 +29,19 @@ public class Config {
             .comment("The Player name for the lunar maiden.")
             .define("lunar_maiden",
                     "LunarMaiden");
+
+    public static ModConfigSpec.ConfigValue<List<? extends String>> MOB_BLOCK_MAPPINGS = BUILDER
+            .comment("Mappings of mob entity IDs to block IDs that activate the sensor",
+            "Format: 'modid:entity_id=modid:block_id,modid:block_id2'",
+            "Example: 'minecraft:zombie=minecraft:zombie_head,minecraft:zombie_wall_head'")
+            .defineListAllowEmpty("mobBlockMappings", List.of(
+                                          "minecraft:skeleton=minecraft:skeleton_skull,minecraft:skeleton_wall_skull",
+        "minecraft:wither_skeleton=minecraft:wither_skeleton_skull,minecraft:wither_skeleton_wall_skull",
+                                          "minecraft:zombie=minecraft:zombie_head,minecraft:zombie_wall_head",
+                                          "minecraft:creeper=minecraft:creeper_head,minecraft:creeper_wall_head",
+                                          "minecraft:piglin=minecraft:piglin_head,minecraft:piglin_wall_head",
+                                          "minecraft:player=minecraft:player_head,minecraft:player_wall_head"
+    ), entry -> entry instanceof String s && s.contains("="));
 
     static final ModConfigSpec SPEC = BUILDER.build();
 

@@ -15,4 +15,5 @@ public class ModMenus {
     public static final Supplier<MenuType<LoreScrollMenu>> LORE_SCROLL_MENU =
             MENUS.register("lore_scroll_menu",
                     () -> IMenuTypeExtension.create(LoreScrollMenu::new));
+
 }

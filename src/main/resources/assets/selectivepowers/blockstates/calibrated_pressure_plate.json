@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "powered=false": {
+      "model": "selectivepowers:block/mob_sensor"
+    },
+    "powered=true": {
+      "model": "selectivepowers:block/mob_sensor_pressed"
+    }
+  }
+}

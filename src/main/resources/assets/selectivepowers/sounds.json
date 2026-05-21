@@ -164,5 +164,32 @@
       "item/bottle/fill_dragonbreath2"
     ],
     "subtitle": "sound.selectivepowers.fill_altar"
+  },
+  "whirlpool":{
+    "subtitle": "sound.selectivepowers.whirlpool",
+    "sounds": [
+      "selectivepowers:whirlpool"
+    ]
+  },
+  "anchor_land": {
+    "sounds": [
+      {
+        "name": "random/anvil_land",
+        "volume": 0.5
+      }
+    ],
+    "subtitle": "sound.selectivepowers.anchor_land"
+  },
+  "anchor_throw":{
+    "subtitle": "sound.selectivepowers.anchor_throw",
+    "sounds": [
+      "selectivepowers:anchor_throw"
+    ]
+  },
+  "rope_tightening":{
+    "subtitle": "sound.selectivepowers.rope_tightening",
+    "sounds": [
+      "selectivepowers:rope_tightening"
+    ]
   }
 }

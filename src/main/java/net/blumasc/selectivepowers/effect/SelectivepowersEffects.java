@@ -33,10 +33,8 @@ public class SelectivepowersEffects {
                     .addAttributeModifier(Attributes.MOVEMENT_SPEED, ResourceLocation.fromNamespaceAndPath(SelectivePowers.MODID, "slowness_paralyzed"), -0.8, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
                     .addAttributeModifier(Attributes.ATTACK_SPEED, ResourceLocation.fromNamespaceAndPath(SelectivePowers.MODID, "fatigue_paralyzed"), -0.5, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
                     .addAttributeModifier(Attributes.JUMP_STRENGTH, ResourceLocation.fromNamespaceAndPath(SelectivePowers.MODID, "weak_knees_paralyzed"), -0.5, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL));
-    public static final Holder<MobEffect> ABILITY_TIMER = MOB_EFFECTS.register("ability_timer",
-            () -> new TimerEffect());
-    public static final Holder<MobEffect> ULT_TIMER = MOB_EFFECTS.register("ult_timer",
-            () -> new TimerEffect());
+    public static final Holder<MobEffect> BUBBLE_EFFECT =
+            MOB_EFFECTS.register("bubbled", BubbledEffect::new);
 
 
     public static void register(IEventBus eventBus)

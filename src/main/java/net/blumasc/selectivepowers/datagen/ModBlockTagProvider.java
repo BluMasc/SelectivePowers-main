@@ -93,6 +93,10 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         tag(ModTags.Blocks.CROW_PERCHABLE)
                 .add(SelectivepowersBlocks.CROWS_NEST.get())
                 .addTag(BlockTags.FENCES);
+        tag(ModTags.Blocks.REDSTONE_ACTIVATOR)
+                .add(Blocks.LEVER)
+                .addTag(BlockTags.BUTTONS)
+                .add(Blocks.TRAPPED_CHEST);
         tag(ModTags.Blocks.LAVA_CORE)
                 .add(Blocks.LAVA);
         tag(ModTags.Blocks.ICE_CORE)
@@ -117,5 +121,7 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(SelectivepowersBlocks.M_SOLAR_BLOCK.get());
         tag(BlockTags.FLOWERS)
                 .add(SelectivepowersBlocks.ROSE_VINES.get());
+        tag(BlockTags.PRESSURE_PLATES)
+                .add(SelectivepowersBlocks.CALIBRATED_PRESSURE_PLATE.get());
     }
 }

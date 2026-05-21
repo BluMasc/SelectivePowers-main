@@ -139,6 +139,8 @@ public class SacrificeAltarBlockEntity extends BlockEntity {
     private LootTable truthPowerTable;
     private LootTable yellowPowerTable;
     private LootTable moonPowerTable;
+    private LootTable waterPowerTable;
+    private LootTable machinePowerTable;
     private LootTable oldAltarTable;
     private LootTable freshAltarTable;
     private boolean lootCached = false;
@@ -158,6 +160,8 @@ public class SacrificeAltarBlockEntity extends BlockEntity {
         truthPowerTable = registries.getLootTable(ModChestLoot.TRUTH_POWER_LOOT_TABLE);
         yellowPowerTable = registries.getLootTable(ModChestLoot.YELLOW_POWER_LOOT_TABLE);
         moonPowerTable = registries.getLootTable(ModChestLoot.MOON_POWER_LOOT_TABLE);
+        waterPowerTable = registries.getLootTable(ModChestLoot.WATER_POWER_LOOT_TABLE);
+        machinePowerTable = registries.getLootTable(ModChestLoot.MACHINE_POWER_LOOT_TABLE);
         oldAltarTable = registries.getLootTable(ModChestLoot.OLD_ALTAR_LOOT_TABLE);
         freshAltarTable = registries.getLootTable(ModChestLoot.FRESH_ALTAR_LOOT_TABLE);
     }
@@ -183,6 +187,8 @@ public class SacrificeAltarBlockEntity extends BlockEntity {
         if (power.equals(PowerManager.TRUTH_POWER)) return truthPowerTable;
         if (power.equals(PowerManager.YELLOW_POWER)) return yellowPowerTable;
         if (power.equals(PowerManager.MOON_POWER)) return moonPowerTable;
+        if (power.equals(PowerManager.WATER_POWER)) return waterPowerTable;
+        if (power.equals(PowerManager.MACHINE_POWER)) return machinePowerTable;
         return freshAltarTable;
     }
 
@@ -195,13 +201,7 @@ public class SacrificeAltarBlockEntity extends BlockEntity {
         LootTable tableToUse = oldAltarTable;
 
         if (!simple) {
-            int roll = level.random.nextInt(12);
-
-            if (roll >= 10) {
-                tableToUse = freshAltarTable;
-            } else if (roll >= 5) {
-                tableToUse = getPowerBasedLootTable();
-            }
+            tableToUse = getPowerBasedLootTable();
         }
 
         List<ItemStack> items = tableToUse.getRandomItems(params);
@@ -277,7 +277,7 @@ public class SacrificeAltarBlockEntity extends BlockEntity {
     public static void spawnParticle(Level level, double x, double y, double z,
                                      Color startingColor, Color endingColor,
                                      double moveX, double moveY, double moveZ) {
-        if (!(level instanceof ClientLevel)) return; // client-only
+        if (!(level instanceof ClientLevel)) return;
 
         WispParticleOption options = new WispParticleOption(
                 startingColor.getRed()   / 255f, startingColor.getGreen() / 255f, startingColor.getBlue() / 255f,

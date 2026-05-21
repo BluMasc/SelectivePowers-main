@@ -12,6 +12,7 @@ import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.client.renderer.Rect2i;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.FormattedText;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.FormattedCharSequence;
@@ -48,13 +49,22 @@ public class LoreScrollScreen extends AbstractContainerScreen<LoreScrollMenu> {
 
             String key = stack.getDescriptionId().replace("block.", "lore.").replace("item.", "lore.");
             String aetherkey = "lore."+stack.getDescriptionId();
+            String starcatcherkey = stack.getDescriptionId().replace("block.", "tooltip.").replace("item.", "tooltip.");
 
             Component lore;
             if (Language.getInstance().has(key)) {
                 lore = Component.translatable(key);
             } else if (Language.getInstance().has(aetherkey)) {
                 lore = Component.translatable(aetherkey);
-            } else {
+            } else if (Language.getInstance().has(starcatcherkey+".0")) {
+                MutableComponent tlore = Component.empty();
+                int n = 0;
+                while (Language.getInstance().has(starcatcherkey+"."+n)) {
+                    tlore = tlore.append(Component.translatable(starcatcherkey+"."+n));
+                    n++;
+                }
+                lore = tlore;
+            }else {
                 lore = Component.translatable("lore.selectivepowers.empty");
             }
 

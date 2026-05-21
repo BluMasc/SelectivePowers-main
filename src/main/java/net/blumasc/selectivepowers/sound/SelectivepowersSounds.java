@@ -36,6 +36,10 @@ public class SelectivepowersSounds {
     public static final Supplier<SoundEvent> SHOOT = registerSoundEvent("shoot");
     public static final Supplier<SoundEvent> ICE_SHIELD_CRACK = registerSoundEvent("ice_shield_crack");
     public static final Supplier<SoundEvent> FILL_ALTAR = registerSoundEvent("fill_altar");
+    public static final Supplier<SoundEvent> WHIRLPOOL = registerSoundEvent("whirlpool");
+    public static final Supplier<SoundEvent> ANCHOR_LAND = registerSoundEvent("anchor_land");
+    public static final Supplier<SoundEvent> ANCHOR_THROW = registerSoundEvent("anchor_throw");
+    public static final Supplier<SoundEvent> ROPE_TIGHTENING = registerSoundEvent("rope_tightening");
     public static final Supplier<SoundEvent> BATTLE_FOR_ETERNITY = registerSoundEvent("battle_for_eternity");
 
     public static final ResourceKey<JukeboxSong> BATTLE_FOR_ETERNITY_KEY = createSong("battle_for_eternity");

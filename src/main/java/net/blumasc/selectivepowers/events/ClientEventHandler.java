@@ -174,4 +174,19 @@ public class ClientEventHandler {
         }
     }
 
+    @SubscribeEvent
+    public static void onAnchorModelBake(ModelEvent.ModifyBakingResult event) {
+        ModelResourceLocation inventoryLoc = ModelResourceLocation.inventory(
+                ResourceLocation.fromNamespaceAndPath(SelectivePowers.MODID, "anchor"));
+        ModelResourceLocation handLoc = ModelResourceLocation.inventory(
+                ResourceLocation.fromNamespaceAndPath(SelectivePowers.MODID, "anchor_3d"));
+
+        BakedModel inventoryModel = event.getModels().get(inventoryLoc);
+        BakedModel handModel = event.getModels().get(handLoc);
+
+        if (inventoryModel != null && handModel != null) {
+            event.getModels().put(inventoryLoc, new InWorld3dBakedModel(inventoryModel, handModel));
+        }
+    }
+
 }

@@ -6,6 +6,7 @@ import net.blumasc.selectivepowers.block.entity.SelectivepowersBlockEntities;
 import net.blumasc.selectivepowers.block.entity.renderer.*;
 import net.blumasc.selectivepowers.entity.SelectivepowersEntities;
 import net.blumasc.selectivepowers.entity.client.*;
+import net.blumasc.selectivepowers.entity.client.anchor.AnchorEntityRenderer;
 import net.blumasc.selectivepowers.entity.client.corruptingmask.CorruptingMaskRenderer;
 import net.blumasc.selectivepowers.entity.client.crow.CrowRenderer;
 import net.blumasc.selectivepowers.entity.client.lunarmaiden.LunarMaidenRenderer;
@@ -82,11 +83,13 @@ public class SelectivePowersClient {
         EntityRenderers.register(SelectivepowersEntities.MOON_SQUID.get(), MoonsquidRenderer::new);
         EntityRenderers.register(SelectivepowersEntities.RUNE_PROJECTILE.get(), RuneProjectileRenderer::new);
         EntityRenderers.register(SelectivepowersEntities.MAGIC_CIRCLE.get(), MagicCircleRenderer::new);
+        EntityRenderers.register(SelectivepowersEntities.WHIRLPOOL.get(), WhirlpoolRenderer::new);
         EntityRenderers.register(SelectivepowersEntities.FLAMING_EGG.get(), ThrownItemRenderer::new);
         EntityRenderers.register(SelectivepowersEntities.FLAMING_FEATHER.get(), FlamingFeatherRenderer::new);
         EntityRenderers.register(SelectivepowersEntities.CORRUPTING_ARROW.get(), CorruptingArrowRenderer::new);
         EntityRenderers.register(SelectivepowersEntities.LIGHT_BEAM_ARROW.get(), BeamArrowRenderer::new);
         EntityRenderers.register(SelectivepowersEntities.SOLID_VOID_PEARL.get(), SolidVoidPearlRenderer::new);
+        EntityRenderers.register(SelectivepowersEntities.ANCHOR.get(), AnchorEntityRenderer::new);
 
 
         CuriosRendererRegistry.register(SelectivepowersItems.TRUE_CROWN.get(), CrownCurioRenderer::new);
@@ -127,6 +130,9 @@ public class SelectivePowersClient {
         CuriosRendererRegistry.register(SelectivepowersItems.WOLF_TAIL.get(), WolfTailRenderer::new);
         CuriosRendererRegistry.register(SelectivepowersItems.ARM_DRILL.get(), DrillArmRenderer::new);
         CuriosRendererRegistry.register(SelectivepowersItems.SHOULDER_LEAF.get(), LeafPauldronsRenderer::new);
+        CuriosRendererRegistry.register(SelectivepowersItems.PIRATE_HAT.get(), PirateHatRenderer::new);
+        CuriosRendererRegistry.register(SelectivepowersItems.BUBBLE.get(), WaterParticleRenderer::new);
+        CuriosRendererRegistry.register(SelectivepowersItems.NAUTIC_BELT.get(), NauticBeltRenderer::new);
 
 
         event.enqueueWork(() -> {
@@ -174,6 +180,7 @@ public class SelectivePowersClient {
         event.registerBlockEntityRenderer(SelectivepowersBlockEntities.NEST_BE.get(), NestBlockEntityRenderer::new);
         event.registerBlockEntityRenderer(SelectivepowersBlockEntities.PROTECTION_EFFIGY_BE.get(), ProtectionEffigyEntityRenderer::new);
         event.registerBlockEntityRenderer(SelectivepowersBlockEntities.SAC_ALTAR_BE.get(), SacrificeAltarBlockEntityRenderer::new);
+        event.registerBlockEntityRenderer(SelectivepowersBlockEntities.ITEM_SENTINEL_BE.get(), ItemSentinelBlockEntityRenderer::new);
     }
 
     @SubscribeEvent

@@ -1,0 +1,35 @@
+{
+  "variants": {
+    "facing=north,powered=false": {
+      "model": "selectivepowers:block/item_sentinel",
+      "y": 270
+    },
+    "facing=east,powered=false": {
+      "model": "selectivepowers:block/item_sentinel"
+    },
+    "facing=south,powered=false": {
+      "model": "selectivepowers:block/item_sentinel",
+      "y": 90
+    },
+    "facing=west,powered=false": {
+      "model": "selectivepowers:block/item_sentinel",
+      "y": 180
+    },
+
+    "facing=north,powered=true": {
+      "model": "selectivepowers:block/item_sentinel_on",
+      "y": 270
+    },
+    "facing=east,powered=true": {
+      "model": "selectivepowers:block/item_sentinel_on"
+    },
+    "facing=south,powered=true": {
+      "model": "selectivepowers:block/item_sentinel_on",
+      "y": 90
+    },
+    "facing=west,powered=true": {
+      "model": "selectivepowers:block/item_sentinel_on",
+      "y": 180
+    }
+  }
+}

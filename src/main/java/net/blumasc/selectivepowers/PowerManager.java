@@ -55,6 +55,7 @@ public class PowerManager extends SavedData {
         // Counters
         public int booksCrafted = 0;
         public int ascensionCounter = 0;
+        public int placedRedstone = 0;
 
         // Flags
         public boolean enteredLava = false;
@@ -87,6 +88,8 @@ public class PowerManager extends SavedData {
     public static final String LIGHT_POWER = "light";
     public static final String YELLOW_POWER = "yellow";
     public static final String MOON_POWER = "moon";
+    public static final String WATER_POWER = "water";
+    public static final String MACHINE_POWER = "machine";
 
     public static final String NO_POWER = "none";
 
@@ -102,6 +105,8 @@ public class PowerManager extends SavedData {
             ANIMAL_POWER,
             TRUTH_POWER,
             LIGHT_POWER,
+            WATER_POWER,
+            MACHINE_POWER,
             YELLOW_POWER,
             MOON_POWER
             );
@@ -132,6 +137,7 @@ public class PowerManager extends SavedData {
             pTag.putInt("skylightTimer", p.skylightTimer);
             pTag.putInt("ascensionCounter", p.ascensionCounter);
             pTag.putInt("booksCrafted", p.booksCrafted);
+            pTag.putInt("placedRedstone", p.placedRedstone);
             pTag.putBoolean("enteredLava", p.enteredLava);
             pTag.putBoolean("enteredPowderedSnow", p.enteredPowderedSnow);
             pTag.putInt("abilityTimer", p.abilityTimer);
@@ -181,6 +187,11 @@ public class PowerManager extends SavedData {
                 p.enteredPowderedSnow = pTag.getBoolean("enteredPowderedSnow");
                 p.abilityTimer = pTag.getInt("abilityTimer");
                 p.ultTimer = pTag.getInt("ultTimer");
+                if(pTag.contains("placedRedstone")){
+                    p.placedRedstone = pTag.getInt("placedRedstone");
+                }else{
+                    p.placedRedstone = 0;
+                }
 
                 pm.playerProgress.put(playerUUID, p);
             }

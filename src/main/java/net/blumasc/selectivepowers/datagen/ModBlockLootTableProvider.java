@@ -63,11 +63,13 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         dropSelf(SelectivepowersBlocks.CHISLED_SOLAR_BRICKS.get());
         dropSelf(SelectivepowersBlocks.CRACKED_SOLAR_BRICKS.get());
         dropSelf(SelectivepowersBlocks.OBSIDIAN_DUST.get());
+        dropSelf(SelectivepowersBlocks.ITEM_SENTINEL.get());
         dropSelf(SelectivepowersBlocks.DRACONIC_BEACON.get());
         dropSelf(SelectivepowersBlocks.PROTECTION_EFFIGY_BLOCK.get());
         dropSelf(SelectivepowersBlocks.GOLDEN_GOAT.get());
         dropSelf(SelectivepowersBlocks.TESSLA_COIL.get());
         dropSelf(SelectivepowersBlocks.SACRIFICIAL_ALTAR_BLOCK.get());
+        dropSelf(SelectivepowersBlocks.CALIBRATED_PRESSURE_PLATE.get());
         add(SelectivepowersBlocks.ROSE_VINES.get(),
          block -> createSilkTouchOnlyTable(SelectivepowersBlocks.ROSE_VINES.get()));
         dropOther(SelectivepowersBlocks.M_SOLAR_BLOCK.get(), SelectivepowersBlocks.SOLAR_BLOCK);

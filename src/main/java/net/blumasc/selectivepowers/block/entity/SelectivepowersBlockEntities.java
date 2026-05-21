@@ -38,6 +38,11 @@ public class SelectivepowersBlockEntities {
                     SacrificeAltarBlockEntity::new, SelectivepowersBlocks.SACRIFICIAL_ALTAR_BLOCK.get()
             ).build(null));
 
+    public static final Supplier<BlockEntityType<ItemSentinelBlockEntity>> ITEM_SENTINEL_BE=
+            BLOCK_ENTITIES.register("item_sentinel_be", () -> BlockEntityType.Builder.of(
+                    ItemSentinelBlockEntity::new, SelectivepowersBlocks.ITEM_SENTINEL.get()
+            ).build(null));
+
 
 
     public static void register(IEventBus bus){

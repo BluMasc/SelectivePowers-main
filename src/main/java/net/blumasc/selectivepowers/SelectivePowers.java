@@ -3,6 +3,7 @@ package net.blumasc.selectivepowers;
 import com.mojang.authlib.GameProfile;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.arguments.StringArgumentType;
+import net.blumasc.blubasics.events.RenderEffectSyncRegistry;
 import net.blumasc.selectivepowers.block.SelectivepowersBlocks;
 import net.blumasc.selectivepowers.block.entity.SelectivepowersBlockEntities;
 import net.blumasc.selectivepowers.component.ModDataComponentTypes;
@@ -25,6 +26,7 @@ import net.minecraft.commands.SharedSuggestionProvider;
 import net.minecraft.commands.arguments.EntityArgument;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.dispenser.ProjectileDispenseBehavior;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -44,6 +46,8 @@ import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.common.NeoForge;
+
+import java.util.UUID;
 
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
 @Mod(SelectivePowers.MODID)
@@ -105,6 +109,9 @@ public class SelectivePowers {
                 SelectivepowersItems.BURNING_FEATHER.get(),
                 new ProjectileDispenseBehavior(SelectivepowersItems.BURNING_FEATHER.asItem())
         );
+        event.enqueueWork(() -> {
+            RenderEffectSyncRegistry.register( BuiltInRegistries.MOB_EFFECT.getKey(SelectivepowersEffects.BUBBLE_EFFECT.value()));
+        });
     }
 
 
@@ -146,6 +153,17 @@ public class SelectivePowers {
                         )
                         .then(Commands.literal("list")
                                 .executes(context -> listPowers(context.getSource()))
+                        )
+                        .then(Commands.literal("clear")
+                                .then(Commands.argument("power", StringArgumentType.word())
+                                        .suggests((context, builder) -> {
+                                            return SharedSuggestionProvider.suggest(PowerManager.getPowerNames(), builder);
+                                        })
+                                        .executes(context -> {
+                                            String power = StringArgumentType.getString(context, "power");
+                                            return clearPower(context.getSource(), power);
+                                        })
+                                )
                         )
         );
         event.getDispatcher().register(
@@ -195,6 +213,24 @@ public class SelectivePowers {
         manager.setDirty();
         manager.syncToAll((ServerLevel) player.level());
         source.sendSuccess(() -> Component.literal("Removed power " + power + " from " + player.getName().getString()), true);
+        return 1;
+    }
+
+    private static int clearPower(CommandSourceStack source, String power) {
+        ServerLevel level = source.getLevel();
+        PowerManager manager = PowerManager.get(level);
+
+        UUID player = manager.getPlayerWithPower(power);
+        if (power == null) {
+            source.sendFailure(Component.literal("No Player has that power!"));
+            return 0;
+        }
+
+        manager.powerAssignments.remove(power);
+        manager.removeProgress(player);
+        manager.setDirty();
+        manager.syncToAll((ServerLevel) level);
+        source.sendSuccess(() -> Component.literal("Removed power " + power + " from UUID " + player), true);
         return 1;
     }
 

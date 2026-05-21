@@ -88,7 +88,8 @@ public class ModItemTagProvider extends ItemTagsProvider {
                 .add(SelectivepowersItems.FLAMING_HAMMER.get())
                 .add(SelectivepowersItems.DRAGON_SLEEVES.get())
                 .add(SelectivepowersItems.ICE_SHIELD.get())
-                .add(SelectivepowersItems.PERMAFROST_SHIELD.get());
+                .add(SelectivepowersItems.PERMAFROST_SHIELD.get())
+                .add(SelectivepowersItems.ANCHOR.get());
 
         tag(ItemTags.WEAPON_ENCHANTABLE)
                 .add(SelectivepowersItems.SUN_SLICER.get())
@@ -154,7 +155,10 @@ public class ModItemTagProvider extends ItemTagsProvider {
                 .add(SelectivepowersItems.RUNE.get())
                 .add(SelectivepowersItems.WARDEN_HORNS.get())
                 .add(SelectivepowersItems.WOLF_EARS.get())
-                .add(SelectivepowersItems.WOLF_TAIL.get());
+                .add(SelectivepowersItems.WOLF_TAIL.get())
+                .add(SelectivepowersItems.PIRATE_HAT.get())
+                .add(SelectivepowersItems.BUBBLE.get())
+                .add(SelectivepowersItems.NAUTIC_BELT.get());
 
         tag(ModTags.Items.CROW_TAMING_ITEM)
                 .add(Items.GOLD_NUGGET)

@@ -8,6 +8,7 @@ import net.blumasc.selectivepowers.item.custom.*;
 import net.blumasc.selectivepowers.sound.SelectivepowersSounds;
 import net.minecraft.world.item.*;
 import net.neoforged.bus.api.IEventBus;
+import net.blumasc.blubasics.compat.BarchedCompat;
 import net.neoforged.neoforge.common.DeferredSpawnEggItem;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -61,7 +62,27 @@ public class SelectivepowersItems {
             () -> new SunSlicerItem(new Item.Properties().attributes(SwordItem.createAttributes(Tiers.NETHERITE, 3, -2.4F))));
 
     public static final DeferredItem<SwordItem> MOONLIGHT_GLAIVE = ITEMS.register("moonlight_glaive",
-            () -> new MoonGlaiveItem(new Item.Properties().attributes(SwordItem.createAttributes(Tiers.NETHERITE, 3, -2.4F))));
+            () -> {
+                if (BarchedCompat.isLoaded()) {
+                    Item.Properties props = new Item.Properties()
+                            .attributes(BarchedCompat.buildSpearAttributes(Tiers.NETHERITE, 3.0f, -2.4f));
+                    props = BarchedCompat.applySpearComponent(props, Tiers.NETHERITE,
+                            1.15F,  // swingSeconds
+                            1.20F,  // kineticDamageMultiplier
+                            0.40F,  // delaySeconds
+                            2.5F,   // damageCondDurationSeconds
+                            7.0F,   // damageCondMinSpeed
+                            5.5F,   // knockbackCondDurationSeconds
+                            5.1F,   // knockbackCondMinSpeed
+                            8.75F,  // dismountCondDurationSeconds
+                            4.6F    // dismountCondMinRelativeSpeed
+                    );
+                    return new MoonGlaiveItem(props);
+                } else {
+                    return new SwordItem(Tiers.NETHERITE, new Item.Properties()
+                            .attributes(SwordItem.createAttributes(Tiers.NETHERITE, 3, -2.4f)));
+                }
+            });
 
     public static final DeferredItem<Item> MOON_SQUID_SPAWN_EGG = ITEMS.register("moon_squid_spawn_egg",
             () -> new DeferredSpawnEggItem(SelectivepowersEntities.MOON_SQUID, 0x334697, 0x9caefa, new Item.Properties()));
@@ -104,6 +125,9 @@ public class SelectivepowersItems {
             () -> new CorruptingArrowItem(new Item.Properties()));
     public static final DeferredItem<Item> BEAM_ARROW = ITEMS.register("beam_arrow",
             () -> new LightBeamArrowItem(new Item.Properties()));
+
+    public static final DeferredItem<Item> WHIRL_PEARL = ITEMS.register("whirl_pearl",
+            () -> new WhirlpoolItem(new Item.Properties().stacksTo(16)));
 
     public static final DeferredItem<Item> SOLAR_BRICK = ITEMS.register("solar_brick",
             () -> new Item(new Item.Properties()));
@@ -153,6 +177,12 @@ public class SelectivepowersItems {
 
     public static final DeferredItem<Item> DRINKING_HORN = ITEMS.register("drinking_horn",
             () -> new DrinkingHornItem(new Item.Properties().stacksTo(1).food(SelectiveFoodProperties.DRINKING_HORN)));
+
+    public static final DeferredItem<Item> ANCHOR = ITEMS.register("anchor",
+            () -> new AnchorBladeItem(Tiers.DIAMOND, new Item.Properties().attributes(ShovelItem.createAttributes(Tiers.DIAMOND , 1.5F, -3.0F)).stacksTo(1)));
+
+    public static final DeferredItem<Item> THROWN_ANCHOR = ITEMS.register("thrown_anchor",
+            () -> new ThrownAnchorBladeItem(new Item.Properties().stacksTo(1)));
 
     public static final DeferredItem<Item> LORE_SCROLL = ITEMS.register("lore_scroll",
             () -> new LoreScrollItem(new Item.Properties().stacksTo(1)));
@@ -256,6 +286,15 @@ public class SelectivepowersItems {
     public static final DeferredItem<CurioItem> SHOULDER_LEAF = ITEMS.register("shoulder_leaf",
             () -> new CurioItem(new Item.Properties().stacksTo(1)));
 
+    public static final DeferredItem<CurioItem> PIRATE_HAT = ITEMS.register("pirate_hat",
+            () -> new CurioItem(new Item.Properties().stacksTo(1)));
+
+    public static final DeferredItem<CurioItem> BUBBLE = ITEMS.register("bubble",
+            () -> new CurioItem(new Item.Properties().stacksTo(1)));
+
+    public static final DeferredItem<CurioItem> NAUTIC_BELT = ITEMS.register("nautic_belt",
+            () -> new CurioItem(new Item.Properties().stacksTo(1)));
+
     public static final DeferredItem<Item> MOON_GLAIVE_3D = ITEMS.register("moon_glaive_3d",
             () -> new Item(new Item.Properties()));
 
@@ -266,6 +305,9 @@ public class SelectivepowersItems {
             () -> new Item(new Item.Properties()));
 
     public static final DeferredItem<Item> SUN_SLICER_3D = ITEMS.register("sun_slicer_3d",
+            () -> new Item(new Item.Properties()));
+
+    public static final DeferredItem<Item> ANCHOR_3D = ITEMS.register("anchor_3d",
             () -> new Item(new Item.Properties()));
 
     public static void register(IEventBus eventBus){

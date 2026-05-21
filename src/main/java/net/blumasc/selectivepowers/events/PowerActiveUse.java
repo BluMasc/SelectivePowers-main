@@ -11,6 +11,7 @@ import net.blumasc.selectivepowers.effect.SelectivepowersEffects;
 import net.blumasc.selectivepowers.entity.CircleVariant;
 import net.blumasc.selectivepowers.entity.SelectivepowersEntities;
 import net.blumasc.selectivepowers.entity.custom.projectile.MagicCircleEntity;
+import net.blumasc.selectivepowers.entity.custom.projectile.WhirlpoolEntity;
 import net.blumasc.selectivepowers.item.SelectivepowersItems;
 import net.blumasc.selectivepowers.managers.SunBattleManager;
 import net.blumasc.selectivepowers.sound.SelectivepowersSounds;
@@ -25,6 +26,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.tags.EntityTypeTags;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -109,8 +111,21 @@ public class PowerActiveUse {
         }else if(powerOfPlayer.equals(PowerManager.MOON_POWER))
         {
             return useMoonPower(p,sl,ult);
+        }else if(powerOfPlayer.equals(PowerManager.WATER_POWER))
+        {
+            return useWaterPower(p,sl,ult);
         }
         return false;
+    }
+
+    private static boolean useWaterPower(Player p, ServerLevel sl, boolean ult) {
+        if(ult){
+            return spawnWhirlpool(p, sl);
+        }else
+        {
+            applyEffectToAllAroundIncludingPlayer(p, 64, SelectivepowersEffects.BUBBLE_EFFECT, 60*20, 1);
+        }
+        return true;
     }
 
     private static boolean useYellowPower(Player p, ServerLevel sl, boolean ult) {
@@ -530,6 +545,15 @@ public class PowerActiveUse {
             target.addEffect(new MobEffectInstance(effectHolder, duration, amplifier));
         }
     }
+    public static void applyEffectToAllAroundIncludingPlayer(Player player, double radius, Holder<MobEffect> effectHolder, int duration, int amplifier) {
+        if (!(player.level() instanceof ServerLevel level)) return;
+
+        for (Entity entity : level.getEntities(player, player.getBoundingBox().inflate(radius))) {
+            if (!(entity instanceof LivingEntity target)) continue;
+
+            target.addEffect(new MobEffectInstance(effectHolder, duration, amplifier));
+        }
+    }
 
     public static void applyRandomEffects(Player player, double radius, List<? extends String> effectNames) {
         if (!(player.level() instanceof ServerLevel level)) return;
@@ -649,6 +673,28 @@ public class PowerActiveUse {
                 }
             }
         }
+    }
+
+    public static boolean spawnWhirlpool(Player player, ServerLevel sl){
+        BlockPos look = getLookTarget(player, 64);
+        if(look==null) return false;
+        WhirlpoolEntity pool = SelectivepowersEntities.WHIRLPOOL.get().create(sl);
+        if (pool == null) {
+            return false;
+        }
+
+        pool.moveTo(
+                look.getX() + 0.5,
+                look.getY()+1,
+                look.getZ() + 0.5,
+                0f,
+                0
+        );
+        pool.setSize(5);
+        pool.setLifeTicks(20*60);
+
+        sl.addFreshEntity(pool);
+        return true;
     }
 
     public static BlockPos getLookTarget(Player player, double maxDistance) {

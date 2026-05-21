@@ -86,6 +86,12 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(SelectivepowersItems.GLOWING_EYES.get());
         basicItem(SelectivepowersItems.FACE_PAINT.get());
         basicItem(SelectivepowersItems.HALO.get());
+        basicItem(SelectivepowersItems.WHIRL_PEARL.get());
+        basicItem(SelectivepowersItems.PIRATE_HAT.get());
+        basicItem(SelectivepowersItems.BUBBLE.get());
+        basicItem(SelectivepowersItems.NAUTIC_BELT.get());
+        basicItem(SelectivepowersBlocks.ITEM_SENTINEL.asItem());
+        handheldItem(SelectivepowersItems.THROWN_ANCHOR.get());
         handheldItem(SelectivepowersItems.ELEMENTAL_GUN.get());
         handheldItem(SelectivepowersItems.FLAMING_HAMMER.get());
         handheldItem(SelectivepowersItems.PROSPECTORS_SHOVEL.get());

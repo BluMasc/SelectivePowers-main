@@ -3,6 +3,7 @@ package net.blumasc.selectivepowers.entity;
 import net.blumasc.selectivepowers.SelectivePowers;
 import net.blumasc.selectivepowers.entity.custom.*;
 import net.blumasc.selectivepowers.entity.custom.projectile.*;
+import net.blumasc.selectivepowers.item.custom.AnchorBladeItem;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
@@ -41,6 +42,10 @@ public class SelectivepowersEntities {
             ENTITY_TYPES.register("magic_circle", () -> EntityType.Builder.<MagicCircleEntity>of(MagicCircleEntity::new, MobCategory.MISC)
                     .sized(3.0f, 0.1f).build("magic_circle"));
 
+    public static final Supplier<EntityType<WhirlpoolEntity>> WHIRLPOOL =
+            ENTITY_TYPES.register("whirlpool", () -> EntityType.Builder.<WhirlpoolEntity>of(WhirlpoolEntity::new, MobCategory.MISC)
+                    .sized(10.0f, 0.1f).build("whirlpool"));
+
     public static final Supplier<EntityType<ThrownFlamingEggEntity>> FLAMING_EGG =
             ENTITY_TYPES.register("flaming_egg", () -> EntityType.Builder.<ThrownFlamingEggEntity>of(ThrownFlamingEggEntity::new, MobCategory.MISC)
                     .sized(0.3f,0.3f).build("flaming_egg"));
@@ -78,6 +83,11 @@ public class SelectivepowersEntities {
                             .updateInterval(1)
                             .build("solid_void_pearl")
             );
+
+    public static final Supplier<EntityType<AnchorEntity>> ANCHOR =
+            ENTITY_TYPES.register("anchor", () -> EntityType.Builder.<AnchorEntity>of(AnchorEntity::new, MobCategory.MISC)
+                    .sized(0.4f, 0.4f).clientTrackingRange(128)
+                    .updateInterval(1).build("anchor"));
 
 
 

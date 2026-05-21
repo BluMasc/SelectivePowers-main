@@ -1,0 +1,10 @@
+{
+  "type": "selectivepowers:altar",
+  "ingredient": {
+    "item": "minecraft:ender_pearl"
+  },
+  "night": true,
+  "result": {
+    "id": "selectivepowers:whirl_pearl"
+  }
+}

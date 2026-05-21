@@ -13,11 +13,13 @@ import net.blumasc.selectivepowers.entity.custom.YellowKingEntity;
 import net.blumasc.selectivepowers.entity.custom.projectile.MagicCircleEntity;
 import net.blumasc.selectivepowers.entity.helper.YellowFeverHelper;
 import net.blumasc.selectivepowers.item.SelectivepowersItems;
+import net.blumasc.selectivepowers.item.custom.AnchorBladeItem;
 import net.blumasc.selectivepowers.item.custom.FrostShieldItem;
 import net.blumasc.selectivepowers.item.custom.ProspectorsShovelItem;
 import net.blumasc.selectivepowers.item.custom.SunSlicerItem;
 import net.blumasc.selectivepowers.managers.*;
 import net.blumasc.selectivepowers.mixin.MobEffectAccessor;
+import net.blumasc.selectivepowers.network.AbilityTimerSyncPacket;
 import net.blumasc.selectivepowers.util.ModTags;
 import net.blumasc.selectivepowers.worldgen.ModDimensions;
 import net.minecraft.core.BlockPos;
@@ -41,10 +43,7 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
-import net.minecraft.world.effect.MobEffect;
-import net.minecraft.world.effect.MobEffectCategory;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
@@ -55,6 +54,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.GameType;
 import net.minecraft.world.level.Level;
@@ -82,6 +82,7 @@ import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 import net.neoforged.neoforge.event.level.BlockEvent;
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
+import net.neoforged.neoforge.network.PacketDistributor;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import top.theillusivec4.curios.api.CuriosApi;
@@ -351,44 +352,12 @@ public class PowerUseEvents {
     @SubscribeEvent
     public static void onTimerTicking(PlayerTickEvent.Pre event) {
 
-        LivingEntity e = event.getEntity();
-        if(e.level() instanceof ServerLevel sl) {
+        Player e = event.getEntity();
+        if(e.tickCount%20!=0) return;
+        if(e.level() instanceof ServerLevel sl && e instanceof ServerPlayer sp) {
             PowerManager pm = PowerManager.get(sl);
             PowerManager.PlayerProgress progress = pm.getProgress(e.getUUID());
-            if(progress.ultTimer>0)
-            {
-                MobEffectInstance current = e.getEffect(SelectivepowersEffects.ULT_TIMER);
-                if (current == null || current.getDuration() != progress.ultTimer) {
-                    e.addEffect(new MobEffectInstance(
-                            SelectivepowersEffects.ULT_TIMER,
-                            progress.ultTimer,
-                            0,
-                            false,
-                            false,
-                            true
-                    ));
-                }
-            }else
-            {
-                e.removeEffect(SelectivepowersEffects.ULT_TIMER);
-            }
-            if(progress.abilityTimer>0)
-            {
-                    MobEffectInstance current = e.getEffect(SelectivepowersEffects.ABILITY_TIMER);
-                    if (current == null || current.getDuration() != progress.abilityTimer) {
-                        e.addEffect(new MobEffectInstance(
-                                SelectivepowersEffects.ABILITY_TIMER,
-                                progress.abilityTimer,
-                                0,
-                                false,
-                                false,
-                                true
-                        ));
-                    }
-            }else
-            {
-                e.removeEffect(SelectivepowersEffects.ABILITY_TIMER);
-            }
+            PacketDistributor.sendToPlayer(sp, new AbilityTimerSyncPacket(progress.ultTimer, progress.abilityTimer));
         }
     }
 
@@ -1138,7 +1107,64 @@ public class PowerUseEvents {
                 target.getZ()
         );
     }
+    @SubscribeEvent
+    public static void onBreathe(LivingBreatheEvent event) {
 
+        LivingEntity entity = event.getEntity();
 
+        if (!entity.hasEffect(SelectivepowersEffects.BUBBLE_EFFECT)) {
+            return;
+        }
+
+        if (MobEffectUtil.hasWaterBreathing(entity))
+            return;
+
+        if (entity instanceof Player){
+            if(entity.level() instanceof ServerLevel sl){
+                PowerManager pm = PowerManager.get(sl);
+                if(pm.getPowerOfPlayer(entity.getUUID()).equals(PowerManager.WATER_POWER)){
+                    event.setCanBreathe(true);
+                    return;
+                }
+            }
+        }
+        boolean originalCanBreathe = event.canBreathe();
+
+        event.setCanBreathe(!originalCanBreathe);
+    }
+
+    @SubscribeEvent
+    public static void onLivingAnchorDamage(LivingDamageEvent.Pre event) {
+        LivingEntity target = event.getEntity();
+        DamageSource source = event.getSource();
+
+        if (!(source.getEntity() instanceof Player attacker)) return;
+
+        ItemStack held = attacker.getMainHandItem();
+        if (!(held.getItem() instanceof AnchorBladeItem)) return;
+
+        float bonus = AnchorBladeItem.getOxygenBonus(target);
+        if (bonus > 0) {
+            event.setNewDamage(event.getNewDamage() + bonus);
+        }
+    }
+
+    @SubscribeEvent
+    public static void onMachineKill(LivingDropsEvent event) {
+        DamageSource d = event.getSource();
+        if (d == null) return;
+        Entity e = d.getEntity();
+        if (e == null) return;
+        if (!(e.level() instanceof ServerLevel sl)) return;
+        if(e.getRandom().nextFloat()>0.15) return;
+        PowerManager pm = PowerManager.get(sl);
+        if(!pm.getPowerOfPlayer(e.getUUID()).equals(PowerManager.MACHINE_POWER)) return;
+        ItemEntity newEntity = new ItemEntity(
+                e.level(),
+                event.getEntity().getX(), event.getEntity().getY(), event.getEntity().getZ(),
+                Items.REDSTONE.getDefaultInstance().copyWithCount(e.getRandom().nextInt(3)+1)
+        );
+        event.getDrops().add(newEntity);
+    }
 
 }

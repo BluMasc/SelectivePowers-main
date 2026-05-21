@@ -14,6 +14,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.EntityTypeTags;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.TamableAnimal;
@@ -711,5 +712,119 @@ public class PowerApplyingEvents {
             }
         }
 
+    }
+    @SubscribeEvent
+    public static void onPlayerDrownDamaged(LivingDamageEvent.Post event) {
+        if (!(event.getEntity() instanceof Player player)) return;
+        if (!(player.level() instanceof ServerLevel sl)) return;
+
+        DamageSource source = event.getSource();
+        if (source == null) return;
+        if (!source.is(DamageTypes.DROWN)) return;
+
+        PowerManager pm = PowerManager.get(sl);
+
+        if (pm.doesPlayerHaveAnyPower(player.getUUID())) return;
+        if (!pm.isPowerFree(PowerManager.WATER_POWER)) return;
+
+        pm.assignPower(PowerManager.WATER_POWER, player);
+
+        player.sendSystemMessage(
+                Component.translatable(
+                        "selectivepowers.messages.offer." + PowerManager.WATER_POWER,
+                        Component.translatable("selectivepowers.name." + PowerManager.WATER_POWER)
+                )
+        );
+
+        pm.setDirty();
+    }
+
+    @SubscribeEvent
+    public static void onWaterPowerSwimming(PlayerTickEvent.Post event) {
+        Player player = event.getEntity();
+        if (player.level().isClientSide()) return;
+        if (!(player.level() instanceof ServerLevel sl)) return;
+
+        PowerManager pm = PowerManager.get(sl);
+
+        if (!pm.getPowerOfPlayer(player.getUUID()).equals(PowerManager.WATER_POWER)) return;
+        if (!pm.getPowerLevelOfPlayer(player.getUUID()).equals(PowerManager.PowerLevel.BOUND)) return;
+        if (!player.isSwimming()) return;
+
+        PowerManager.PlayerProgress progress = pm.getProgress(player.getUUID());
+
+        progress.ascensionCounter++;
+
+        if (progress.ascensionCounter >= 10000) {
+            pm.upgradePower(PowerManager.WATER_POWER);
+
+            player.sendSystemMessage(
+                    Component.translatable(
+                            "selectivepowers.messages.awaking." + PowerManager.WATER_POWER,
+                            Component.translatable("selectivepowers.name." + PowerManager.WATER_POWER)
+                    )
+            );
+        }
+        pm.setDirty();
+    }
+    @SubscribeEvent
+    public static void onRedstonePlaced(BlockEvent.EntityPlaceEvent event) {
+        if (!(event.getEntity() instanceof ServerPlayer player)) return;
+        if (player.level().isClientSide()) return;
+        if (!(player.level() instanceof ServerLevel sl)) return;
+
+        BlockState state = event.getPlacedBlock();
+        if (!state.is(Blocks.REDSTONE_WIRE)) return;
+
+        PowerManager pm = PowerManager.get(sl);
+
+        if (pm.doesPlayerHaveAnyPower(player.getUUID())) return;
+        if (!pm.isPowerFree(PowerManager.MACHINE_POWER)) return;
+
+        PowerManager.PlayerProgress progress = pm.getProgress(player.getUUID());
+
+        progress.placedRedstone++;
+
+        if (progress.placedRedstone >= 64) {
+            pm.assignPower(PowerManager.MACHINE_POWER, player);
+
+            player.sendSystemMessage(
+                    Component.translatable(
+                            "selectivepowers.messages.offer." + PowerManager.MACHINE_POWER,
+                            Component.translatable("selectivepowers.name." + PowerManager.MACHINE_POWER)
+                    )
+            );
+
+            pm.setDirty();
+        }
+    }
+    @SubscribeEvent
+    public static void onRedstoneActivatorUsed(PlayerInteractEvent.RightClickBlock event) {
+        Player player = event.getEntity();
+        if (!(player.level() instanceof ServerLevel sl)) return;
+
+        PowerManager pm = PowerManager.get(sl);
+
+        if (!pm.getPowerOfPlayer(player.getUUID()).equals(PowerManager.MACHINE_POWER)) return;
+        if (!pm.getPowerLevelOfPlayer(player.getUUID()).equals(PowerManager.PowerLevel.BOUND)) return;
+
+        BlockState state = player.level().getBlockState(event.getPos());
+
+        if (!state.is(ModTags.Blocks.REDSTONE_ACTIVATOR)) return;
+
+        PowerManager.PlayerProgress progress = pm.getProgress(player.getUUID());
+
+        progress.ascensionCounter++;
+
+        if (progress.ascensionCounter >= 128) {
+            pm.upgradePower(PowerManager.MACHINE_POWER);
+
+            player.sendSystemMessage(
+                    Component.translatable(
+                            "selectivepowers.messages.awaking." + PowerManager.MACHINE_POWER,
+                            Component.translatable("selectivepowers.name." + PowerManager.MACHINE_POWER)
+                    )
+            );
+        }
     }
 }
