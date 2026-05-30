@@ -115,7 +115,8 @@ public class ModItemTagProvider extends ItemTagsProvider {
 
         tag(CuriosTags.HEAD)
                 .add(SelectivepowersItems.FAKE_CROWN.get())
-                .add(SelectivepowersItems.TRUE_CROWN.get());
+                .add(SelectivepowersItems.TRUE_CROWN.get())
+                .add(SelectivepowersItems.REDSTONE_VIZER.get());
         tag(CuriosTags.NECKLACE)
                 .add(SelectivepowersItems.MOON_PENDANT.get());
         tag(CuriosTags.BODY)
@@ -158,7 +159,10 @@ public class ModItemTagProvider extends ItemTagsProvider {
                 .add(SelectivepowersItems.WOLF_TAIL.get())
                 .add(SelectivepowersItems.PIRATE_HAT.get())
                 .add(SelectivepowersItems.BUBBLE.get())
-                .add(SelectivepowersItems.NAUTIC_BELT.get());
+                .add(SelectivepowersItems.NAUTIC_BELT.get())
+                .add(SelectivepowersItems.PISTON_ARM.get())
+                .add(SelectivepowersItems.POCKET_REDSTONE.get())
+                .add(SelectivepowersItems.WORK_OVERALL.get());
 
         tag(ModTags.Items.CROW_TAMING_ITEM)
                 .add(Items.GOLD_NUGGET)

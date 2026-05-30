@@ -7,8 +7,16 @@
     }
   ],
   "input_entity": "minecraft:hoglin",
-  "input_spawn_eggs": [],
+  "input_spawn_eggs": [
+    {
+      "item": "minecraft:hoglin_spawn_egg"
+    }
+  ],
   "output_entity": "blubasics:chimera",
-  "output_entity_nbt": [],
-  "output_spawn_eggs": []
+  "output_entity_nbt": {},
+  "output_spawn_eggs": [
+    {
+      "item": "blubasics:chimera_spawn_egg"
+    }
+  ]
 }

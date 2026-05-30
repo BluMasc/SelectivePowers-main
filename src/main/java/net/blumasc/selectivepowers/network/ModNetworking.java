@@ -1,7 +1,6 @@
 package net.blumasc.selectivepowers.network;
 
 import net.blumasc.selectivepowers.SelectivePowers;
-import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 
 public class ModNetworking {
 
@@ -18,10 +17,22 @@ public class ModNetworking {
                 AbilityTimerSyncPacket::handle
         );
 
+        event.registrar(SelectivePowers.MODID).playToClient(
+                LeverVisionSyncPacket.TYPE,
+                LeverVisionSyncPacket.CODEC,
+                LeverVisionSyncPacket::handle
+        );
+
         event.registrar(SelectivePowers.MODID).playToServer(
                 ActivateAbilityPacket.TYPE,
                 ActivateAbilityPacket.CODEC,
                 ActivateAbilityPacket::handle
+        );
+
+        event.registrar(SelectivePowers.MODID).playToServer(
+                LeftClickPayload.TYPE,
+                LeftClickPayload.STREAM_CODEC,
+                LeftClickPayload::handle
         );
     }
 }

@@ -86,6 +86,9 @@ public class SelectivepowersEventBusEvents {
         event.registerLayerDefinition(AnchorModel.LAYER_LOCATION, AnchorModel::createBodyLayer);
         event.registerLayerDefinition(PirateHatModel.LAYER_LOCATION, PirateHatModel::createBodyLayer);
         event.registerLayerDefinition(NauticBeltModel.LAYER_LOCATION, NauticBeltModel::createBodyLayer);
+        event.registerLayerDefinition(RedstoneVizerModel.LAYER_LOCATION, RedstoneVizerModel::createBodyLayer);
+        event.registerLayerDefinition(ArmPistonModel.LAYER_LOCATION, ArmPistonModel::createBodyLayer);
+        event.registerLayerDefinition(WorkOverallModel.LAYER_LOCATION, WorkOverallModel::createBodyLayer);
 }
 
     @SubscribeEvent

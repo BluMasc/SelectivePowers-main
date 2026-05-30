@@ -12,6 +12,7 @@ public class ClientPowerData {
     public static UUID dragonOwner;
     public static UUID truthOwner;
     public static PowerManager.PowerLevel truthLevel = PowerManager.PowerLevel.FREE;
+    public static boolean shouldDisplayLeverVision=false;
 
     public static void clear() {
         moonOwner = null;
@@ -19,6 +20,7 @@ public class ClientPowerData {
         darkOwner = null;
         dragonOwner = null;
         truthOwner = null;
+        shouldDisplayLeverVision=false;
         truthLevel = PowerManager.PowerLevel.FREE;
     }
 }

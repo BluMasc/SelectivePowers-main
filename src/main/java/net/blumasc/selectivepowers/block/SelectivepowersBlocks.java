@@ -9,6 +9,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
+import net.minecraft.world.level.material.PushReaction;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -141,6 +142,9 @@ public class SelectivepowersBlocks {
 
     public static final DeferredBlock<ItemSentinelBlock> ITEM_SENTINEL = registerBlock("item_sentinel",
             () -> new ItemSentinelBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.REPEATER).noOcclusion()));
+
+    public static final DeferredBlock<PhaseBlock> SOLIDIFYING_GRATE = registerBlock("solidifying_grate",
+            () -> new PhaseBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_GRATE).noOcclusion().pushReaction(PushReaction.NORMAL)));
 
     public static final DeferredBlock<SacrificialAltarBlock> SACRIFICIAL_ALTAR_BLOCK = registerBlock("decrepit_sacrifical_altar",
             () -> new SacrificialAltarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.ANDESITE).noOcclusion().lightLevel((b) -> 3)));

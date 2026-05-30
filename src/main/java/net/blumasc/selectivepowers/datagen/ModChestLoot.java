@@ -600,9 +600,9 @@ public class ModChestLoot implements LootTableSubProvider {
                 LootTable.lootTable()
                         .withPool(LootPool.lootPool()
                                 .setRolls(UniformGenerator.between(1.0F, 1.0F))
-                                //.add(LootItem.lootTableItem(SelectivepowersItems.PIRATE_HAT).setWeight(5))
-                                //.add(LootItem.lootTableItem(SelectivepowersItems.NAUTIC_BELT).setWeight(5))
-                                //.add(LootItem.lootTableItem(SelectivepowersItems.BUBBLE).setWeight(5))
+                                .add(LootItem.lootTableItem(SelectivepowersItems.WORK_OVERALL).setWeight(5))
+                                .add(LootItem.lootTableItem(SelectivepowersItems.PISTON_ARM).setWeight(5))
+                                .add(LootItem.lootTableItem(SelectivepowersItems.POCKET_REDSTONE).setWeight(5))
                         )
         );
 
@@ -611,10 +611,10 @@ public class ModChestLoot implements LootTableSubProvider {
                 LootTable.lootTable()
                         .withPool(LootPool.lootPool()
                                 .setRolls(UniformGenerator.between(1.0F, 1.0F))
-                                .add(LootItem.lootTableItem(Items.PISTON).setWeight(2))
+                                .add(LootItem.lootTableItem(Items.QUARTZ).setWeight(2))
                                 .add(LootItem.lootTableItem(Items.SMOOTH_STONE).setWeight(2))
-                                //.add(LootItem.lootTableItem(SelectivepowersItems.WHIRL_PEARL).setWeight(7))
-                                //.add(LootItem.lootTableItem(SelectivepowersItems.ANCHOR).setWeight(6))
+                                .add(LootItem.lootTableItem(SelectivepowersItems.WIRELESS_LEVER).setWeight(7))
+                                .add(LootItem.lootTableItem(SelectivepowersItems.REDSTONE_VIZER).setWeight(4))
                         )
         );
 
@@ -670,6 +670,19 @@ public class ModChestLoot implements LootTableSubProvider {
                                 .add(NestedLootTable.lootTableReference(WATER_POWER_COMMON_LOOT_TABLE).setWeight(30))
                                 .add(NestedLootTable.lootTableReference(WATER_POWER_RARE_LOOT_TABLE).setWeight(3))
                                 .add(NestedLootTable.lootTableReference(WATER_POWER_CURIO_LOOT_TABLE).setWeight(30))
+                                .add(NestedLootTable.lootTableReference(OLD_ALTAR_CURIO_LOOT_TABLE).setWeight(17))
+                                .add(NestedLootTable.lootTableReference(FRESH_ALTAR_LOOT_TABLE).setWeight(20))
+                        )
+        );
+
+        consumer.accept(
+                MACHINE_POWER_LOOT_TABLE,
+                LootTable.lootTable()
+                        .withPool(LootPool.lootPool()
+                                .setRolls(UniformGenerator.between(1.0F, 1.0F))
+                                .add(NestedLootTable.lootTableReference(MACHINE_POWER_COMMON_LOOT_TABLE).setWeight(30))
+                                .add(NestedLootTable.lootTableReference(MACHINE_POWER_RARE_LOOT_TABLE).setWeight(3))
+                                .add(NestedLootTable.lootTableReference(MACHINE_POWER_CURIO_LOOT_TABLE).setWeight(30))
                                 .add(NestedLootTable.lootTableReference(OLD_ALTAR_CURIO_LOOT_TABLE).setWeight(17))
                                 .add(NestedLootTable.lootTableReference(FRESH_ALTAR_LOOT_TABLE).setWeight(20))
                         )

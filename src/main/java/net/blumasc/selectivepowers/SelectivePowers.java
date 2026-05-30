@@ -7,6 +7,7 @@ import net.blumasc.blubasics.events.RenderEffectSyncRegistry;
 import net.blumasc.selectivepowers.block.SelectivepowersBlocks;
 import net.blumasc.selectivepowers.block.entity.SelectivepowersBlockEntities;
 import net.blumasc.selectivepowers.component.ModDataComponentTypes;
+import net.blumasc.selectivepowers.components.ModDataComponents;
 import net.blumasc.selectivepowers.effect.SelectivepowersEffects;
 import net.blumasc.selectivepowers.entity.SelectivepowersEntities;
 import net.blumasc.selectivepowers.item.SelectivepowersCreativeModeTabs;
@@ -84,6 +85,7 @@ public class SelectivePowers {
         modEventBus.addListener(ModNetworking::register);
         SelectivePowersParticles.register(modEventBus);
         ModProcessors.PROCESSOR_TYPES.register(modEventBus);
+        ModDataComponents.register(modEventBus);
 
         // Register our mod's ModConfigSpec so that FML can create and load the config file for us
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);

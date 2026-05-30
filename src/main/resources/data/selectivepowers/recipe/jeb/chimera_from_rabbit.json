@@ -6,10 +6,10 @@
       "item": "selectivepowers:chimera_core"
     }
   ],
-  "input_entity": "minecraft:chicken",
+  "input_entity": "minecraft:rabbit",
   "input_spawn_eggs": [
     {
-      "item": "minecraft:chicken_spawn_egg"
+      "item": "minecraft:rabbit_spawn_egg"
     }
   ],
   "output_entity": "blubasics:chimera",

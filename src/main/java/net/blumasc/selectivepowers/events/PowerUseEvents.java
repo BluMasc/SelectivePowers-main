@@ -20,9 +20,12 @@ import net.blumasc.selectivepowers.item.custom.SunSlicerItem;
 import net.blumasc.selectivepowers.managers.*;
 import net.blumasc.selectivepowers.mixin.MobEffectAccessor;
 import net.blumasc.selectivepowers.network.AbilityTimerSyncPacket;
+import net.blumasc.selectivepowers.network.LeftClickPayload;
+import net.blumasc.selectivepowers.network.LeverVisionSyncPacket;
 import net.blumasc.selectivepowers.util.ModTags;
 import net.blumasc.selectivepowers.worldgen.ModDimensions;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
 import net.minecraft.core.Vec3i;
 import net.minecraft.core.particles.ItemParticleOption;
@@ -40,7 +43,10 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
+import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.effect.*;
@@ -55,12 +61,10 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.level.ChunkPos;
-import net.minecraft.world.level.GameType;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.ButtonBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.ChestBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -71,6 +75,8 @@ import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.phys.AABB;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.bus.api.Event;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -95,6 +101,84 @@ import static net.blumasc.selectivepowers.entity.helper.SquidSortHelper.isSorted
 @EventBusSubscriber(modid = SelectivePowers.MODID)
 public class PowerUseEvents {
     private static final ResourceLocation NATURAL_ARMOR = ResourceLocation.fromNamespaceAndPath(SelectivePowers.MODID, "natural_armor");
+
+
+    public static void remoteUseBlock(Player player, double maxDistance) {
+        Level plevel = player.level();
+
+        if(!(plevel instanceof ServerLevel level))return;
+
+        PowerManager pm = PowerManager.get(level);
+
+        if(!pm.getPowerOfPlayer(player.getUUID()).equals(PowerManager.MACHINE_POWER))return;
+        PowerManager.PlayerProgress progress = pm.getProgress(player.getUUID());
+        if(progress.ultTimer<=0)return;
+
+        Vec3 start = player.getEyePosition();
+        Vec3 look = player.getLookAngle().normalize();
+        double stepSize = 0.25D;
+
+        BlockHitResult vanillaHit = level.clip(
+                new ClipContext(
+                        start,
+                        start.add(look.scale(player.blockInteractionRange())),
+                        ClipContext.Block.OUTLINE,
+                        ClipContext.Fluid.NONE,
+                        player
+                )
+        );
+
+        if (vanillaHit.getType() == HitResult.Type.BLOCK) {
+
+            return;
+        }
+
+        BlockPos.MutableBlockPos mutablePos = new BlockPos.MutableBlockPos();
+
+        for (double d = 0; d <= maxDistance; d += stepSize) {
+
+            Vec3 current = start.add(look.scale(d));
+
+            mutablePos.set(
+                    Mth.floor(current.x),
+                    Mth.floor(current.y),
+                    Mth.floor(current.z)
+            );
+
+            BlockState state = level.getBlockState(mutablePos);
+            if (state.isAir()) {
+                continue;
+            }
+
+            Block block = state.getBlock();
+            boolean valid = state.is(Blocks.LEVER) || state.is(BlockTags.BUTTONS);
+
+            if (!valid) {
+                continue;
+            }
+            Direction face = Direction.getNearest(
+                    look.x,
+                    look.y,
+                    look.z
+            );
+
+            BlockHitResult hitResult = new BlockHitResult(
+                    current,
+                    face,
+                    mutablePos.immutable(),
+                    false
+            );
+
+            InteractionResult result = state.useWithoutItem(
+                    level,
+                    player,
+                    hitResult
+            );
+            if (result.consumesAction()) {
+                return;
+            }
+        }
+    }
 
     @SubscribeEvent
     public static void onnaturalArmor(PlayerTickEvent.Pre event) {
@@ -358,6 +442,26 @@ public class PowerUseEvents {
             PowerManager pm = PowerManager.get(sl);
             PowerManager.PlayerProgress progress = pm.getProgress(e.getUUID());
             PacketDistributor.sendToPlayer(sp, new AbilityTimerSyncPacket(progress.ultTimer, progress.abilityTimer));
+        }
+    }
+
+    @SubscribeEvent
+    public static void leverTick(PlayerTickEvent.@NotNull Post e){
+        Player p = e.getEntity();
+        if(!(p.level() instanceof ServerLevel sl)) return;
+        PowerManager pm = PowerManager.get(sl);
+        PowerManager.PlayerProgress progress = pm.getProgress(p.getUUID());
+        if(pm.getPowerOfPlayer(p.getUUID()).equals(PowerManager.MACHINE_POWER) && progress.ultTimer>0)
+        {
+            progress.ultTimer--;
+            pm.setDirty();
+            if(p.tickCount%10==0){
+                PacketDistributor.sendToPlayer((ServerPlayer) p, new LeverVisionSyncPacket(true));
+            }
+        }else{
+            if(p.tickCount%10==0){
+                PacketDistributor.sendToPlayer((ServerPlayer) p, new LeverVisionSyncPacket(false));
+            }
         }
     }
 

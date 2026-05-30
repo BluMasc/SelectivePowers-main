@@ -133,6 +133,10 @@ public class SelectivePowersClient {
         CuriosRendererRegistry.register(SelectivepowersItems.PIRATE_HAT.get(), PirateHatRenderer::new);
         CuriosRendererRegistry.register(SelectivepowersItems.BUBBLE.get(), WaterParticleRenderer::new);
         CuriosRendererRegistry.register(SelectivepowersItems.NAUTIC_BELT.get(), NauticBeltRenderer::new);
+        CuriosRendererRegistry.register(SelectivepowersItems.REDSTONE_VIZER.get(), RedstoneVizerRenderer::new);
+        CuriosRendererRegistry.register(SelectivepowersItems.PISTON_ARM.get(), ArmPistonRenderer::new);
+        CuriosRendererRegistry.register(SelectivepowersItems.POCKET_REDSTONE.get(), RedstoneParticleRenderer::new);
+        CuriosRendererRegistry.register(SelectivepowersItems.WORK_OVERALL.get(), WorkOverallRenderer::new);
 
 
         event.enqueueWork(() -> {
@@ -145,6 +149,12 @@ public class SelectivePowersClient {
         event.enqueueWork(() -> {
             ItemBlockRenderTypes.setRenderLayer(
                     SelectivepowersBlocks.EARTH_GLASS.get(),
+                    RenderType.translucent()
+            );
+        });
+        event.enqueueWork(() -> {
+            ItemBlockRenderTypes.setRenderLayer(
+                    SelectivepowersBlocks.SOLIDIFYING_GRATE.get(),
                     RenderType.translucent()
             );
         });

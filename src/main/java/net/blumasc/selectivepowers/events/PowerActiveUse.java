@@ -14,6 +14,7 @@ import net.blumasc.selectivepowers.entity.custom.projectile.MagicCircleEntity;
 import net.blumasc.selectivepowers.entity.custom.projectile.WhirlpoolEntity;
 import net.blumasc.selectivepowers.item.SelectivepowersItems;
 import net.blumasc.selectivepowers.managers.SunBattleManager;
+import net.blumasc.selectivepowers.network.LeverVisionSyncPacket;
 import net.blumasc.selectivepowers.sound.SelectivepowersSounds;
 import net.blumasc.selectivepowers.util.ModTags;
 import net.blumasc.selectivepowers.worldgen.ModDimensions;
@@ -33,10 +34,8 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.DragonFireball;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.MaceItem;
-import net.minecraft.world.item.ShieldItem;
+import net.minecraft.world.inventory.Slot;
+import net.minecraft.world.item.*;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -44,6 +43,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.*;
+import net.neoforged.neoforge.network.PacketDistributor;
 
 import java.util.List;
 import java.util.Objects;
@@ -114,8 +114,28 @@ public class PowerActiveUse {
         }else if(powerOfPlayer.equals(PowerManager.WATER_POWER))
         {
             return useWaterPower(p,sl,ult);
+        }else if(powerOfPlayer.equals(PowerManager.MACHINE_POWER))
+        {
+            return useMachinePower(p,sl,ult);
         }
         return false;
+    }
+
+    private static boolean useMachinePower(Player p, ServerLevel sl, boolean ult) {
+        PowerManager pm = PowerManager.get(sl);
+        PowerManager.PlayerProgress progress = pm.getProgress(p.getUUID());
+        if(ult){
+            progress.ultTimer = 1200;
+            sendLeverVisionClientUpdate(p);
+            return true;
+        }else
+        {
+            return transformRedstoneItems(p);
+        }
+    }
+
+    private static void sendLeverVisionClientUpdate(Player p) {
+        PacketDistributor.sendToPlayer((ServerPlayer) p, new LeverVisionSyncPacket(true));
     }
 
     private static boolean useWaterPower(Player p, ServerLevel sl, boolean ult) {
@@ -770,8 +790,6 @@ public class PowerActiveUse {
         return false;
     }
     public static void giveItemsWithEnchantments(Player player) {
-        Level level = player.level();
-
         ItemStack oldMain = player.getMainHandItem().copy();
         ItemStack oldOff = player.getOffhandItem().copy();
 
@@ -823,6 +841,29 @@ public class PowerActiveUse {
             if (clazz.isInstance(stack.getItem())) return stack;
         }
         return null;
+    }
+    private static boolean transformRedstoneItems(Player player){
+        boolean found = false;
+        NonNullList<ItemStack> inv = player.getInventory().items;
+
+        for (int i = 0; i < 9; i++) {
+            ItemStack stack = inv.get(i);
+
+            if (stack.is(Items.COPPER_GRATE)) {
+                inv.set(i, new ItemStack(SelectivepowersBlocks.SOLIDIFYING_GRATE, stack.getCount()));
+                found = true;
+            }
+            else if (stack.is(Items.ENDER_EYE)) {
+                inv.set(i, new ItemStack(SelectivepowersBlocks.ITEM_SENTINEL, stack.getCount()));
+                found = true;
+            }
+            else if (stack.is(Items.SCULK)) {
+                inv.set(i, new ItemStack(SelectivepowersBlocks.CALIBRATED_PRESSURE_PLATE, stack.getCount()));
+                found = true;
+            }
+        }
+
+        return found;
     }
 
 

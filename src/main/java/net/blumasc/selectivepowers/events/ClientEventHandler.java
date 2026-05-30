@@ -13,6 +13,7 @@ import net.blumasc.selectivepowers.entity.client.wings.DragonWingLayer;
 import net.blumasc.selectivepowers.entity.client.yellowking.YellowKingLayer;
 import net.blumasc.selectivepowers.entity.client.yellowking.YellowKingModel;
 import net.blumasc.selectivepowers.network.ActivateAbilityPacket;
+import net.blumasc.selectivepowers.network.LeftClickPayload;
 import net.blumasc.selectivepowers.network.ModNetworking;
 import net.blumasc.selectivepowers.particles.SelectivePowersParticles;
 import net.blumasc.selectivepowers.particles.custom.WispParticle;
@@ -187,6 +188,21 @@ public class ClientEventHandler {
         if (inventoryModel != null && handModel != null) {
             event.getModels().put(inventoryLoc, new InWorld3dBakedModel(inventoryModel, handModel));
         }
+    }
+
+    private static boolean wasUseDown = false;
+    @SubscribeEvent
+    public static void onClientRedstoneTick(ClientTickEvent.Post event) {
+        Minecraft mc = Minecraft.getInstance();
+
+        if (mc.player == null) return;
+
+        boolean isUseDown = mc.options.keyUse.isDown();
+        if (isUseDown && !wasUseDown) {
+            PacketDistributor.sendToServer(new LeftClickPayload());
+        }
+
+        wasUseDown = isUseDown;
     }
 
 }

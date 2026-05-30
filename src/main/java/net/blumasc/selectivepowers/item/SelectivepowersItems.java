@@ -184,6 +184,9 @@ public class SelectivepowersItems {
     public static final DeferredItem<Item> THROWN_ANCHOR = ITEMS.register("thrown_anchor",
             () -> new ThrownAnchorBladeItem(new Item.Properties().stacksTo(1)));
 
+    public static final DeferredItem<Item> WIRELESS_LEVER = ITEMS.register("wireless_lever",
+            () -> new RemoteLeverItem(new Item.Properties().stacksTo(1)));
+
     public static final DeferredItem<Item> LORE_SCROLL = ITEMS.register("lore_scroll",
             () -> new LoreScrollItem(new Item.Properties().stacksTo(1)));
 
@@ -292,7 +295,19 @@ public class SelectivepowersItems {
     public static final DeferredItem<CurioItem> BUBBLE = ITEMS.register("bubble",
             () -> new CurioItem(new Item.Properties().stacksTo(1)));
 
+    public static final DeferredItem<CurioItem> REDSTONE_VIZER = ITEMS.register("redstone_vizer",
+            () -> new CurioItem(new Item.Properties().stacksTo(1)));
+
     public static final DeferredItem<CurioItem> NAUTIC_BELT = ITEMS.register("nautic_belt",
+            () -> new CurioItem(new Item.Properties().stacksTo(1)));
+
+    public static final DeferredItem<CurioItem> PISTON_ARM = ITEMS.register("arm_piston",
+            () -> new CurioItem(new Item.Properties().stacksTo(1)));
+
+    public static final DeferredItem<CurioItem> POCKET_REDSTONE = ITEMS.register("pocket_redstone",
+            () -> new CurioItem(new Item.Properties().stacksTo(1)));
+
+    public static final DeferredItem<CurioItem> WORK_OVERALL = ITEMS.register("work_overall",
             () -> new CurioItem(new Item.Properties().stacksTo(1)));
 
     public static final DeferredItem<Item> MOON_GLAIVE_3D = ITEMS.register("moon_glaive_3d",

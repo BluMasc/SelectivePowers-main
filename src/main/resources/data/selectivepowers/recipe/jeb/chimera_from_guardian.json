@@ -7,8 +7,16 @@
     }
   ],
   "input_entity": "minecraft:guardian",
-  "input_spawn_eggs": [],
+  "input_spawn_eggs": [
+    {
+      "item": "minecraft:guardian_spawn_egg"
+    }
+  ],
   "output_entity": "blubasics:chimera",
-  "output_entity_nbt": [],
-  "output_spawn_eggs": []
+  "output_entity_nbt": {},
+  "output_spawn_eggs": [
+    {
+      "item": "blubasics:chimera_spawn_egg"
+    }
+  ]
 }

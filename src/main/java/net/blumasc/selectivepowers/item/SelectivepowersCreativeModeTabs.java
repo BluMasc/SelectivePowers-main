@@ -62,6 +62,8 @@ public class SelectivepowersCreativeModeTabs {
                       output.accept(SelectivepowersItems.LORE_SCROLL);
                       output.accept(SelectivepowersItems.WHIRL_PEARL);
                       output.accept(SelectivepowersItems.ANCHOR);
+                      output.accept(SelectivepowersItems.REDSTONE_VIZER);
+                      output.accept(SelectivepowersItems.WIRELESS_LEVER);
                       //Deco Curios
                       output.accept(SelectivepowersItems.CORRUPTED_MASK);
                         output.accept(SelectivepowersItems.SHOULDER_CROW);
@@ -100,6 +102,9 @@ public class SelectivepowersCreativeModeTabs {
                       output.accept(SelectivepowersItems.PIRATE_HAT);
                         output.accept(SelectivepowersItems.NAUTIC_BELT);
                         output.accept(SelectivepowersItems.BUBBLE);
+                        output.accept(SelectivepowersItems.PISTON_ARM);
+                        output.accept(SelectivepowersItems.POCKET_REDSTONE);
+                        output.accept(SelectivepowersItems.WORK_OVERALL);
                       //Spawn Eggs
                         output.accept(SelectivepowersItems.CROW_SPAWN_EGG);
                         output.accept(BaseModItems.SOLAR_BEETLE_SPAWN_EGG);
@@ -152,6 +157,7 @@ public class SelectivepowersCreativeModeTabs {
                         output.accept(SelectivepowersBlocks.TESSLA_COIL);
                         output.accept(SelectivepowersBlocks.CALIBRATED_PRESSURE_PLATE);
                         output.accept(SelectivepowersBlocks.ITEM_SENTINEL);
+                        output.accept(SelectivepowersBlocks.SOLIDIFYING_GRATE);
                         output.accept(SelectivepowersBlocks.SACRIFICIAL_ALTAR_BLOCK);
                     }).build());
 

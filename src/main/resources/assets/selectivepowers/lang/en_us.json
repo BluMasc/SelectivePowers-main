@@ -88,6 +88,8 @@
   "lore.selectivepowers.calibrated_pressure_plate": "A peculiar pressure plate, that only works if the same kind of mob, that wants to use it is also below it.",
   "block.selectivepowers.item_sentinel": "Item Sentinel",
   "lore.selectivepowers.item_sentinel": "A Comparator like block, that can be configured with an item. It outputs the signal when its ender eye side is looking at the same item.",
+  "block.selectivepowers.solidifying_grate": "Solidifying Grate",
+  "lore.selectivepowers.solidifying_grate": "This block only lets items and experience pass it. If a block item leaves it, it tries to place it.",
 
   "item.selectivepowers.soulgem": "Gem of the Freed Soul",
   "lore.selectivepowers.soulgem": "This gem may break your contract with a deity. But be warned it will hurt.",
@@ -178,6 +180,10 @@
   "lore.selectivepowers.anchor": "A weapon that can be thrown to pull entities closer. Deals extra damage to mob who are holding their breath.",
   "item.selectivepowers.thrown_anchor": "Anchor",
   "lore.selectivepowers.thrown_anchor": "A weapon that can be thrown to pull entities closer. Deals extra damage to mob who are holding their breath.",
+  "item.selectivepowers.redstone_vizer": "Redstone Vizer",
+  "lore.selectivepowers.redstone_vizer": "An equipable headpeace that let's you see redstone through blocks while sneaking.",
+  "item.selectivepowers.wireless_lever": "Lever Remote",
+  "lore.selectivepowers.wireless_lever": "A one-time-use item, that can be bound to a lever by shift rightclicking it and then flipping it from far away.",
 
   "item.selectivepowers.shelf_mushroom": "Shelf Mushroom",
   "lore.selectivepowers.shelf_mushroom": "This is just a cosmetic item.",
@@ -255,6 +261,12 @@
   "lore.selectivepowers.pirate_hat": "This is just a cosmetic item.",
   "item.selectivepowers.bubble": "Bubble",
   "lore.selectivepowers.bubble": "This is just a cosmetic item.",
+  "item.selectivepowers.arm_piston": "Arm Piston",
+  "lore.selectivepowers.arm_piston": "This is just a cosmetic item.",
+  "item.selectivepowers.pocket_redstone": "Pocket Redstone",
+  "lore.selectivepowers.pocket_redstone": "This is just a cosmetic item.",
+  "item.selectivepowers.work_overall": "Work Overall",
+  "lore.selectivepowers.work_overall": "This is just a cosmetic item.",
 
   "item.minecraft.potion.effect.sp_truth_vision_potion": "Truth Potion",
   "item.minecraft.splash_potion.effect.sp_truth_vision_potion": "Truth Splash Potion",

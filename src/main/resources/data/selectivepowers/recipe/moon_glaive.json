@@ -1,13 +1,4 @@
 {
-  "conditions": [
-    {
-      "type": "neoforge:not",
-      "value": {
-        "type": "neoforge:mod_loaded",
-        "modid": "spears"
-      }
-    }
-  ],
   "type": "selectivepowers:altar",
   "ingredient": {
     "item": "minecraft:netherite_sword"

@@ -1,0 +1,10 @@
+{
+  "type": "selectivepowers:altar",
+  "ingredient": {
+    "item": "minecraft:lever"
+  },
+  "night": false,
+  "result": {
+    "id": "selectivepowers:wireless_lever"
+  }
+}
